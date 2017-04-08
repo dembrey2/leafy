@@ -8,4 +8,6 @@ class User < ApplicationRecord
 
   has_secure_password
   has_secure_token
+
+  # accepts_nested_attributes_for :seeker_profile, :allow_destroy => true
 end
