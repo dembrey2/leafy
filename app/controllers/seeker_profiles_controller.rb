@@ -10,8 +10,6 @@ class SeekerProfilesController < ApplicationController
     render json: @seeker_profile
   end
 
-
-
   private
 
   def seeker_params
