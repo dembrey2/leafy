@@ -1,0 +1,2 @@
+class SeekerProfilesController < ApplicationController
+end
