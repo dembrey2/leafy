@@ -11,7 +11,8 @@ class SeekerProfilesController < ApplicationController
   end
 
   def show
-    @seeker_profile = SeekerProfile.find(params[:id])
+    skill = Skill.find(params[:skill_id])
+    @seeker_profile = skill.seeker_profiles.find(params[:id])
     render json: @seeker_profile
   end
 
@@ -20,14 +21,13 @@ class SeekerProfilesController < ApplicationController
 
     if params[:seeker_profile][:skills]
       new_skills = params[:seeker_profile][:skills].map do |skill_id|
-        SeekerProfile.find(skill_id)
+        Skill.find(skill_id)
       end
       @seeker_profile.skills.replace(new_skills)
     end
 
     if @seeker_profile.update(seeker_params)
-      @user = @seeker_profile.user
-      render json: @user
+      render json: @seeker_profile
     else
       render json: @seeker_profile.errors.full_messages, status: 400
     end
