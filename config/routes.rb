@@ -1,10 +1,20 @@
 Rails.application.routes.draw do
-  resources :jobs
-  resources :employer_profiles
-  resources :seeker_profiles
-  resources :skillings
-  resources :locations
-  resources :skills
-  resources :users
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+  scope :api do
+    resources :employer_profiles do
+      resources :jobs
+    end
+
+    resources :users
+
+    resources :skills do
+      resources :seeker_profiles
+      resources :jobs do
+        resources :employer_profiles
+      end
+    end
+
+  end
+
+  post 'login' => 'sessions#create'
 end
