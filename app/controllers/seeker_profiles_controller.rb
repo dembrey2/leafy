@@ -1,8 +1,12 @@
 class SeekerProfilesController < ApplicationController
 
   def index
-    skill = Skill.find(params[:skill_id])
-    @seeker_profiles = skill.seeker_profiles
+    if params[:skill_id]
+      skill = Skill.find(params[:skill_id])
+      @seeker_profiles = skill.seeker_profiles
+    else
+      @seeker_profiles = SeekerProfile.all
+    end
     render json: @seeker_profiles
   end
 
@@ -22,7 +26,8 @@ class SeekerProfilesController < ApplicationController
     end
 
     if @seeker_profile.update(seeker_params)
-      render json: @seeker_profile
+      @user = @seeker_profile.user
+      render json: @user
     else
       render json: @seeker_profile.errors.full_messages, status: 400
     end
@@ -32,6 +37,6 @@ class SeekerProfilesController < ApplicationController
   private
 
   def seeker_params
-    params.require(:seeker_profile).permit(:first_name, :last_name, :email, :phone)
+    params.require(:seeker_profile).permit(:first_name, :last_name, :email, :phone, user_attributes: [:id, :location_id, :about])
   end
 end

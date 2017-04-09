@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     end
 
     resources :users
+    resources :seeker_profiles
 
     resources :skills do
       resources :seeker_profiles

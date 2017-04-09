@@ -5,4 +5,6 @@ class SeekerProfile < ApplicationRecord
   has_many :skills, through: :skillings
 
   validates :first_name, :last_name, presence: true
+
+  accepts_nested_attributes_for :user
 end
