@@ -13,7 +13,8 @@ class JobsController < ApplicationController
     elsif params[:employer_profile_id]
       employer_profile = EmployerProfile.find(params[:employer_profile_id])
       @job = employer_profile.jobs.find(params[:id])
-      render json: @job
+      @seeker_profiles = @job.skills.map{ |skill| skill.seeker_profiles.each{ |seeker| seeker }}.flatten.uniq
+      render json: { :job => @job, :seeker_profiles => @seeker_profiles }
     else
       render json: ["Job not found"], status: 404
     end
