@@ -17,7 +17,7 @@ class SeekerProfilesController < ApplicationController
       render json: @seeker_profile
     else
       @seeker_profile = SeekerProfile.find(params[:id])
-      @jobs = @seeker_profile.skills.map{ |skill| skill.jobs.each{ |job| job }}.flatten.uniq
+      @jobs = @seeker_profile.skills.map{ |skill| skill.jobs }.flatten.uniq
       render json: { :seeker_profile => @seeker_profile, :jobs => @jobs }
     end
   end
