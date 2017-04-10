@@ -7,4 +7,8 @@ class SeekerProfile < ApplicationRecord
   validates :first_name, :last_name, presence: true
 
   accepts_nested_attributes_for :user
+
+  def matched_jobs
+    self.skills.map{ |skill| skill.jobs }.flatten.uniq
+  end
 end

@@ -14,12 +14,10 @@ class SeekerProfilesController < ApplicationController
     if params[:skill_id]
       skill = Skill.find(params[:skill_id])
       @seeker_profile = skill.seeker_profiles.find(params[:id])
-      render json: @seeker_profile
     else
       @seeker_profile = SeekerProfile.find(params[:id])
-      @jobs = @seeker_profile.skills.map{ |skill| skill.jobs }.flatten.uniq
-      render json: { :seeker_profile => @seeker_profile, :jobs => @jobs }
     end
+    render json: @seeker_profile.user
   end
 
   def update
