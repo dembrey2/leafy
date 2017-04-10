@@ -8,7 +8,10 @@ class SeekerProfile < ApplicationRecord
 
   accepts_nested_attributes_for :user
 
+  private
+
   def matched_jobs
-    self.skills.map{ |skill| skill.jobs }.flatten.uniq
+    skills.map{ |skill| skill.jobs }.flatten.uniq
+    # skills.include jobs
   end
 end

@@ -1,10 +1,9 @@
 class SeekerProfileSerializer < ActiveModel::Serializer
-  attributes :id, :first_name, :last_name, :email, :phone, :matched_jobs, :skills
+  attributes :id, :first_name, :last_name, :email, :phone, :skills
 
   def skills
     object.skills
   end
 
-  belongs_to :user
-  # has_many :skills
+  has_many :matched_jobs
 end

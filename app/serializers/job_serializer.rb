@@ -1,7 +1,19 @@
 class JobSerializer < ActiveModel::Serializer
-  attributes :id, :title, :description, :transportation, :active
+  attributes :id, :title, :description, :transportation, :active, :company_name, :location, :skills
 
-  has_one :employer_profile
-  has_one :location
-  has_many :skills
+  def company_name
+    object.employer_profile.company_name
+  end
+
+  def location
+    object.location.name
+  end
+
+  def skills
+    object.skills
+  end
+
+  # has_one :employer_profile
+  # has_one :location
+  # has_many :skills
 end

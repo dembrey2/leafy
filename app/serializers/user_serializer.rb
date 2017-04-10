@@ -9,13 +9,7 @@ class UserSerializer < ActiveModel::Serializer
   end
 
   def role
-    if object.seeker_profile
-      "seeker"
-    elsif object.employer_profile
-      "employer"
-    else
-      "no role"
-    end
+    object.seeker_profile ? "seeker" : "employer"
   end
 
 end
