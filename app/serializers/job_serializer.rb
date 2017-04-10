@@ -6,11 +6,11 @@ class JobSerializer < ActiveModel::Serializer
   end
 
   def location
-    object.location.name
+    object.location.name if object.location
   end
 
   def skills
-    object.skills
+    object.skills if object.skills
   end
 
   # has_one :employer_profile
