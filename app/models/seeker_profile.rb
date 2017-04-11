@@ -6,8 +6,6 @@ class SeekerProfile < ApplicationRecord
 
   validates :first_name, :last_name, presence: true
 
-  private
-
   def matched_jobs
     skills.map{ |skill| skill.jobs }.flatten.uniq
     # skills.include jobs
