@@ -24,6 +24,7 @@ class EmployerProfileEdit extends Component {
 
         // Back-end controls the left side, properties, of this object
         // Front-end controls the variables names and values on the right side
+		//added nested json
         body: JSON.stringify({
            token: window.user.token,
             user: {
