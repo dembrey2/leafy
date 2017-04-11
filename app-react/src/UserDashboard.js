@@ -3,11 +3,11 @@ import UserSnapshot from './UserSnapshot'
 import JobSnapshot from './JobSnapshot'
 
 class UserDashboard extends Component {
-  // componentWillMount() {
-  // if (!window.user.token) {
-  //    location.href = '/'
-  //  }
-  // }
+  componentWillMount() {
+  if (!window.user.token) {
+     location.href = '/'
+   }
+  }
   render() {
     const matchedJobs = window.user.seeker_profile.matched_jobs.map(matchedJob => <JobSnapshot key={matchedJob.id} {...matchedJob} isEmployer={false} />)
 

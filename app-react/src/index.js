@@ -44,6 +44,7 @@ ReactDOM.render(
     <Route path="/employersnapshot" component={EmployerSnapshot} />
     <Route path="/jobsnapshot" component={JobSnapshot} />
     <Route path="/addjob" component={AddJob} />
+    <Route path="/editjob/:jobId" component={AddJob} />
     
 
       </Route>
