@@ -25,6 +25,9 @@ end
     last_name: Faker::Name.last_name,
     email: Faker::Internet.safe_email,
     phone: Faker::PhoneNumber.phone_number,
+    education: Faker::ChuckNorris.fact,
+    work_history: Faker::HarryPotter.quote,
+    interests: Faker::TwinPeaks.quote,
     user: User.create!(
       username: Faker::Cat.unique.name,
       password: "cupcakes",

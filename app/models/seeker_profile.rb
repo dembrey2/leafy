@@ -6,8 +6,6 @@ class SeekerProfile < ApplicationRecord
 
   validates :first_name, :last_name, presence: true
 
-  accepts_nested_attributes_for :user
-
   private
 
   def matched_jobs
