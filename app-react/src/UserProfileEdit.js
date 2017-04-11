@@ -9,33 +9,33 @@ class UserProfileEdit extends Component {
 		this.lookupSkills = this.lookupSkills.bind(this)
 
 		this.state = {
-			email: '',
-			phone: '',
-			communication: '',
-			about: '',
-			skills: [],
+			email: window.user.seeker_profile.email,
+			phone: window.user.seeker_profile.phone,
+			skills: window.user.seeker_profile.skills.map(skill => skill.id),
+			communication: window.user.communication,
 			education: '',
 			work_history: '',
 			interests: '',
-			lookupSkills: []
+			lookupSkills: [],
+			about: window.user.about
 		}
 	 }
 
 	 componentWillMount(){
 		 this.lookupSkills()
 
-		 fetch(window.apiHost + '/api/users/' + window.user.id)
-		.then(response => response.json())
-		.then(response => this.setState({
-			skills: response.user.skills.map(skill => skill.id),
-			email: response.user.email,
-			phone: response.user.phone,
-			communication: response.user.communication,
-			about: response.user.about,
-			education: response.user.education,
-			work_history: response.user.workHistory,
-			interests: response.user.interests
-		}))
+		//  fetch(window.apiHost + '/api/users/' + window.user.id)
+		// .then(response => response.json())
+		// .then(response => this.setState({
+		// 	skills: response.user.skills.map(skill => skill.id),
+		// 	email: response.user.email,
+		// 	phone: response.user.phone,
+		// 	communication: response.user.communication,
+		// 	about: response.user.about,
+		// 	education: response.user.education,
+		// 	work_history: response.user.workHistory,
+		// 	interests: response.user.interests
+		// }))
 	 }
 
 	 addSkill(e) {
@@ -73,17 +73,19 @@ class UserProfileEdit extends Component {
         // Back-end controls the left side, properties, of this object
         // Front-end controls the variables names and values on the right side
         body: JSON.stringify({
-			//token: window.user.token,
+			token: window.user.token,
             user: {
-				token: window.user.token,
-                email: this.state.email,
-				phone: this.state.phone,
-				communication: this.state.communication,
+				seeker_profile_attributes: {
+					id: window.user.seeker_profile.id,
+					email: this.state.email,
+					phone: this.state.phone,
+					communication: this.state.communication,
+					skills: this.state.skills,
+					education: this.state.education,
+					work_history: this.state.workHistory,
+					interests: this.state.interests
+				},
 				about: this.state.about,
-				skills: this.state.skills,
-				education: this.state.education,
-				work_history: this.state.workHistory,
-				interests: this.state.interests
             }
         })
     })
@@ -92,7 +94,7 @@ class UserProfileEdit extends Component {
         })
         .then(function(response) {
             console.log(response);
-			browserHistory.push('/userdashboard')
+			browserHistory.push('/dashboard')
         })
 	}
 
@@ -110,7 +112,7 @@ class UserProfileEdit extends Component {
 					<div className="col-sm-6 col-sm-offset-3">
 						<div className="form-group">
 							<label htmlFor="email"> Email (optional)</label>
-							<input type="text" className="form-control"  name="email" placeholder="" value={this.state.email} onChange={(e) => this.setState({email: e.target.value})}/>
+							<input type="text" className="form-control" name="email" value={this.state.email} onChange={(e) => this.setState({email: e.target.value})}/>
 						</div>
 						<div className="form-group">
 							<label htmlFor="phone">Phone</label>

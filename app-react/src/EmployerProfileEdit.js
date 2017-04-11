@@ -25,13 +25,16 @@ class EmployerProfileEdit extends Component {
         // Back-end controls the left side, properties, of this object
         // Front-end controls the variables names and values on the right side
         body: JSON.stringify({
-           // token: window.user.token,
+           token: window.user.token,
             user: {
-                company_name: this.state.companyName,
-                contact_name: this.state.contactName,
-                email: this.state.email,
-				phone: this.state.phone,
-				communication: this.state.communication,
+				employer_profile_attributes: {
+					id: window.user.employer_profile.id,
+					company_name: this.state.companyName,
+					contact_name: this.state.contactName,
+					email: this.state.email,
+					phone: this.state.phone,
+					communication: this.state.communication,
+				},
 				about: this.state.about
             }
         })

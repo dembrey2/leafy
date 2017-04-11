@@ -15,7 +15,6 @@ class JobDetail extends Component {
 
     componentWillMount() {
         this.lookupJob()
-       // this.lookupSkills()
     }
 
     lookupJob() {

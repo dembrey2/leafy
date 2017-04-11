@@ -24,7 +24,8 @@ import './index.css';
 window.user = JSON.parse(sessionStorage.getItem('user'))
 if (window.user) {window.user = window.user.user}
 
-window.apiHost = 'https://glacial-wave-69316.herokuapp.com'
+// window.apiHost = 'https://glacial-wave-69316.herokuapp.com'
+window.apiHost = ''
 
 const isEmployer = (window.user && window.user.role === 'employer')
 
@@ -37,7 +38,7 @@ ReactDOM.render(
     <Route path="/dashboard" component={isEmployer ? EmployerDashboard : UserDashboard} />
     <Route path="/profile-edit" component={isEmployer ? EmployerProfileEdit : UserProfileEdit} />
     <Route path="/jobmatches" component={JobMatches} />
-    <Route path="/profile" component={isEmployer? EmployerDetail : UserDetail} />
+    <Route path="/profile/:userId" component={isEmployer? EmployerDetail : UserDetail} />
     <Route path="/jobdetail/:jobId" component={JobDetail} />
     <Route path="/usersnapshot" component={UserSnapshot} />
     <Route path="/employersnapshot" component={EmployerSnapshot} />
