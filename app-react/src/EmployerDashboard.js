@@ -5,6 +5,7 @@ import JobSnapshot from './JobSnapshot'
 
 class EmployerDashboard extends Component {
   render() {
+	  const currentJobs = window.user.employer_profile.jobs.map(currentJob => <JobSnapshot key={currentJob.id} {...currentJob} isEmployer={true} />)
     return (
       <div>
         <EmployerSnapshot isEmployer={true}/>
@@ -40,8 +41,7 @@ class EmployerDashboard extends Component {
 			<div className="col-sm-8 col-sm-offset-2">
 				<h2 className="text-center">Current Job Postings</h2>
 				<button type="button" className="btn btn-default" onClick={() => browserHistory.push ('/addjob')}>Add New Job</button>
-					<JobSnapshot isEmployer={true} />
-					<JobSnapshot isEmployer={false} />
+					{currentJobs}
 				</div>
 			</div>
 		</div>

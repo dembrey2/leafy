@@ -2,8 +2,103 @@ import React, { Component } from 'react';
 import { browserHistory } from 'react-router'
 import EmployerSnapshot from './EmployerSnapshot'
 
-class EmployerSignup extends Component {
+class AddJob extends Component {
+	constructor(props) {
+		super(props)
+		this.addSkill = this.addSkill.bind(this)
+		this.editJob = this.editJob.bind(this)
+		this.lookupSkills = this.lookupSkills.bind(this)
+
+		this.state = {
+			location: '',
+			description: '',
+			title: '',
+			skills: [],
+			lookupSkills: []
+		}
+	 }
+
+	 componentWillMount(){
+		 this.lookupSkills()
+
+		 if (this.props.params.jobId) {
+			this.lookupJob()
+		 }
+	 }
+
+	 addSkill(e) {
+		 let skills = this.state.skills
+
+		 if (e.target.checked) {
+			skills.push(Number(e.target.value))
+		 }
+		 else {
+			skills = skills.filter(skillId => skillId !== Number(e.target.value))
+			console.log(skills)
+		 }
+
+		 this.setState({skills:skills})
+	 }
+
+	 lookupSkills() {
+		fetch(window.apiHost + '/api/skills')
+		.then(function(response) {
+				return response.json();
+			})
+		.then((response) => {
+				this.setState({lookupSkills:response.skills})
+			})
+	 }
+
+	 lookupJob() {
+		fetch(window.apiHost + '/api/users/' + window.user.id + '/jobs/' + this.props.params.jobId + '?token=' + window.user.token)
+		.then(function(response) {
+			return response.json();
+		})
+		.then((response) => {
+			this.setState({
+				location: response.job.location,
+				description: response.job.description,
+				title: response.job.title,
+				skills: response.job.skills.map(skill => skill.id)
+			})
+		})
+	 }
+
+	 editJob() {
+		fetch(window.apiHost + (this.props.params.jobId ? '/api/users/' + window.user.id + '/jobs/' + this.props.params.jobId : '/api/users/' + window.user.id + '/jobs'), {
+        method: this.props.params.jobId ? 'PUT' : 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+
+        // Back-end controls the left side, properties, of this object
+        // Front-end controls the variables names and values on the right side
+        body: JSON.stringify({
+			token: window.user.token,
+            job: {
+				location: this.state.location,
+				description: this.state.description,
+				title: this.state.title,
+				skills: this.state.skills,
+            }
+        })
+    })
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(response) {
+            console.log(response);
+			browserHistory.push('/dashboard')
+        })
+	}
+
   render() {
+	  const skills = this.state.lookupSkills.map(skill => (
+		  	<label className="checkbox" key={skill.id}>
+				<input type="checkbox" value={skill.id} checked={this.state.skills.includes(skill.id)} onChange={this.addSkill} /> {skill.name}
+			</label>
+		))
     return (
       	<div>
 		  <EmployerSnapshot isEmployer={true}/>
@@ -12,24 +107,20 @@ class EmployerSignup extends Component {
 					<h3>Add/Edit Job</h3>
 					<form>
 						<div className="form-group">
-							<label htmlFor="companyName">Company Name</label>
-							<input type="company" className="form-control" id="company_name" placeholder=""/>
-						</div>
-						<div className="form-group">
-							<label htmlFor="jobTitle">Job Title</label>
-							<input type="jobTitle" className="form-control" id="job_title" placeholder=""/>
+							<label htmlFor="title">Job Title</label>
+							<input type="text" className="form-control" name="title" value={this.state.title} onChange={(e) => this.setState({title: e.target.value})}/>
 						</div>
 						
 						<div className="form-group">
 							<label htmlFor="transportation">Transportation:</label>
-							<select className="form-control">
+							<select className="form-control" value={this.state.transportation} onChange={(e) => this.setState({transportation: e.target.value})}>
 								<option>Provided</option>
 								<option>Not Provided</option>
 							</select>
 						</div>
 						<div className="form-group">
 							<label htmlFor="location">Location:</label>
-							<select className="form-control">
+							<select className="form-control" value={this.state.location} onChange={(e) => this.setState({location: e.target.value})}>
 								<option>Downtown Bloomington</option>
 								<option>North Bloomington</option>
 								<option>East Bloomington</option>
@@ -41,23 +132,13 @@ class EmployerSignup extends Component {
 
 						<div className="form-group">
 							<label htmlFor="about">Description</label>
-							<textarea className="form-control" id="description" placeholder=""/>
+							<textarea className="form-control" id="description" value={this.state.description} onChange={(e) => this.setState({description: e.target.value})}/>
 						</div>
-                        <label htmlFor="skillsRequired">Skills Required</label>
-							<div className="row">
-								<label className="checkbox">
-								<input type="checkbox" id="Checkbox1" value="option1"/> Lawncare
-								</label>
-								<label className="checkbox">
-								<input type="checkbox" id="Checkbox2" value="option2"/> Construction
-								</label>
-								<label className="checkbox">
-								<input type="checkbox" id="Checkbox3" value="option3"/> Food Service
-								</label>
-							</div>
+                        <h3 htmlFor="skillsRequired">Skills Required</h3>
+							{skills}
 
 						<div className="form-group text-center">
-						<button type="submit" className="btn btn-default" onClick={() => browserHistory.push('/employerdashboard')}>Submit</button>
+						<button type="button" className="btn btn-default" onClick={this.editJob}>Save</button>
 						</div>
 				</form>
 			</div>
@@ -67,4 +148,4 @@ class EmployerSignup extends Component {
   }
 }
 
-export default EmployerSignup;
+export default AddJob;
