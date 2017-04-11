@@ -6,6 +6,8 @@ Rails.application.routes.draw do
       resources :jobs
     end
 
+    resources :skills
+
   end
 
   post 'login' => 'sessions#create'
