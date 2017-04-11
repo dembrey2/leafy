@@ -22,7 +22,7 @@ class UsersController < ApplicationController
 
     # if params[:user][:seeker_profile_attributes]
       if params[:user][:seeker_profile_attributes][:skills]
-        new_skills = params[:user][:seeker_profile][:skills].map do |skill_id|
+        new_skills = params[:user][:seeker_profile_attributes][:skills].map do |skill_id|
           Skill.find(skill_id)
       end
       @user.seeker_profile.skills.replace(new_skills)
