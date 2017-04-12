@@ -5,11 +5,9 @@ import { browserHistory } from 'react-router'
 class UserDetail extends Component {
     constructor(props) {
 		super(props)
-      //  this.lookupSkills = this.lookupSkills.bind(this)
+        // this.lookupSkills = this.lookupSkills.bind(this)
 		this.state = {
-			detail: {
-                skills: []
-            }
+            skills: []
 		}
 	}
 
@@ -24,22 +22,23 @@ class UserDetail extends Component {
 	//  }
 
 	componentWillMount() {
-        //this.lookupSkills()
-		// fetch(window.apiHost + '/api/users/' + window.user.id + '?token=' + window.user.token) 
-		fetch(window.apiHost + '/api/users/' + window.user.id)
+        // this.lookupSkills()
+		fetch(window.apiHost + '/api/users/' + window.user.id + '?token=' + window.user.token) 
+		//fetch(window.apiHost + '/api/users/' + this.props.params.userId)
+		// fetch(window.apiHost + '/api/users/' + window.user.id)
 		.then(response => response.json())
-		.then(response => this.setState({detail: response.user}))
+		.then(response => this.setState({...response.user}))
 	}
   render() {
     const user = window.user;
     // const snapshot = ''//window.user.role === 'employer' ? <EmployerSnapshot/> : <UserSnapshot/>
-    // const skills = this.state.detail.skills.name.map(skill => <div className="label label-success" key={skill.id}>{skill.name}</div>)
+    const skills = this.state.skills.map(skill => <div className="label label-success" key={skill.id}>{skill.name}</div>)
 
     return (
     <div>
         <div className="row">
 			<div className="col-sm-8 col-sm-offset-2">
-            {window.user.role === 'employer' ? <button type="button" className="btn btn-default text-center" onClick={() => browserHistory.push('/jobmatches')}>Back to Jobs</button> : <button type="button" className="btn btn-default text-center" onClick={() => browserHistory.push('/dashboard')}>Back to Dashboard</button>}
+            {user.role === 'employer' ? <button type="button" className="btn btn-default text-center" onClick={() => browserHistory.push('/jobmatches')}>Back to Jobs</button> : <button type="button" className="btn btn-default text-center" onClick={() => browserHistory.push('/dashboard')}>Back to Dashboard</button>}
 				<h2 className="text-center"></h2>
 				<div className="panel panel-default">
             		<div className="panel-body">
@@ -50,9 +49,10 @@ class UserDetail extends Component {
                         <p>{user.seeker_profile.phone}</p>
                         <p>{user.seeker_profile.email}</p>
                         <h4>Preferred method of Communication:</h4>
+                        <p>{user.seeker_profile.communication}</p>
                         <p>{user.about}</p>
                         <h4>Skill Sets</h4>
-                        <div>{user.seeker_profile.skills.name}</div>
+                        <div>{skills}</div>
                         <h4>Work, Education, Etc</h4>
                         <p>{user.seeker_profile.education}</p>
                         <p>{user.seeker_profile.workHistory}</p>

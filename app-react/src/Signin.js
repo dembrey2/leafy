@@ -49,16 +49,18 @@ class Signin extends Component {
     return (
     <div>
         <div className="row">
-            <div className="col-sm-6 col-sm-offset-3">
-                    <div className="form-group">
+            <div className="col-sm-4 col-sm-offset-4 text-center">
+                <h3>Sign in</h3>
+                    <div className="form-group text-left">
                         <label htmlFor="username">Username</label>
                         <input type="text" className="form-control" id="username" placeholder="" onChange={(e) => this.setState({username: e.target.value})}/>
                     </div>
-                    <div className="form-group">
+                    <div className="form-group text-left">
                         <label htmlFor="password">Password</label>
                         <input type="password" className="form-control" id="password" placeholder="" onChange={(e) => this.setState({password: e.target.value})}/>
                     </div>
                     <button type="submit" className="btn btn-default" onClick={this.signin}>Submit</button>
+                    <br/><br/>
                 </div>
             </div>
         </div>

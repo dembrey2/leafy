@@ -13,7 +13,6 @@ class EmployerDetail extends Component {
             <br/><br/>
 				<div className="panel panel-default">
             		<div className="panel-body">
-                        <p>employer detail</p>
                         <img src="/img/redsquare.png" alt="profile"/>
 						<h3>{user.employer_profile.company_name}</h3>
                         <h4>{user.employer_profile.contact_name}</h4>

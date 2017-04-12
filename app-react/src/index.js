@@ -35,7 +35,8 @@ ReactDOM.render(
       <Route path="/" component={App}>
         <IndexRoute component={Home} />
 		<Route path="/signin" component={Signin} />
-		<Route path="/signup" component={isEmployer ? EmployerSignup : UserSignup} />
+		<Route path="/employersignup" component={EmployerSignup} />
+		<Route path="/seekersignup" component={UserSignup} />
     <Route path="/dashboard" component={isEmployer ? EmployerDashboard : UserDashboard} />
     <Route path="/profile-edit" component={isEmployer ? EmployerProfileEdit : UserProfileEdit} />
     <Route path="/jobmatches" component={JobMatches} />

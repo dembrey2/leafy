@@ -29,9 +29,6 @@ class UserSignup extends Component {
                     first_name: this.state.firstName,
                     last_name: this.state.lastName
                 },
-                employer_profile_attributes: {
-                    company_name: this.state.companyName
-                },
                 username: this.state.username,
                 password: this.state.password
             }
@@ -46,7 +43,7 @@ class UserSignup extends Component {
             if (response.user.token) {
                 // Saves any string into a named spot within your browser for the current domain.
                 sessionStorage.setItem('user', JSON.stringify(response));
-                browserHistory.push('/userdashboard');
+                browserHistory.push('/dashboard');
             }
             else {
                 alert('There was an error. Check out your console.');
@@ -60,21 +57,21 @@ class UserSignup extends Component {
     return (
       <div>
 			<div className="row">
-				<div className="col-sm-6 col-sm-offset-3 text-center">
-					<h3>Sign Up</h3>
-						<div className="form-group">
+				<div className="col-sm-4 col-sm-offset-4 text-center">
+					<h3>Sign up as a job seeker</h3>
+						<div className="form-group text-left">
 							<label>First Name</label>
 							<input htmlFor="first_name" type="text" className="form-control" id="first_name" name="first_name" placeholder="" onChange={(e) => this.setState({firstName: e.target.value})}/>
 						</div>
-						<div className="form-group">
+						<div className="form-group text-left">
 							<label htmlFor="last_name">Last Name</label>
 							<input type="text" className="form-control" id="last_name" name="last_name" placeholder="" onChange={(e) => this.setState({lastName: e.target.value})}/>
 						</div>
-						<div className="form-group">
+						<div className="form-group text-left">
 							<label htmlFor="username">Create a Username</label>
 							<input type="text" className="form-control" id="username" name="username" placeholder="" onChange={(e) => this.setState({username: e.target.value})}/>
 						</div>
-						<div className="form-group">
+						<div className="form-group text-left">
 							<label htmlFor="password">Create a Password</label>
 							<input type="password" className="form-control" id="password" name="password" placeholder="" onChange={(e) => this.setState({password: e.target.value})}/>
 						</div>

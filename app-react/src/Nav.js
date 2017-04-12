@@ -19,7 +19,7 @@ class Nav extends Component {
         <div className="container">
                     <div className="row nav">
                         <div className="col-sm-6 text-left nav-left">
-                            <a href="#" onClick={() => browserHistory.push('/')}>Landing Page</a>
+                            <a href="#" onClick={() => browserHistory.push('/')}>New Leaf</a>
                             <a href="#" onClick={() => browserHistory.push('/signin')} >Sign In</a>
                         </div>
                         <div className="col-sm-6 text-right nav-right">

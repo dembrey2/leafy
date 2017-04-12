@@ -10,7 +10,7 @@ class App extends Component {
     return (
       <div>
         <Nav/>
-			<div className="container">
+			<div className="container-fluid">
 				{this.props.children}
 			</div>
         <Footer/>

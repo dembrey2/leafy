@@ -20,7 +20,25 @@ body {
 .nav a {
     padding-right: 20px;
     text-decoration: none;
+    color: black;
 }
+
+header {
+    background-image: url(/img/leaf.jpg);
+    background-size: cover;
+    padding: 150px;
+    color: white;
+}
+
+header button {
+    margin: 4px;
+}
+
+.panel {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
 
 .checkbox {
     padding-right: 5px;
