@@ -18,7 +18,7 @@ class JobDetail extends Component {
     }
 
     lookupJob() {
-		fetch(window.apiHost + '/api/users/' + window.user.id + '/jobs/' + this.props.params.jobId)
+		fetch(window.apiHost + '/api/users/' + window.user.id + '/jobs/' + this.props.params.jobId + '?token=' + window.user.token)
 		.then(function(response) {
 				return response.json();
 			})
