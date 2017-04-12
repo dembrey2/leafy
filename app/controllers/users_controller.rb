@@ -19,7 +19,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    if params[:user][:seeker_profile_attributes][:skills]
+    if current_user.seeker_profile && params[:user][:seeker_profile_attributes][:skills]
       new_skills = params[:user][:seeker_profile_attributes][:skills].map do |skill_id|
         Skill.find(skill_id)
       end
@@ -43,7 +43,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:username, :password, :location, :about, seeker_profile_attributes: [:id, :first_name, :last_name, :email, :phone, :education, :work_history, :interests, :skills], employer_profile_attributes: [:company_name, :website, :contact_name, :contact_email, :contact_phone])
+    params.require(:user).permit(:username, :password, :location, :about, seeker_profile_attributes: [:id, :first_name, :last_name, :email, :phone, :education, :work_history, :interests, :skills], employer_profile_attributes: [:id, :company_name, :website, :contact_name, :contact_email, :contact_phone])
   end
 
   def require_self
