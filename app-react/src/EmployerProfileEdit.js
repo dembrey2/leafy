@@ -35,7 +35,6 @@ class EmployerProfileEdit extends Component {
 					contact_name: this.state.contact_name,
 					contact_email: this.state.contact_email,
 					contact_phone: this.state.contact_phone,
-
 					communication: this.state.communication,
 				},
 				about: this.state.about
@@ -46,11 +45,9 @@ class EmployerProfileEdit extends Component {
             return response.json();
         })
         .then(function(response) {
-
-            // console.log(response);
-            // window.user = response.user;
-			// sessionStorage.setItem('user', JSON.stringify(response));
-			// browserHistory.push('/dashboard')
+            window.user = response.user;
+			sessionStorage.setItem('user', JSON.stringify(response));
+			browserHistory.push('/dashboard')
         })
 	}
 
@@ -72,11 +69,11 @@ class EmployerProfileEdit extends Component {
 						</div>
 						<div className="form-group">
 							<label htmlFor="email">Email</label>
-							<input type="text" className="form-control" name="contact_email" value={this.state.contact_email} onChange={(e) => this.setState({contactEmail: e.target.value})}/>
+							<input type="text" className="form-control" name="contact_email" value={this.state.contact_email} onChange={(e) => this.setState({contact_email: e.target.value})}/>
 						</div>
 						<div className="form-group">
 							<label htmlFor="phone">Phone</label>
-							<input type="text" className="form-control" name="contact_phone" value={this.state.contact_phone} onChange={(e) => this.setState({contactPhone: e.target.value})}/>
+							<input type="text" className="form-control" name="contact_phone" value={this.state.contact_phone} onChange={(e) => this.setState({contact_phone: e.target.value})}/>
 						</div>
 						<div className="form-group">
 							<label htmlFor="communication">Preferred method of communication:</label>

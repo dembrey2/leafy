@@ -57,7 +57,7 @@ class JobDetail extends Component {
                         <p>{this.state.phone}</p>
                          <div>skills: {skills}</div>
                          <br/>
-                         {window.user.role === 'employer' ? '' : <button type="button" className="btn btn-default text-center" onClick={() => browserHistory.push('/profile/' + this.state.id)}>View employer profile</button> }
+                         {window.user.role === 'employer' ? '' : <button type="button" className="btn btn-default text-center" onClick={() => browserHistory.push('/profile/' + this.state.employer_id)}>View employer profile</button> }
                     </div>
                 </div>
             </div>
