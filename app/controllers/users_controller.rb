@@ -19,7 +19,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    if current_user.seeker_profile && params[:user][:seeker_profile_attributes][:skills]
+    if params.dig(:user, :seeker_profile_attributes, :skills)
       new_skills = params[:user][:seeker_profile_attributes][:skills].map do |skill_id|
         Skill.find(skill_id)
       end
