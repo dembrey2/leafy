@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { browserHistory } from 'react-router'
 import EmployerSnapshot from './EmployerSnapshot'
 import UserSnapshot from './UserSnapshot'
+import CandidateSnapshot from './CandidateSnapshot'
 
 class JobDetail extends Component {
     constructor(props) {
@@ -18,7 +19,7 @@ class JobDetail extends Component {
     }
 
     lookupJob() {
-		fetch(window.apiHost + '/api/users/' + window.user.id + '/jobs/' + this.props.params.jobId)
+		fetch(window.apiHost + '/api/users/' + window.user.id + '/jobs/' + this.props.params.jobId + '?token=' + window.user.token)
 		.then(function(response) {
 				return response.json();
 			})
@@ -55,12 +56,21 @@ class JobDetail extends Component {
                         <p>{this.state.contact_name}</p>
                         <p>{this.state.phone}</p>
                          <div>skills: {skills}</div>
+                         <br/>
+                         {window.user.role === 'employer' ? '' : <button type="button" className="btn btn-default text-center" onClick={() => browserHistory.push('/profile/' + this.state.userId)}>View employer profile</button> }
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-        
+        {window.user.role === 'employer' ?
+        <div className="row">
+            <div className="col-sm-8 col-sm-offset-2">
+                <h3>Matches</h3>
+                    <CandidateSnapshot/>
+            </div>
+        </div>
+        : '' }
+    </div>  
         
     );
   }

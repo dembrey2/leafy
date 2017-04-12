@@ -43,7 +43,7 @@ class UserDetail extends Component {
 				<h2 className="text-center"></h2>
 				<div className="panel panel-default">
             		<div className="panel-body">
-                        <img src="img/bluesquare.png" alt="profile"/>
+                        <img src="/img/bluesquare.png" alt="profile"/>
 						<h3>{user.seeker_profile.first_name} {user.seeker_profile.last_name}</h3>
                         <h4>Contact Information</h4>
                         <p>{user.location.name}</p>
