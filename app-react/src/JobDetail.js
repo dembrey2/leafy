@@ -39,6 +39,8 @@ class JobDetail extends Component {
 	//  }
 
   render() {
+       const matchedCandidates = window.user.employer_profile.matched_jobs.map(matchedCandidate => <CandidateSnapshot key={matchedCandidate.id} {...matchedCandidate} isEmployer={true} />)
+
       const skills = this.state.skills.map(skill => <div className="label label-default" key={skill.id}>{skill.name}</div>)
     return (
     <div>
@@ -57,7 +59,7 @@ class JobDetail extends Component {
                         <p>{this.state.phone}</p>
                          <div>skills: {skills}</div>
                          <br/>
-                         {window.user.role === 'employer' ? '' : <button type="button" className="btn btn-default text-center" onClick={() => browserHistory.push('/profile/' + this.state.employer_id)}>View employer profile</button> }
+                         {window.user.role === 'employer' ? '' : <button type="button" className="btn btn-default text-center" onClick={() => browserHistory.push('/profile/' + this.state.user_id)}>View employer profile</button> }
                     </div>
                 </div>
             </div>

@@ -13,7 +13,7 @@ class CandidateSnapshot extends Component {
 								<h3>First Name Last Name</h3>
 								<p>About</p>
                                 <div>skills:</div>
-								 <button type="button" className="btn btn-default text-center" onClick={() => browserHistory.push('/profile')}>View Profile</button>
+								 <button type="button" className="btn btn-default text-center" onClick={() => browserHistory.push('/profile/' + this.state.user_id)}>View Profile</button>
 							</div>
 						</div>
 			</div>
