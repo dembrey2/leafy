@@ -5,18 +5,19 @@ import EmployerSnapshot from './EmployerSnapshot'
 class EmployerProfileEdit extends Component {
 	constructor(props) {
 		super(props)
+		this.employerEdit = this.employerEdit.bind(this)
 		this.state = {
-			companyName: '',
-			contactName: '',
+			company_name: window.user.employer_profile.company_name,
+			contact_name: '',
 			email: '',
 			phone: '',
 			communication: '',
 			about: ''
-		}
+		} 
 	}
 
 	employerEdit() {
-		fetch(window.apiHost + '/api/users' + window.user.id , {
+		fetch(window.apiHost + '/api/users/' + window.user.id , {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
@@ -30,8 +31,8 @@ class EmployerProfileEdit extends Component {
             user: {
 				employer_profile_attributes: {
 					id: window.user.employer_profile.id,
-					company_name: this.state.companyName,
-					contact_name: this.state.contactName,
+					company_name: this.state.company_name,
+					contact_name: this.state.contact_name,
 					email: this.state.email,
 					phone: this.state.phone,
 					communication: this.state.communication,
@@ -44,17 +45,10 @@ class EmployerProfileEdit extends Component {
             return response.json();
         })
         .then(function(response) {
-            console.log(response);
-
-            if (response.employer.token) {
-                // Saves any string into a named spot within your browser for the current domain.
-                sessionStorage.setItem('user', JSON.stringify(response));
-                browserHistory.push('/employerdetail');
-            }
-            else {
-                alert('There was an error. Check out your console.');
-                console.log(response);
-            }
+            // console.log(response);
+            // window.user = response.user;
+			// sessionStorage.setItem('user', JSON.stringify(response));
+			// browserHistory.push('/dashboard')
         })
 	}
 
@@ -67,11 +61,11 @@ class EmployerProfileEdit extends Component {
 					<h3>Edit Profile</h3>
 						<div className="form-group">
 							<label htmlFor="companyName">Company Name</label>
-							<input type="text" className="form-control" id="company_name" placeholder="" onChange={(e) => this.setState({companyName: e.target.value})}/>
+							<input type="text" className="form-control" id="company_name" placeholder="" value={this.state.company_name} onChange={(e) => this.setState({company_name: e.target.value})}/>
 						</div>
 						<div className="form-group">
 							<label htmlFor="contactName">Contact Name</label>
-							<input type="text" className="form-control" id="contact_name" placeholder="" onChange={(e) => this.setState({contactName: e.target.value})}/>
+							<input type="text" className="form-control" id="contact_name" placeholder="" onChange={(e) => this.setState({contact_name: e.target.value})}/>
 						</div>
 						<div className="form-group">
 							<label htmlFor="email">Email</label>

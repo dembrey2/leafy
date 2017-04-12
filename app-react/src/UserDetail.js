@@ -7,7 +7,9 @@ class UserDetail extends Component {
 		super(props)
         // this.lookupSkills = this.lookupSkills.bind(this)
 		this.state = {
-            skills: []
+            seeker_profile: {
+                skills: []
+            }
 		}
 	}
 
@@ -32,7 +34,7 @@ class UserDetail extends Component {
   render() {
     const user = window.user;
     // const snapshot = ''//window.user.role === 'employer' ? <EmployerSnapshot/> : <UserSnapshot/>
-    const skills = this.state.skills.map(skill => <div className="label label-success" key={skill.id}>{skill.name}</div>)
+    const skills = this.state.seeker_profile.skills.map(skill => <div className="label label-success" key={skill.id}>{skill.name}</div>)
 
     return (
     <div>

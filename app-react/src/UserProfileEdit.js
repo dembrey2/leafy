@@ -93,7 +93,9 @@ class UserProfileEdit extends Component {
             return response.json();
         })
         .then(function(response) {
-            console.log(response);
+            // console.log(response);
+			window.user = response.user;
+			sessionStorage.setItem('user', JSON.stringify(response));
 			browserHistory.push('/dashboard')
         })
 	}

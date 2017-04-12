@@ -40,7 +40,7 @@ ReactDOM.render(
     <Route path="/dashboard" component={isEmployer ? EmployerDashboard : UserDashboard} />
     <Route path="/profile-edit" component={isEmployer ? EmployerProfileEdit : UserProfileEdit} />
     <Route path="/jobmatches" component={JobMatches} />
-    <Route path="/profile/:userId" component={isEmployer? EmployerDetail : UserDetail} />
+    <Route path="/profile" component={isEmployer? EmployerDetail : UserDetail} />
     <Route path="/jobdetail/:jobId" component={JobDetail} />
     <Route path="/usersnapshot" component={UserSnapshot} />
     <Route path="/employersnapshot" component={EmployerSnapshot} />
