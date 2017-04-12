@@ -1,5 +1,5 @@
 class JobSerializer < ActiveModel::Serializer
-  attributes :id, :title, :description, :transportation, :active, :employer_id :company_name, :location, :skills
+  attributes :id, :title, :description, :transportation, :active, :employer_id, :company_name, :location, :skills
 
   def company_name
     object.employer_profile.company_name
