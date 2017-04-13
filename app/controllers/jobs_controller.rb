@@ -52,8 +52,8 @@ class JobsController < ApplicationController
     @job = Job.find(params[:id])
     @job.employer_profile.user = current_user
 
-    if params.dig(:job, :location_id)
-      @job.location = Location.find(params[:location_id])
+    if params.dig(:job, :location)
+      @job.location = Location.find(params[:location])
     end
 
     if params.dig(:job, :skills)
