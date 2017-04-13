@@ -39,7 +39,7 @@ class JobDetail extends Component {
 	//  }
 
   render() {
-    //    const matchedCandidates = window.user.employer_profile.matched_jobs.map(matchedCandidate => <CandidateSnapshot key={matchedCandidate.id} {...matchedCandidate} isEmployer={true} />)
+       const matchedCandidates = window.user.employer_profile.jobs.job.matched_seekers.map(matchedCandidate => <CandidateSnapshot key={matchedCandidate.id} {...matchedCandidate} isEmployer={true} />)
 
       const skills = this.state.skills.map(skill => <div className="label label-default" key={skill.id}>{skill.name}</div>)
     return (
@@ -68,7 +68,7 @@ class JobDetail extends Component {
         <div className="row">
             <div className="col-sm-8 col-sm-offset-2">
                 <h3>Matches</h3>
-                    <CandidateSnapshot/>
+                    {matchedCandidates}
             </div>
         </div>
         : '' }

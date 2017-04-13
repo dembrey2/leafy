@@ -78,7 +78,7 @@ class AddJob extends Component {
 	 }
 
 	 editJob() {
-		fetch(window.apiHost + (this.props.params.jobId ? '/api/users/' + window.user.id + '/jobs/' + this.props.params.jobId : '/api/users/' + window.user.id + '/jobs'), {
+		fetch(window.apiHost + (this.props.params.jobId ? '/api/users/' + window.user.id + '/jobs/' + this.props.params.jobId : '/api/users/' + window.user.id + '/jobs/'), {
         method: this.props.params.jobId ? 'PUT' : 'POST',
         headers: {
             'Content-Type': 'application/json'
