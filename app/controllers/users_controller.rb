@@ -27,7 +27,7 @@ class UsersController < ApplicationController
     end
 
     if params.dig(:user, :location)
-      @user.location = Location.find(params[:location][:id])
+      @user.location = Location.find(params[:location])
     end
 
     if @user.update(user_params)
@@ -47,7 +47,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:username, :password, :about, :location, seeker_profile_attributes: [:id, :first_name, :last_name, :email, :phone, :education, :work_history, :interests, :skills], employer_profile_attributes: [:id, :company_name, :website, :contact_name, :contact_email, :contact_phone])
+    params.require(:user).permit(:username, :password, :about, :location_id, seeker_profile_attributes: [:id, :first_name, :last_name, :email, :phone, :education, :work_history, :interests, :skills], employer_profile_attributes: [:id, :company_name, :website, :contact_name, :contact_email, :contact_phone])
   end
 
   def require_self
