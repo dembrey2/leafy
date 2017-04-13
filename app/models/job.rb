@@ -6,4 +6,8 @@ class Job < ApplicationRecord
   has_many :skills, through: :skillings
 
   validates :title, :description, :active, presence: true
+
+  def matched_seekers
+    skills.flat_map{|skill| skill.seeker_profiles}.uniq
+  end
 end

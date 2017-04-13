@@ -15,7 +15,7 @@ class JobsController < ApplicationController
   def show
     if current_user.employer_profile
       @job = current_user.employer_profile.jobs.find(params[:id])
-      render json: @job
+      render json: @job, serializer: EmployerJobViewSerializer
     else
       @job = Job.find(params[:id])
       if current_user.seeker_profile.matched_jobs.include?(@job)
@@ -23,14 +23,12 @@ class JobsController < ApplicationController
       else
         render json: ["This job does not exist."], status: 404
       end
-      # @job = current_user.seeker_profile.matched_jobs.select{|job| job.id == params[:id].to_i}.first
-      # render json: @job
     end
   end
 
   def create
     @job = Job.new(job_params)
-    @job.employer = current_user
+    @job.employer_profile.user = current_user
     if @job.save
       render json: @job
     else
@@ -40,7 +38,7 @@ class JobsController < ApplicationController
 
   def update
     @job = Job.find(params[:id])
-    @job.employer = current_user
+    @job.employer_profile.user = current_user
     if @job.update(job_params)
       render json: @job
     else
@@ -51,6 +49,6 @@ class JobsController < ApplicationController
   private
 
   def job_params
-    params.require(:job).permit(:title, :description, :transportation, :active, :location)
+    params.require(:job).permit(:title, :description, :transportation, :active, :location, :skills)
   end
 end
