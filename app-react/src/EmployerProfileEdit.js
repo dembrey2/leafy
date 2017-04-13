@@ -39,7 +39,7 @@ class EmployerProfileEdit extends Component {
 					communication: this.state.communication
 				},
 				about: this.state.about,
-				location: this.state.location
+				location: this.state.location.id
             }
         })
     })
