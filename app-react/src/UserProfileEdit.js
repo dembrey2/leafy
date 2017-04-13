@@ -16,9 +16,9 @@ class UserProfileEdit extends Component {
 			skills: window.user.seeker_profile.skills.map(skill => skill.id),
 			communication: window.user.communication,
 			location: window.user.location,
-			education: '',
-			work_history: '',
-			interests: '',
+			education: window.user.education,
+			work_history: window.user.work_history,
+			interests: window.user.interests,
 			lookupSkills: [],
 			// lookupLocations: [],
 			about: window.user.about
@@ -97,7 +97,7 @@ class UserProfileEdit extends Component {
 					location_id: this.state.location,
 					skills: this.state.skills,
 					education: this.state.education,
-					work_history: this.state.workHistory,
+					work_history: this.state.work_history,
 					interests: this.state.interests
 				},
 				about: this.state.about,
@@ -183,11 +183,11 @@ class UserProfileEdit extends Component {
 					<div className="col-sm-6 col-sm-offset-3">
 						<div className="form-group">
 							<label htmlFor="education">Education</label>
-							<textarea className="form-control"  placeholder="" value={this.state.education} onChange={(e) => this.setState({education: e.target.value})}/>
+							<textarea className="form-control"  value={this.state.education} onChange={(e) => this.setState({education: e.target.value})}/>
 						</div>
 						<div className="form-group">
 							<label htmlFor="workHistory">Work History</label>
-							<textarea className="form-control"  placeholder="" value={this.state.work_history} onChange={(e) => this.setState({workHistory: e.target.value})}/>
+							<textarea className="form-control" value={this.state.work_history} onChange={(e) => this.setState({work_history: e.target.value})}/>
 						</div>
 						<div className="form-group">
 							<label htmlFor="otherInterests">Other Interests</label>
