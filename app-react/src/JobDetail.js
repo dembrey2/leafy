@@ -39,7 +39,7 @@ class JobDetail extends Component {
 	//  }
 
   render() {
-       const matchedCandidates = window.user.employer_profile.matched_jobs.map(matchedCandidate => <CandidateSnapshot key={matchedCandidate.id} {...matchedCandidate} isEmployer={true} />)
+    //    const matchedCandidates = window.user.employer_profile.matched_jobs.map(matchedCandidate => <CandidateSnapshot key={matchedCandidate.id} {...matchedCandidate} isEmployer={true} />)
 
       const skills = this.state.skills.map(skill => <div className="label label-default" key={skill.id}>{skill.name}</div>)
     return (
