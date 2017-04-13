@@ -43,6 +43,8 @@ class UserSignup extends Component {
             if (response.user.token) {
                 // Saves any string into a named spot within your browser for the current domain.
                 sessionStorage.setItem('user', JSON.stringify(response));
+                window.user = JSON.parse(sessionStorage.getItem('user'))
+                if (window.user) { window.user = window.user.user }
                 browserHistory.push('/dashboard');
             }
             else {

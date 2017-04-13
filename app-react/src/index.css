@@ -26,13 +26,34 @@ body {
 header {
     background-image: url(/img/leaf.jpg);
     background-size: cover;
-    padding: 150px;
+    padding: 100px;
     color: white;
 }
 
+/*.title {
+    font-size: 70px;
+    font-weight: 700;
+}*/
+
 header button {
     margin: 4px;
+    background-color: none;
 }
+.btn-transparent {
+    background: transparent;
+    color: #F2F2F2;
+    -webkit-transition: background .2s ease-in-out, border .2s ease-in-out;
+    -moz-transition: background .2s ease-in-out, border .2s ease-in-out;
+    -o-transition: background .2s ease-in-out, border .2s ease-in-out;
+    transition: background .2s ease-in-out, border .2s ease-in-out;
+    border: 2px solid #f2f2f2;
+}
+
+    .btn-transparent:hover {
+        color: white;
+        background-color: rgba(255,255,255,0.2);
+    }
+
 
 .panel {
     margin-top: 30px;

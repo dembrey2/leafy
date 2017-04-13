@@ -29,6 +29,11 @@ window.apiHost = ''
 
 const isEmployer = (window.user && window.user.role === 'employer')
 
+// function isEmployer(){
+//     // console.log((window.user && window.user.role === 'employer'))
+//     return (window.user && window.user.role === 'employer')
+// }
+
 ReactDOM.render(
     <Router history={browserHistory}>
         <Route path="/" component={App}>
@@ -36,7 +41,7 @@ ReactDOM.render(
             <Route path="/signin" component={Signin} />
             <Route path="/employersignup" component={EmployerSignup} />
             <Route path="/seekersignup" component={UserSignup} />
-            <Route path="/dashboard" component={isEmployer ? EmployerDashboard : UserDashboard} />
+            <Route path="/dashboard" component={isEmployer? EmployerDashboard : UserDashboard} />
             <Route path="/profile-edit" component={isEmployer ? EmployerProfileEdit : UserProfileEdit} />
             <Route path="/profile" component={isEmployer ? EmployerDetail : UserDetail} />
             <Route path="/profile/:userId" component={isEmployer ? UserDetail : EmployerDetail} />

@@ -15,9 +15,8 @@ class EmployerDashboard extends Component {
 			<div className="col-sm-8 col-sm-offset-2 text-center">
 				<h2 className="text-center">Current Job Postings</h2>
 				<br/>
-				{currentJobs.length === 0 ? <button type="button" className="btn btn-block" onClick={() => browserHistory.push ('/addjob')}>Add a Job</button> : <button type="button" className="btn btn-default" onClick={() => browserHistory.push ('/addjob')}>Add a Job</button>}
+				{currentJobs.length === 0 ? <button type="button" className="btn btn-success" onClick={() => browserHistory.push ('/addjob')}><span className="glyphicon glyphicon-plus"></span><br/>Add a job</button> : <button type="button" className="btn btn-default" onClick={() => browserHistory.push ('/addjob')}>Add a Job</button>}
 				<br/><br/>
-				
 					<div className="text-left">{currentJobs}</div> 
 				</div>
 			</div>

@@ -23,7 +23,6 @@ class EmployerSignup extends Component {
         // Back-end controls the left side, properties, of this object
         // Front-end controls the variables names and values on the right side
         body: JSON.stringify({
-           token: window.user.token,
             user: {
                 employer_profile_attributes: {
                     company_name: this.state.companyName
@@ -42,7 +41,10 @@ class EmployerSignup extends Component {
             if (response.user.token) {
                 // Saves any string into a named spot within your browser for the current domain.
                 sessionStorage.setItem('user', JSON.stringify(response));
-                browserHistory.push('/dashboard');
+                // window.user = JSON.parse(sessionStorage.getItem('user'))
+                // if (window.user) { window.user = window.user.user }
+                // browserHistory.push('/dashboard');
+                location.href = ('/dashboard');
             }
             else {
                 alert('There was an error. Check out your console.');
