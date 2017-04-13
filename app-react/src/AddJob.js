@@ -8,6 +8,7 @@ class AddJob extends Component {
 		this.addSkill = this.addSkill.bind(this)
 		this.editJob = this.editJob.bind(this)
 		this.lookupSkills = this.lookupSkills.bind(this)
+		this.lookupLocations = this.lookupLocations.bind(this)
 
 		this.state = {
 			location: '',
@@ -20,6 +21,7 @@ class AddJob extends Component {
 
 	 componentWillMount(){
 		 this.lookupSkills()
+		 this.lookupLocations()
 
 		 if (this.props.params.jobId) {
 			this.lookupJob()
@@ -50,6 +52,16 @@ class AddJob extends Component {
 			})
 	 }
 
+	 lookupLocations() {
+		fetch(window.apiHost + '/api/locations')
+		.then(function(response) {
+				return response.json();
+			})
+		.then((response) => {
+				this.setState({lookupLocations:response.locations})
+			})
+	 }
+
 	 lookupJob() {
 		fetch(window.apiHost + '/api/users/' + window.user.id + '/jobs/' + this.props.params.jobId + '?token=' + window.user.token)
 		.then(function(response) {
@@ -77,7 +89,7 @@ class AddJob extends Component {
         body: JSON.stringify({
 			token: window.user.token,
             job: {
-				location: this.state.location,
+				location_id: this.state.location.id,
 				description: this.state.description,
 				title: this.state.title,
 				skills: this.state.skills,
