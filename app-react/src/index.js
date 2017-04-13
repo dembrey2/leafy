@@ -11,7 +11,6 @@ import UserDashboard from './UserDashboard'
 import UserProfileEdit from './UserProfileEdit'
 import EmployerDashboard from './EmployerDashboard'
 import EmployerProfileEdit from './EmployerProfileEdit'
-import JobMatches from './JobMatches'
 import UserDetail from './UserDetail'
 import JobDetail from './JobDetail'
 import EmployerDetail from './EmployerDetail'
@@ -39,7 +38,6 @@ ReactDOM.render(
             <Route path="/seekersignup" component={UserSignup} />
             <Route path="/dashboard" component={isEmployer ? EmployerDashboard : UserDashboard} />
             <Route path="/profile-edit" component={isEmployer ? EmployerProfileEdit : UserProfileEdit} />
-            <Route path="/jobmatches" component={JobMatches} />
             <Route path="/profile" component={isEmployer ? EmployerDetail : UserDetail} />
             <Route path="/profile/:userId" component={isEmployer ? UserDetail : EmployerDetail} />
             <Route path="/jobdetail/:jobId" component={JobDetail} />

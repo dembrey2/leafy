@@ -47,7 +47,7 @@ class UserDetail extends Component {
                         <img src="/img/bluesquare.png" alt="profile"/>
 						<h3>{user.seeker_profile.first_name} {user.seeker_profile.last_name}</h3>
                         <h4>Contact Information</h4>
-                        <p>{user.location.name}</p>
+                        <p>{user.location}</p>
                         <p>{user.seeker_profile.phone}</p>
                         <p>{user.seeker_profile.email}</p>
                         <h4>Preferred method of Communication:</h4>

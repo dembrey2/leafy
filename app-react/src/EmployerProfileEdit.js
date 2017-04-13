@@ -12,6 +12,7 @@ class EmployerProfileEdit extends Component {
 			contact_email: window.user.employer_profile.contact_email,
 			contact_phone: window.user.employer_profile.contact_phone,
 			communication: window.user.communication,
+			location: window.user.location,
 			about: window.user.about
 		}
 	}
@@ -35,9 +36,10 @@ class EmployerProfileEdit extends Component {
 					contact_name: this.state.contact_name,
 					contact_email: this.state.contact_email,
 					contact_phone: this.state.contact_phone,
-					communication: this.state.communication,
+					communication: this.state.communication
 				},
-				about: this.state.about
+				about: this.state.about,
+				location: this.state.location
             }
         })
     })
@@ -82,7 +84,17 @@ class EmployerProfileEdit extends Component {
 								<option>Email</option>
 							</select>
 						</div>
-
+						<div className="form-group">
+							<label htmlFor="location">Location:</label>
+							<select className="form-control" value={this.state.location} onChange={(e) => this.setState({location: e.target.value})}>
+								<option value="Downtown Bloomington">Downtown Bloomington</option>
+								<option value="North Bloomington">North Bloomington</option>
+								<option value="East Bloomington">East Bloomington</option>
+								<option value="South Bloomington">South Bloomington</option>
+								<option value="West Bloomington">West Bloomington</option>
+								<option value="Greater Monroe County">Greater Monroe County</option>
+							</select>
+						</div>
 						<div className="form-group">
 							<label htmlFor="about">About</label>
 							<textarea className="form-control" name="about" value={this.state.about} onChange={(e) => this.setState({about: e.target.value})}/>

@@ -13,6 +13,7 @@ class UserProfileEdit extends Component {
 			phone: window.user.seeker_profile.phone,
 			skills: window.user.seeker_profile.skills.map(skill => skill.id),
 			communication: window.user.communication,
+			location: window.user.location,
 			education: '',
 			work_history: '',
 			interests: '',
@@ -80,6 +81,7 @@ class UserProfileEdit extends Component {
 					email: this.state.email,
 					phone: this.state.phone,
 					communication: this.state.communication,
+					location: this.state.location,
 					skills: this.state.skills,
 					education: this.state.education,
 					work_history: this.state.workHistory,
@@ -127,6 +129,25 @@ class UserProfileEdit extends Component {
 								<option>Email</option>
 							</select>
 						</div>
+						<div className="form-group">
+							<label htmlFor="location">Location:</label>
+							<select className="form-control" value={this.state.location} onChange={(e) => this.setState({location: e.target.value})}>
+								<option value="Downtown Bloomington">Downtown Bloomington</option>
+								<option value="North Bloomington">North Bloomington</option>
+								<option value="East Bloomington">East Bloomington</option>
+								<option value="South Bloomington">South Bloomington</option>
+								<option value="West Bloomington">West Bloomington</option>
+								<option value="Greater Monroe County">Greater Monroe County</option>
+							</select>
+						</div>
+						<div className="form-group">
+							<label htmlFor="communication">Preferred method of communication:</label>
+							<select className="form-control" value={this.state.communication} onChange={(e) => this.setState({communication: e.target.value})}>
+								<option>Phone</option>
+								<option>Email</option>
+							</select>
+						</div>
+						
 						<div className="form-group">
 							<label htmlFor="about">About</label>
 							<textarea className="form-control"  placeholder="" value={this.state.about} onChange={(e) => this.setState({about: e.target.value})}/>

@@ -121,12 +121,12 @@ class AddJob extends Component {
 						<div className="form-group">
 							<label htmlFor="location">Location:</label>
 							<select className="form-control" value={this.state.location} onChange={(e) => this.setState({location: e.target.value})}>
-								<option>Downtown Bloomington</option>
-								<option>North Bloomington</option>
-								<option>East Bloomington</option>
-								<option>South Bloomington</option>
-								<option>West Bloomington</option>
-								<option>Greater Monroe County</option>
+								<option value="Downtown Bloomington">Downtown Bloomington</option>
+								<option value="North Bloomington">North Bloomington</option>
+								<option value="East Bloomington">East Bloomington</option>
+								<option value="South Bloomington">South Bloomington</option>
+								<option value="West Bloomington">West Bloomington</option>
+								<option value="Greater Monroe County">Greater Monroe County</option>
 							</select>
 						</div>
 
