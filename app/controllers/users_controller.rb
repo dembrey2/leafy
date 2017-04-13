@@ -26,6 +26,10 @@ class UsersController < ApplicationController
       @user.seeker_profile.skills.replace(new_skills)
     end
 
+    if params.dig(:user, :location)
+      @user.location = Location.find(params[:location][:id])
+    end
+
     if @user.update(user_params)
       render json: @user, serializer: UserSpecificSerializer, include: ['employer_profile.jobs', 'seeker_profile.matched_jobs']
     else
@@ -43,7 +47,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:username, :password, :location, :about, seeker_profile_attributes: [:id, :first_name, :last_name, :email, :phone, :education, :work_history, :interests, :skills], employer_profile_attributes: [:id, :company_name, :website, :contact_name, :contact_email, :contact_phone])
+    params.require(:user).permit(:username, :password, :about, :location, seeker_profile_attributes: [:id, :first_name, :last_name, :email, :phone, :education, :work_history, :interests, :skills], employer_profile_attributes: [:id, :company_name, :website, :contact_name, :contact_email, :contact_phone])
   end
 
   def require_self

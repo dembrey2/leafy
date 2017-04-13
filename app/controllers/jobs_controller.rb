@@ -39,6 +39,16 @@ class JobsController < ApplicationController
   def update
     @job = Job.find(params[:id])
     @job.employer_profile.user = current_user
+
+    if params.dig(:job, :location)
+      @job.location = Location.find(params[:location][:id])
+    end
+
+    if params.dig(:job, :skills)
+      new_skills = params[:job][:skills].map{|skill_id| Skill.find(skill_id)}
+      @job.skills.replace(new_skills)
+    end
+
     if @job.update(job_params)
       render json: @job
     else
