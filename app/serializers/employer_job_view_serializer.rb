@@ -1,4 +1,4 @@
-class JobSerializer < ActiveModel::Serializer
+class EmployerJobViewSerializer < ActiveModel::Serializer
   attributes :id, :title, :description, :transportation, :active, :user_id, :company_name, :location, :skills
 
   def company_name
@@ -16,4 +16,6 @@ class JobSerializer < ActiveModel::Serializer
   def user_id
     object.employer_profile.user_id
   end
+
+  has_many :matched_seekers
 end
