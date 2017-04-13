@@ -27,18 +27,20 @@ class JobsController < ApplicationController
   end
 
   def create
+    @user = current_user
     @job = Job.new(job_params)
-    @job.employer_profile.user = current_user
+    @user.employer_profile.jobs << @job
+    # @job.employer_profile.user = current_user
 
     if params.dig(:job, :location)
-      @job.location = Location.find(params[:location][:id])
+      @job.location = Location.find(params[:location])
     end
 
     if params.dig(:job, :skills)
       new_skills = params[:job][:skills].map{|skill_id| Skill.find(skill_id)}
       @job.skills.replace(new_skills)
     end
-    
+
     if @job.save
       render json: @job
     else
@@ -50,8 +52,8 @@ class JobsController < ApplicationController
     @job = Job.find(params[:id])
     @job.employer_profile.user = current_user
 
-    if params.dig(:job, :location)
-      @job.location = Location.find(params[:location][:id])
+    if params.dig(:job, :location_id)
+      @job.location = Location.find(params[:location_id])
     end
 
     if params.dig(:job, :skills)
@@ -69,6 +71,7 @@ class JobsController < ApplicationController
   private
 
   def job_params
-    params.require(:job).permit(:title, :description, :transportation, :active, :location, :skills)
+    params.require(:job).permit(:title, :description, :transportation, :active, :skills, :location_id)
+    # location_attributes: [:id, :name]
   end
 end
