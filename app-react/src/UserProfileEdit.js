@@ -7,6 +7,8 @@ class UserProfileEdit extends Component {
 		this.addSkill = this.addSkill.bind(this)
 		this.editProfile = this.editProfile.bind(this)
 		this.lookupSkills = this.lookupSkills.bind(this)
+		// this.lookupLocations = this.lookupLocations.bind(this)
+
 
 		this.state = {
 			email: window.user.seeker_profile.email,
@@ -18,12 +20,14 @@ class UserProfileEdit extends Component {
 			work_history: '',
 			interests: '',
 			lookupSkills: [],
+			// lookupLocations: [],
 			about: window.user.about
 		}
 	 }
 
 	 componentWillMount(){
 		 this.lookupSkills()
+		//  this.lookupLocations()
 
 		//  fetch(window.apiHost + '/api/users/' + window.user.id)
 		// .then(response => response.json())
@@ -39,6 +43,16 @@ class UserProfileEdit extends Component {
 		// }))
 	 }
 
+	// lookupLocations() {
+	// 	fetch(window.apiHost + '/api/locations')
+	// 	.then(function(response) {
+	// 			return response.json();
+	// 		})
+	// 	.then((response) => {
+	// 			this.setState({lookupLocations:response.locations})
+	// 		})
+	// 	}
+
 	 addSkill(e) {
 		 let skills = this.state.skills
 
@@ -51,7 +65,6 @@ class UserProfileEdit extends Component {
 		 }
 
 		 this.setState({skills:skills})
-		 
 	 }
 
 	 lookupSkills() {
@@ -81,7 +94,7 @@ class UserProfileEdit extends Component {
 					email: this.state.email,
 					phone: this.state.phone,
 					communication: this.state.communication,
-					location: this.state.location,
+					location_id: this.state.location,
 					skills: this.state.skills,
 					education: this.state.education,
 					work_history: this.state.workHistory,
@@ -96,7 +109,7 @@ class UserProfileEdit extends Component {
         })
         .then(function(response) {
             // console.log(response);
-			window.user = response.user;
+			// window.user = response.user;
 			sessionStorage.setItem('user', JSON.stringify(response));
 			browserHistory.push('/dashboard')
         })
@@ -108,6 +121,14 @@ class UserProfileEdit extends Component {
 				<input type="checkbox" value={skill.id} checked={this.state.skills.includes(skill.id)} onChange={this.addSkill} /> {skill.name}
 			</label>
 		))
+		// const locations = this.state.lookupLocations.map(location => (
+		// 	<div>
+		// 	<label htmlFor="location" key={location.id}>Location:</label>
+		// 		<select className="form-control"  onChange={(e) => {this.addLocation}}>
+		// 						<option value={location.id}>{location.name}</option>
+		// 		</select>
+		// 		</div>
+		// ))
 
     return (
     <div>
@@ -125,12 +146,13 @@ class UserProfileEdit extends Component {
 						<div className="form-group">
 							<label htmlFor="communication">Preferred method of communication:</label>
 							<select className="form-control" value={this.state.communication} onChange={(e) => this.setState({communication: e.target.value})}>
-								<option>Phone</option>
-								<option>Email</option>
+								<option value="Phone">Phone</option>
+								<option value="Email">Email</option>
 							</select>
 						</div>
 						<div className="form-group">
 							<label htmlFor="location">Location:</label>
+							{/*<select className="form-control" value={this.state.location} onChange={(e) => console.log(e.target.value)}>*/}
 							<select className="form-control" value={this.state.location} onChange={(e) => this.setState({location: e.target.value})}>
 								<option value="Downtown Bloomington">Downtown Bloomington</option>
 								<option value="North Bloomington">North Bloomington</option>
@@ -141,21 +163,11 @@ class UserProfileEdit extends Component {
 							</select>
 						</div>
 						<div className="form-group">
-							<label htmlFor="communication">Preferred method of communication:</label>
-							<select className="form-control" value={this.state.communication} onChange={(e) => this.setState({communication: e.target.value})}>
-								<option>Phone</option>
-								<option>Email</option>
-							</select>
-						</div>
-						
-						<div className="form-group">
 							<label htmlFor="about">About</label>
 							<textarea className="form-control"  placeholder="" value={this.state.about} onChange={(e) => this.setState({about: e.target.value})}/>
 						</div>
 						</div>
 						</div>
-					
-
 						<h3>Skills and Abilities</h3>
 						<div className="row">
 					<div className="col-sm-6 col-sm-offset-3">

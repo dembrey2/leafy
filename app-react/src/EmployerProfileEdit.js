@@ -39,7 +39,7 @@ class EmployerProfileEdit extends Component {
 					communication: this.state.communication
 				},
 				about: this.state.about,
-				location: this.state.location.id
+				location_id: this.state.location.id
             }
         })
     })
@@ -47,7 +47,7 @@ class EmployerProfileEdit extends Component {
             return response.json();
         })
         .then(function(response) {
-            window.user = response.user;
+            // window.user = response.user;
 			sessionStorage.setItem('user', JSON.stringify(response));
 			browserHistory.push('/dashboard')
         })
