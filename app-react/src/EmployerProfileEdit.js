@@ -47,7 +47,7 @@ class EmployerProfileEdit extends Component {
             return response.json();
         })
         .then(function(response) {
-            // window.user = response.user;
+            window.user = response.user;
 			sessionStorage.setItem('user', JSON.stringify(response));
 			browserHistory.push('/dashboard')
         })
@@ -59,7 +59,7 @@ class EmployerProfileEdit extends Component {
 	  	<EmployerSnapshot/>
 		<div className="row">
 				<div className="col-sm-6 col-sm-offset-3 ">
-					<h3>Edit Profile</h3>
+					<h3 onClick={console.log(window.user)}>Edit Profile</h3>
 						<div className="form-group">
 							<label htmlFor="companyName">Company Name</label>
 							<input type="text" className="form-control" id="company_name" value={this.state.company_name} onChange={(e) => this.setState({company_name: e.target.value})}/>
@@ -86,7 +86,7 @@ class EmployerProfileEdit extends Component {
 						</div>
 						<div className="form-group">
 							<label htmlFor="location">Location:</label>
-							<select className="form-control" value={this.state.location} onChange={(e) => this.setState({location: e.target.value})}>
+							<select className="form-control" defaultValue={this.state.location} onChange={(e) => this.setState({location: e.target.value})}>
 								<option value="Downtown Bloomington">Downtown Bloomington</option>
 								<option value="North Bloomington">North Bloomington</option>
 								<option value="East Bloomington">East Bloomington</option>
