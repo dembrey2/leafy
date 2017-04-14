@@ -7,8 +7,8 @@ class UserProfileEdit extends Component {
 		this.addSkill = this.addSkill.bind(this)
 		this.editProfile = this.editProfile.bind(this)
 		this.lookupSkills = this.lookupSkills.bind(this)
+		this.handleLocationChange = this.handleLocationChange.bind(this)
 		// this.lookupLocations = this.lookupLocations.bind(this)
-
 
 		this.state = {
 			email: window.user.seeker_profile.email,
@@ -90,11 +90,14 @@ class UserProfileEdit extends Component {
 			token: window.user.token,
             user: {
 				seeker_profile_attributes: {
+				// seeker_profile: {
 					id: window.user.seeker_profile.id,
 					email: this.state.email,
 					phone: this.state.phone,
 					preferred_contact: this.state.preferred_contact,
-					location_id: this.state.location,
+					// location_id: this.state.location,
+					location: this.state.location,
+					// location_name: this.state.location.name,
 					skills: this.state.skills,
 					education: this.state.education,
 					work_history: this.state.work_history,
@@ -109,11 +112,15 @@ class UserProfileEdit extends Component {
         })
         .then(function(response) {
             // console.log(response);
-			// window.user = response.user;
+			window.user = response.user;
 			sessionStorage.setItem('user', JSON.stringify(response));
 			browserHistory.push('/dashboard')
         })
 	}
+
+	handleLocationChange(event) {
+    this.setState({location: event.target.value});
+  }
 
   render() {
 	  const skills = this.state.lookupSkills.map(skill => (
@@ -153,7 +160,7 @@ class UserProfileEdit extends Component {
 						<div className="form-group">
 							<label htmlFor="location">Location:</label>
 							{/*<select className="form-control" value={this.state.location} onChange={(e) => console.log(e.target.value)}>*/}
-							<select className="form-control" value={this.state.location} onChange={(e) => this.setState({location: e.target.value})}>
+							<select className="form-control" value={this.state.location.name} onChange={(e) => this.setState({location: e.target.value})}>
 								<option value="Downtown Bloomington">Downtown Bloomington</option>
 								<option value="North Bloomington">North Bloomington</option>
 								<option value="East Bloomington">East Bloomington</option>
