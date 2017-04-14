@@ -13,7 +13,8 @@ class EmployerDetail extends Component {
                     contact_phone: '',
                     contact_email: '',
                 },
-                about: ''
+                about: '',
+                location: ''
             }
         }
     }
@@ -51,7 +52,7 @@ return (
                         <p>{user.employer_profile.contact_phone}</p>
                         <p>{user.employer_profile.contact_email}</p>
                         <h4>Location:</h4>
-                        {/*<p>{user.location.name}</p>*/}
+                        <p>{user.location.name}</p>
                         <h4>About:</h4>
                         <p>{user.about}</p>
                     </div>

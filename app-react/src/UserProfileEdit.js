@@ -194,7 +194,10 @@ class UserProfileEdit extends Component {
 							<textarea className="form-control"  placeholder="" value={this.state.interests} onChange={(e) => this.setState({interests: e.target.value})}/>
 						</div>
 						<br/>
-						<div className="form-group text-center"><button type="button" className="btn btn-default" onClick={this.editProfile}>Save</button></div>
+						<div className=" form-group text-center">
+						<span><button type="button" className="btn btn-default" onClick={this.editProfile}>Save</button></span>
+						<span><button type="button" className="btn btn-default" onClick={() => browserHistory.push('/dashboard')}>Cancel</button></span>
+						</div>
 					
 		
 	
