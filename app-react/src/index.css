@@ -2,7 +2,7 @@
     box-sizing: border-box;
 }
 img {
-    width: 75px;
+    width: 100%;
 }
 
 body {
@@ -10,6 +10,7 @@ body {
   padding: 0;
  font-family: 'Lato', sans-serif;
   background-color: #f1f1f1;
+  letter-spacing: 1.1px;
 }
 
 .nav {
@@ -24,9 +25,9 @@ body {
 }
 
 header {
-    background-image: url(/img/leaf.jpg);
+    background: linear-gradient(rgba(33, 107, 43, 0.6), rgba(33, 107, 43, 0.6)), url(/img/leaf.jpg);
     background-size: cover;
-    padding: 100px;
+    padding: 80px;
     color: white;
 }
 
@@ -46,7 +47,7 @@ header button {
     -moz-transition: background .2s ease-in-out, border .2s ease-in-out;
     -o-transition: background .2s ease-in-out, border .2s ease-in-out;
     transition: background .2s ease-in-out, border .2s ease-in-out;
-    border: 2px solid #f2f2f2;
+    border: 1px solid #f2f2f2;
 }
 
     .btn-transparent:hover {
@@ -65,4 +66,12 @@ header button {
     padding-right: 5px;
     padding-bottom: 5px;
     margin-left: 45px;
+}
+
+.about-section {
+    letter-spacing: 1.1px;
+}
+
+footer {
+    padding: 60px;
 }
