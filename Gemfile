@@ -30,6 +30,7 @@ gem 'active_model_serializers', '~> 0.10.0'
 gem 'faker'
 gem 'kaminari'
 gem 'api-pagination'
+gem 'fog-aws'
 gem 'carrierwave', '~> 1.0'
 gem 'figaro'
 
