@@ -8,7 +8,7 @@ class UserDetail extends Component {
         // this.lookupSkills = this.lookupSkills.bind(this)
 		this.state = {
             seeker_profile: {
-                communication: '',
+                preferred_contact: '',
                 skills: []
             },
             location: ''
@@ -53,7 +53,7 @@ class UserDetail extends Component {
                         <p>{user.seeker_profile.phone}</p>
                         <p>{user.seeker_profile.email}</p>
                         <h4>Preferred method of Communication:</h4>
-                        <p>{user.seeker_profile.communication}</p>
+                        <p>{user.seeker_profile.preferred_contact}</p>
                         <p>{user.about}</p>
                         <h4>Skill Sets</h4>
                         <div>{skills}</div>

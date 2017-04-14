@@ -14,7 +14,7 @@ class UserProfileEdit extends Component {
 			email: window.user.seeker_profile.email,
 			phone: window.user.seeker_profile.phone,
 			skills: window.user.seeker_profile.skills.map(skill => skill.id),
-			communication: window.user.communication,
+			preferred_contact: window.user.preferred_contact,
 			location: window.user.location,
 			education: window.user.education,
 			work_history: window.user.work_history,
@@ -93,7 +93,7 @@ class UserProfileEdit extends Component {
 					id: window.user.seeker_profile.id,
 					email: this.state.email,
 					phone: this.state.phone,
-					communication: this.state.communication,
+					preferred_contact: this.state.preferred_contact,
 					location_id: this.state.location,
 					skills: this.state.skills,
 					education: this.state.education,
@@ -144,8 +144,8 @@ class UserProfileEdit extends Component {
 							<input type="text" className="form-control"  name="phone" placeholder="" value={this.state.phone} onChange={(e) => this.setState({phone: e.target.value})}/>
 						</div>
 						<div className="form-group">
-							<label htmlFor="communication">Preferred method of communication:</label>
-							<select className="form-control" value={this.state.communication} onChange={(e) => this.setState({communication: e.target.value})}>
+							<label htmlFor="preferred_contact">Preferred method of communication:</label>
+							<select className="form-control" value={this.state.preferred_contact} onChange={(e) => this.setState({preferred_contact: e.target.value})}>
 								<option value="Phone">Phone</option>
 								<option value="Email">Email</option>
 							</select>

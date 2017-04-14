@@ -39,7 +39,7 @@ class EmployerProfileEdit extends Component {
 					communication: this.state.communication
 				},
 				about: this.state.about,
-				location_id: this.state.location.id
+				location: this.state.location.id
             }
         })
     })
@@ -59,7 +59,7 @@ class EmployerProfileEdit extends Component {
 	  	<EmployerSnapshot/>
 		<div className="row">
 				<div className="col-sm-6 col-sm-offset-3 ">
-					<h3 onClick={console.log(window.user)}>Edit Profile</h3>
+					<h3>Edit Profile</h3>
 						<div className="form-group">
 							<label htmlFor="companyName">Company Name</label>
 							<input type="text" className="form-control" id="company_name" value={this.state.company_name} onChange={(e) => this.setState({company_name: e.target.value})}/>
