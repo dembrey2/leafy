@@ -8,6 +8,7 @@ class UserDetail extends Component {
         // this.lookupSkills = this.lookupSkills.bind(this)
 		this.state = {
             seeker_profile: {
+                communication: '',
                 skills: []
             },
             location: ''
