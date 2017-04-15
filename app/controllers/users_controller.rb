@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   before_action :require_self, only: [:update]
 
   def index
-    @users = User.all.page params[:page]
+    @users = User.all
     render json: @users
   end
 
@@ -16,6 +16,9 @@ class UsersController < ApplicationController
     else
       render json: @user.errors.full_messages, status: 400
     end
+  end
+
+  def edit
   end
 
   def update
@@ -47,7 +50,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:username, :password, :about, :location_id, seeker_profile_attributes: [:id, :first_name, :last_name, :email, :phone, :education, :work_history, :interests, :skills, :preferred_contact], employer_profile_attributes: [:id, :company_name, :website, :contact_name, :contact_email, :contact_phone])
+    params.require(:user).permit(:username, :password, :avatar, :about, :location_id, seeker_profile_attributes: [:id, :first_name, :last_name, :email, :phone, :education, :work_history, :interests, :skills, :preferred_contact], employer_profile_attributes: [:id, :company_name, :website, :contact_name, :contact_email, :contact_phone])
   end
 
   def require_self
