@@ -32,7 +32,8 @@ end
       username: Faker::Cat.unique.name,
       password: "cupcakes",
       location: Location.all.sample,
-      about: Faker::StarWars.quote
+      about: Faker::StarWars.quote,
+      avatar: Faker::Avatar.image
       )
   )
   seeker_profile.skills << Skill.all.sample(3)
