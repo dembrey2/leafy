@@ -33,7 +33,7 @@ end
       password: "cupcakes",
       location: Location.all.sample,
       about: Faker::StarWars.quote,
-      avatar: Faker::Avatar.image
+      avatar: Rails.root.join("public/img/lovelace.jpg").open
       )
   )
   seeker_profile.skills << Skill.all.sample(3)
