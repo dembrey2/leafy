@@ -33,6 +33,8 @@ gem 'api-pagination'
 gem 'fog-aws'
 gem 'carrierwave', '~> 1.0'
 gem 'figaro'
+gem 'rails_admin'
+gem 'twilio-ruby'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

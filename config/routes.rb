@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   scope :api do
 
     resources :users do
@@ -9,7 +10,9 @@ Rails.application.routes.draw do
     resources :skills
     resources :locations
 
+    post 'notify' => 'messages#notify'
+
   end
 
-  post 'login' => 'sessions#create'
+  post 'login' => 'sessions#reply'
 end
