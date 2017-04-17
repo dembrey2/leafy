@@ -50,7 +50,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:username, :password, :avatar, :about, :location_id, seeker_profile_attributes: [:id, :first_name, :last_name, :email, :phone, :education, :work_history, :interests, :skills, :preferred_contact], employer_profile_attributes: [:id, :company_name, :website, :contact_name, :contact_email, :contact_phone])
+    params.require(:user).permit(:username, :password, :avatar, :about, :location_id, seeker_profile_attributes: [:id, :first_name, :last_name, :email, :phone, :education, :work_history, :interests, :preferred_contact], employer_profile_attributes: [:id, :company_name, :website, :contact_name, :contact_email, :contact_phone])
   end
 
   def require_self
