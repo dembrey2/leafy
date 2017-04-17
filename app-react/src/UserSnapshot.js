@@ -9,7 +9,7 @@ class UserSnapshot extends Component {
 		return (
 			<div>
 				<div className="row">
-					<div className="col-sm-8 col-sm-offset-2">
+					<div className="col-sm-6 col-sm-offset-3">
 						<div className="panel panel-default">
 							<div className="panel-body text-center">
 								<img src={user.avatar.url} className="img-rounded" alt="profile" />

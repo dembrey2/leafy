@@ -55,28 +55,32 @@ class EmployerSignup extends Component {
 
   render() {
     return (
-      	<div>
-    		<div className="row">
-				<div className="col-sm-4 col-sm-offset-4 text-center">
-					<h3>Sign up as an employer</h3>
-				
-						<div className="form-group text-left">
-							<label htmlFor="companyName">Company Name</label>
-							<input type="text" className="form-control" id="company_name" placeholder="" onChange={(e) => this.setState({companyName: e.target.value})}/>
-						</div>
-						<div className="form-group text-left">
-							<label htmlFor="username">Username</label>
-							<input type="text" className="form-control" id="username" placeholder=""onChange={(e) => this.setState({username: e.target.value})}/>
-						</div>
-						<div className="form-group text-left">
-							<label htmlFor="password">Create a Password</label>
-							<input type="password" className="form-control" id="password" placeholder="" onChange={(e) => this.setState({password: e.target.value})}/>
-						</div>
-						<button type="submit" className="btn btn-default" onClick={this.employerSignup}>Submit</button>
-                        <br/><br/>
-			</div>
-		</div>
-    </div>
+        <div>
+            <div className="container">
+                <div className="row">
+                    <div className="col-sm-4 col-sm-offset-4 text-center">
+                        <div className="panel panel-default panel-transparent">
+                            <div className="panel-body">
+                                <h3>Sign up as an employer</h3><br/>
+                                <div className="form-group text-left">
+                                    <label htmlFor="companyName">Company Name</label>
+                                    <input type="text" className="form-control" id="company_name" placeholder="" onChange={(e) => this.setState({ companyName: e.target.value })} />
+                                </div>
+                                <div className="form-group text-left">
+                                    <label htmlFor="username">Username</label>
+                                    <input type="text" className="form-control" id="username" placeholder="" onChange={(e) => this.setState({ username: e.target.value })} />
+                                </div>
+                                <div className="form-group text-left">
+                                    <label htmlFor="password">Create a Password</label>
+                                    <input type="password" className="form-control" id="password" placeholder="" onChange={(e) => this.setState({ password: e.target.value })} />
+                                </div>
+                                <button type="submit" className="btn btn-default" onClick={this.employerSignup}>Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     );
   }
 }

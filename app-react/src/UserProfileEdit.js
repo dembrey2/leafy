@@ -7,7 +7,6 @@ class UserProfileEdit extends Component {
 		this.addSkill = this.addSkill.bind(this)
 		this.editProfile = this.editProfile.bind(this)
 		this.lookupSkills = this.lookupSkills.bind(this)
-		// this.handleLocationChange = this.handleLocationChange.bind(this)
 		this.lookupLocations = this.lookupLocations.bind(this)
 
 		this.state = {
@@ -21,7 +20,7 @@ class UserProfileEdit extends Component {
 			interests: window.user.seeker_profile.interests || '',
 			lookupSkills: [],
 			lookupLocations: [],
-			about: window.user.about || ''
+			about: window.user.about || '',
 		}
 	 }
 

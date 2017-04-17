@@ -118,6 +118,10 @@ class EmployerProfileEdit extends Component {
 							</select>
 						</div>
 						<div className="form-group">
+							<label htmlFor="phone">Photo Upload:</label>
+							<input type="file" className="form-control"  onChange={(e) => this.setState({avatar: e.target.files[0]})}/>
+						</div>
+						<div className="form-group">
 							<label htmlFor="location">Location:</label>
 							<select className="form-control" defaultValue={this.state.location} onChange={(e) => this.setState({location: e.target.value})}>
 								{locations}

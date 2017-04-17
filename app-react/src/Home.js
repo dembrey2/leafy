@@ -33,7 +33,7 @@ class Home extends Component {
                     
             </div>
             <div className="col-sm-4 col-sm-offset-1">
-                    <h3>NEW LEAF</h3>
+                    <h3>NLNL</h3>
                     <h5>New Leaf – New Life is a 501 c3 nonprofit organization that offers services to folks in the Monroe County Jail during incarceration and after release. Applying the philosophy of therapeutic justice, we encourage personal growth and self-advocacy, supporting incarcerated individuals in their efforts to make a successful transition back into the community.</h5>
             </div>
         </div>

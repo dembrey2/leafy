@@ -53,7 +53,7 @@ class JobDetail extends Component {
             <br/><br/>
 				<div className="panel panel-default">
             		<div className="panel-body">
-                        <img src="https://unsplash.it/200/?random" alt="profile logo"/>
+                        {/*<img src="https://unsplash.it/200/?random" alt="profile logo"/>*/}
 						<h3>{this.state.title}</h3>
 						<h4>{this.state.company_name}</h4>
                         <h4>{this.state.description}</h4>

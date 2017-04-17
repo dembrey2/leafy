@@ -13,6 +13,7 @@ class AddJob extends Component {
 		this.state = {
 			location: '',
 			description: '',
+			transportation: '',
 			title: '',
 			skills: [],
 			lookupSkills: [],
@@ -81,10 +82,11 @@ class AddJob extends Component {
 	 editJob() {
 		let data = new FormData()
 		data.append('token', window.user.token)
-		data.append('user[job][location_id]', this.state.location)
-		data.append('user[job][description]', this.state.description)
-		data.append('user[job][title]', this.state.title)
-		data.append('user[job][skills]', this.state.skills.join(','))
+		data.append('job[location_id]', this.state.location)
+		data.append('job[description]', this.state.description)
+		data.append('job[title]', this.state.title)
+		data.append('job[transportation]', this.state.transportation)
+		data.append('job[skills]', this.state.skills.join(','))
 
 		fetch(window.apiHost + (this.props.params.jobId ? '/api/users/' + window.user.id + '/jobs/' + this.props.params.jobId : '/api/users/' + window.user.id + '/jobs/'), {
         method: this.props.params.jobId ? 'PUT' : 'POST',
@@ -97,6 +99,7 @@ class AddJob extends Component {
         })
         .then(function(response) {
             console.log(response);
+			window.user = response.user;
 			window.scrollTo(0,0)
 			browserHistory.push('/dashboard')
         })
@@ -126,8 +129,8 @@ class AddJob extends Component {
 						<div className="form-group">
 							<label htmlFor="transportation">Transportation:</label>
 							<select className="form-control" value={this.state.transportation} onChange={(e) => this.setState({transportation: e.target.value})}>
-								<option>Provided</option>
-								<option>Not Provided</option>
+								<option value="provided">Provided</option>
+								<option value="not provided">Not Provided</option>
 							</select>
 						</div>
 						<div className="form-group">

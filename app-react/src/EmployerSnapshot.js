@@ -12,7 +12,7 @@ class EmployerSnapshot extends Component {
 					<div className="col-sm-8 col-sm-offset-2">
 						<div className="panel panel-default">
 							<div className="panel-body text-center">
-								<img src="/img/redsquare.png" className="img-rounded" alt="profile" />
+								<img src={user.avatar.url} className="img-rounded" alt="profile" />
 								<h3>{user.employer_profile.company_name}</h3>
 								<h4>{user.employer_profile.contact_name}</h4>
 								<p>{user.about}</p>

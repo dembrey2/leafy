@@ -10,12 +10,14 @@ class CandidateSnapshot extends Component {
 			<div>
 						<div className="panel panel-default">
 							<div className="panel-body text-center">
-								<img src="/img/bluesquare.png" className="img-rounded" alt="profile" />
-								<h3>{this.props.first_name}</h3>
+								<img src={this.props.avatar} className="img-rounded" alt="profile" />
+								<h3>{this.props.first_name} {this.props.last_name}</h3>
 								<p>About</p>
+								<p>{this.props.about}</p>
+								<p>{this.props.location}</p>
                                 <div>skills:</div>
 								<div>{skills}</div>
-								 <button type="button" className="btn btn-default text-center" onClick={() => browserHistory.push('/profile/' + this.props.id)}>View Profile</button>
+								 <button type="button" className="btn btn-default text-center" onClick={() => browserHistory.push('/candidateprofile/' + this.props.id)}>View Profile</button>
 							</div>
 						</div>
 			</div>

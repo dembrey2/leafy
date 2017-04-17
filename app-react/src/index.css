@@ -9,6 +9,7 @@ body {
   margin: 0;
   padding: 0;
  font-family: 'Lato', sans-serif;
+ /*background: linear-gradient(rgba(33, 107, 43, 0.6), rgba(234, 242, 236, 0.6)), url(/img/leaf.jpg);*/
   background-color: #f1f1f1;
   letter-spacing: 1.1px;
 }
@@ -57,8 +58,8 @@ header button {
 
 
 .panel {
-    margin-top: 30px;
-    margin-bottom: 30px;
+    padding: 30px;
+    border-radius: 20px;
 }
 
 

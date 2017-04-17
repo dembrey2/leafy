@@ -15,7 +15,7 @@ class UserDashboard extends Component {
       <div>
         <UserSnapshot />
         <div className="row">
-          <div className="col-sm-8 col-sm-offset-2">
+          <div className="col-sm-6 col-sm-offset-3">
             <h3 className="text-center">Available Jobs</h3>
             {matchedJobs}
           </div>

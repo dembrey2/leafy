@@ -19,6 +19,7 @@ import EmployerSnapshot from './EmployerSnapshot'
 import JobSnapshot from './JobSnapshot'
 import AddJob from './AddJob'
 import CandidateSnapshot from './CandidateSnapshot'
+import CandidateDetail from './CandidateDetail'
 import './index.css';
 
 window.user = JSON.parse(sessionStorage.getItem('user'))
@@ -52,6 +53,7 @@ ReactDOM.render(
             <Route path="/addjob" component={AddJob} />
             <Route path="/editjob/:jobId" component={AddJob} />
             <Route path="/candidatesnapshot" component={CandidateSnapshot} />
+            <Route path="/candidateprofile/:userId" component={CandidateDetail} />
         </Route>
     </Router>,
     document.getElementById('root')
