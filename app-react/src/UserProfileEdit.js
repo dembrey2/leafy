@@ -8,26 +8,27 @@ class UserProfileEdit extends Component {
 		this.editProfile = this.editProfile.bind(this)
 		this.lookupSkills = this.lookupSkills.bind(this)
 		// this.handleLocationChange = this.handleLocationChange.bind(this)
-		// this.lookupLocations = this.lookupLocations.bind(this)
+		this.lookupLocations = this.lookupLocations.bind(this)
 
 		this.state = {
-			email: window.user.seeker_profile.email,
-			phone: window.user.seeker_profile.phone,
+			email: window.user.seeker_profile.email || '',
+			phone: window.user.seeker_profile.phone || '',
 			skills: window.user.seeker_profile.skills.map(skill => skill.id),
-			preferred_contact: window.user.preferred_contact,
-			location: window.user.location,
-			education: window.user.education,
-			work_history: window.user.work_history,
-			interests: window.user.interests,
+			preferred_contact: window.user.preferred_contact || 'email',
+			location: window.user.location.id,
+			education: window.user.seeker_profile.education || '',
+			work_history: window.user.seeker_profile.work_history || '',
+			interests: window.user.seeker_profile.interests || '',
 			lookupSkills: [],
-			// lookupLocations: [],
-			about: window.user.about
+			lookupLocations: [],
+			about: window.user.about || '',
+			avatar: window.user.avatar.url
 		}
 	 }
 
 	 componentWillMount(){
 		 this.lookupSkills()
-		//  this.lookupLocations()
+		 this.lookupLocations()
 
 		//  fetch(window.apiHost + '/api/users/' + window.user.id)
 		// .then(response => response.json())
@@ -43,15 +44,15 @@ class UserProfileEdit extends Component {
 		// }))
 	 }
 
-	// lookupLocations() {
-	// 	fetch(window.apiHost + '/api/locations')
-	// 	.then(function(response) {
-	// 			return response.json();
-	// 		})
-	// 	.then((response) => {
-	// 			this.setState({lookupLocations:response.locations})
-	// 		})
-	// 	}
+	lookupLocations() {
+		fetch(window.apiHost + '/api/locations')
+		.then(function(response) {
+				return response.json();
+			})
+		.then((response) => {
+				this.setState({lookupLocations:response.locations})
+			})
+		}
 
 	 addSkill(e) {
 		 let skills = this.state.skills
@@ -95,8 +96,7 @@ class UserProfileEdit extends Component {
 					email: this.state.email,
 					phone: this.state.phone,
 					preferred_contact: this.state.preferred_contact,
-					// location_id: this.state.location,
-					location: this.state.location,
+					location_id: this.state.location,
 					// location_name: this.state.location.name,
 					skills: this.state.skills,
 					education: this.state.education,
@@ -104,6 +104,7 @@ class UserProfileEdit extends Component {
 					interests: this.state.interests
 				},
 				about: this.state.about,
+				avatar: this.state.avatar.url
             }
         })
     })
@@ -114,6 +115,7 @@ class UserProfileEdit extends Component {
             // console.log(response);
 			window.user = response.user;
 			sessionStorage.setItem('user', JSON.stringify(response));
+			window.scrollTo(0,0)
 			browserHistory.push('/dashboard')
         })
 	}
@@ -128,14 +130,9 @@ class UserProfileEdit extends Component {
 				<input type="checkbox" value={skill.id} checked={this.state.skills.includes(skill.id)} onChange={this.addSkill} /> {skill.name}
 			</label>
 		))
-		// const locations = this.state.lookupLocations.map(location => (
-		// 	<div>
-		// 	<label htmlFor="location" key={location.id}>Location:</label>
-		// 		<select className="form-control"  onChange={(e) => {this.addLocation}}>
-		// 						<option value={location.id}>{location.name}</option>
-		// 		</select>
-		// 		</div>
-		// ))
+		const locations = this.state.lookupLocations.map(location => (
+			<option key={location.id} value={location.id}>{location.name}</option>
+		))
 
     return (
     <div>
@@ -151,22 +148,20 @@ class UserProfileEdit extends Component {
 							<input type="text" className="form-control"  name="phone" placeholder="" value={this.state.phone} onChange={(e) => this.setState({phone: e.target.value})}/>
 						</div>
 						<div className="form-group">
+							<label htmlFor="phone">Photo Upload:</label>
+							<input type="text" className="form-control"  name="phone" placeholder="http://..." value={this.state.avatar} onChange={(e) => this.setState({avatar: e.target.value})}/>
+						</div>
+						<div className="form-group">
 							<label htmlFor="preferred_contact">Preferred method of communication:</label>
 							<select className="form-control" value={this.state.preferred_contact} onChange={(e) => this.setState({preferred_contact: e.target.value})}>
-								<option value="Phone">Phone</option>
-								<option value="Email">Email</option>
+								<option value="phone">Phone</option>
+								<option value="email">Email</option>
 							</select>
 						</div>
 						<div className="form-group">
 							<label htmlFor="location">Location:</label>
-							{/*<select className="form-control" value={this.state.location} onChange={(e) => console.log(e.target.value)}>*/}
-							<select className="form-control" value={this.state.location.name} onChange={(e) => this.setState({location: e.target.value})}>
-								<option value="Downtown Bloomington">Downtown Bloomington</option>
-								<option value="North Bloomington">North Bloomington</option>
-								<option value="East Bloomington">East Bloomington</option>
-								<option value="South Bloomington">South Bloomington</option>
-								<option value="West Bloomington">West Bloomington</option>
-								<option value="Greater Monroe County">Greater Monroe County</option>
+							<select className="form-control" value={this.state.location} onChange={(e) => this.setState({location: e.target.value})}>
+								{locations}
 							</select>
 						</div>
 						<div className="form-group">
