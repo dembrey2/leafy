@@ -29,8 +29,8 @@ class UsersController < ApplicationController
       @user.seeker_profile.skills.replace(new_skills)
     end
 
-    if params.dig(:user, :location)
-      @user.location = Location.find(params[:location])
+    if params.dig(:user, :location_id)
+      @user.location = Location.find(params[:user][:location_id])
     end
 
     if @user.update(user_params)
