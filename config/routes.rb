@@ -14,5 +14,5 @@ Rails.application.routes.draw do
 
   end
 
-  post 'login' => 'sessions#reply'
+  post 'login' => 'sessions#create'
 end
