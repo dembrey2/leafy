@@ -42,8 +42,9 @@ class JobsController < ApplicationController
     end
 
     if @job.save
-      @seekers = @job.matched_seekers
-      @seekers.each{|seeker| JobMailer.job_match_email(seeker).deliver if seeker.email}
+      find_matched_seekers(@job)
+      # @seekers = @job.matched_seekers
+      # @seekers.each{|seeker| JobMailer.job_match_email(seeker).deliver if seeker.email}
       render json: @job
     else
       render json: @job.errors.full_messages, status: 400
