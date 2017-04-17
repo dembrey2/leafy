@@ -1,5 +1,5 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :username, :about, :location, :role
+  attributes :id, :username, :about, :location, :role, :avatar
 
   has_one :seeker_profile
   has_one :employer_profile
