@@ -7,7 +7,7 @@ class UserProfileEdit extends Component {
 		this.addSkill = this.addSkill.bind(this)
 		this.editProfile = this.editProfile.bind(this)
 		this.lookupSkills = this.lookupSkills.bind(this)
-		this.handleLocationChange = this.handleLocationChange.bind(this)
+		// this.handleLocationChange = this.handleLocationChange.bind(this)
 		// this.lookupLocations = this.lookupLocations.bind(this)
 
 		this.state = {
@@ -118,9 +118,9 @@ class UserProfileEdit extends Component {
         })
 	}
 
-	handleLocationChange(event) {
-    this.setState({location: event.target.value});
-  }
+// 	handleLocationChange(event) {
+//     this.setState({location: event.target.value});
+//   }
 
   render() {
 	  const skills = this.state.lookupSkills.map(skill => (
