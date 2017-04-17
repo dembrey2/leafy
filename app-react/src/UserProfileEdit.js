@@ -21,8 +21,7 @@ class UserProfileEdit extends Component {
 			interests: window.user.seeker_profile.interests || '',
 			lookupSkills: [],
 			lookupLocations: [],
-			about: window.user.about || '',
-			avatar: window.user.avatar.url
+			about: window.user.about || ''
 		}
 	 }
 
@@ -79,42 +78,33 @@ class UserProfileEdit extends Component {
 	 }
 
 	 editProfile() {
-		fetch(window.apiHost + '/api/users/' + window.user.id , {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json'
-        },
+		let data = new FormData()
+		data.append('token', window.user.token)
+		data.append('user[seeker_profile_attributes][id]', window.user.seeker_profile.id)
+		data.append('user[seeker_profile_attributes][email]', this.state.email)
+		data.append('user[seeker_profile_attributes][phone]', this.state.phone)
+		data.append('user[seeker_profile_attributes][preferred_contact]', this.state.preferred_contact)
+		data.append('user[seeker_profile_attributes][skills]', this.state.skills.join(','))
+		data.append('user[seeker_profile_attributes][education]', this.state.education)
+		data.append('user[seeker_profile_attributes][work_history]', this.state.work_history)
+		data.append('user[seeker_profile_attributes][interests]', this.state.interests)
+		data.append('user[about]', this.state.about)
+		data.append('user[location_id]', this.state.location)
+		data.append('user[avatar]', this.state.avatar)
 
-        // Back-end controls the left side, properties, of this object
-        // Front-end controls the variables names and values on the right side
-        body: JSON.stringify({
-			token: window.user.token,
-            user: {
-				seeker_profile_attributes: {
-				// seeker_profile: {
-					id: window.user.seeker_profile.id,
-					email: this.state.email,
-					phone: this.state.phone,
-					preferred_contact: this.state.preferred_contact,
-					location_id: this.state.location,
-					// location_name: this.state.location.name,
-					skills: this.state.skills,
-					education: this.state.education,
-					work_history: this.state.work_history,
-					interests: this.state.interests
-				},
-				about: this.state.about,
-				avatar: this.state.avatar.url
-            }
-        })
-    })
+		fetch(window.apiHost + '/api/users/' + window.user.id , {
+			method: 'PUT',
+			// Back-end controls the left side, properties, of this object
+			// Front-end controls the variables names and values on the right side
+			body: data
+		})
         .then(function(response) {
             return response.json();
         })
         .then(function(response) {
             // console.log(response);
-			window.user = response.user;
-			sessionStorage.setItem('user', JSON.stringify(response));
+			// window.user = response.user;
+			// sessionStorage.setItem('user', JSON.stringify(response));
 			window.scrollTo(0,0)
 			browserHistory.push('/dashboard')
         })
@@ -149,7 +139,7 @@ class UserProfileEdit extends Component {
 						</div>
 						<div className="form-group">
 							<label htmlFor="phone">Photo Upload:</label>
-							<input type="text" className="form-control"  name="phone" placeholder="http://..." value={this.state.avatar} onChange={(e) => this.setState({avatar: e.target.value})}/>
+							<input type="file" className="form-control"  onChange={(e) => this.setState({avatar: e.target.files[0]})}/>
 						</div>
 						<div className="form-group">
 							<label htmlFor="preferred_contact">Preferred method of communication:</label>
