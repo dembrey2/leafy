@@ -15,7 +15,8 @@ class AddJob extends Component {
 			description: '',
 			title: '',
 			skills: [],
-			lookupSkills: []
+			lookupSkills: [],
+			lookupLocations: []
 		}
 	 }
 
@@ -78,29 +79,25 @@ class AddJob extends Component {
 	 }
 
 	 editJob() {
+		let data = new FormData()
+		data.append('token', window.user.token)
+		data.append('user[job][location_id]', this.state.location)
+		data.append('user[job][description]', this.state.description)
+		data.append('user[job][title]', this.state.title)
+		data.append('user[job][skills]', this.state.skills.join(','))
+
 		fetch(window.apiHost + (this.props.params.jobId ? '/api/users/' + window.user.id + '/jobs/' + this.props.params.jobId : '/api/users/' + window.user.id + '/jobs/'), {
         method: this.props.params.jobId ? 'PUT' : 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-
         // Back-end controls the left side, properties, of this object
         // Front-end controls the variables names and values on the right side
-        body: JSON.stringify({
-			token: window.user.token,
-            job: {
-				location_id: this.state.location.id,
-				description: this.state.description,
-				title: this.state.title,
-				skills: this.state.skills,
-            }
-        })
+        body: data
     })
         .then(function(response) {
             return response.json();
         })
         .then(function(response) {
             console.log(response);
+			window.scrollTo(0,0)
 			browserHistory.push('/dashboard')
         })
 	}
@@ -110,6 +107,9 @@ class AddJob extends Component {
 		  	<label className="checkbox" key={skill.id}>
 				<input type="checkbox" value={skill.id} checked={this.state.skills.includes(skill.id)} onChange={this.addSkill} /> {skill.name}
 			</label>
+		))
+		const locations = this.state.lookupLocations.map(location => (
+			<option key={location.id} value={location.id}>{location.name}</option>
 		))
     return (
       	<div>
@@ -133,12 +133,7 @@ class AddJob extends Component {
 						<div className="form-group">
 							<label htmlFor="location">Location:</label>
 							<select className="form-control" value={this.state.location} onChange={(e) => this.setState({location: e.target.value})}>
-								<option value="Downtown Bloomington">Downtown Bloomington</option>
-								<option value="North Bloomington">North Bloomington</option>
-								<option value="East Bloomington">East Bloomington</option>
-								<option value="South Bloomington">South Bloomington</option>
-								<option value="West Bloomington">West Bloomington</option>
-								<option value="Greater Monroe County">Greater Monroe County</option>
+								{locations}
 							</select>
 						</div>
 

@@ -103,16 +103,12 @@ class UserProfileEdit extends Component {
         })
         .then(function(response) {
             // console.log(response);
-			// window.user = response.user;
-			// sessionStorage.setItem('user', JSON.stringify(response));
+			window.user = response.user;
+			sessionStorage.setItem('user', JSON.stringify(response));
 			window.scrollTo(0,0)
 			browserHistory.push('/dashboard')
         })
 	}
-
-// 	handleLocationChange(event) {
-//     this.setState({location: event.target.value});
-//   }
 
   render() {
 	  const skills = this.state.lookupSkills.map(skill => (
