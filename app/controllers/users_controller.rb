@@ -23,8 +23,8 @@ class UsersController < ApplicationController
 
   def update
     if params.dig(:user, :seeker_profile_attributes, :skills)
-      new_skills = params[:user][:seeker_profile_attributes][:skills].map do |skill_id|
-        Skill.find(skill_id)
+      new_skills = params[:user][:seeker_profile_attributes][:skills].split(",").map do |skill_id|
+        Skill.find(skill_id.to_i)
       end
       @user.seeker_profile.skills.replace(new_skills)
     end
