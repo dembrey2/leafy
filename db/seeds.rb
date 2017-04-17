@@ -48,7 +48,8 @@ end
       username: Faker::Ancient.unique.god,
       password: "cupcakes",
       location: Location.all.sample,
-      about: Faker::Company.bs
+      about: Faker::Company.bs,
+      avatar: Rails.root.join("public/img/lovelace.jpg").open
       )
   )
   3.times do
@@ -63,3 +64,5 @@ end
     job.skills << Skill.all.sample(3)
   end
 end
+
+User.create!(username: "admin", password: "cupcakes", admin: true)

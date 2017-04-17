@@ -33,7 +33,7 @@ gem 'api-pagination'
 gem 'fog'
 gem 'carrierwave', '~> 1.0'
 gem 'figaro'
-gem 'rails_admin'
+gem 'rails_admin', '1.1.0'
 gem 'twilio-ruby'
 
 group :development, :test do
