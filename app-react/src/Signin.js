@@ -50,6 +50,7 @@ class Signin extends Component {
   render() {
     return (
     <div>
+    <div className="container">
         <div className="row">
             <div className="col-sm-4 col-sm-offset-4 text-center">
                 <h3>Sign in</h3>
@@ -66,6 +67,7 @@ class Signin extends Component {
                 </div>
             </div>
         </div>
+    </div>
         
         
     );

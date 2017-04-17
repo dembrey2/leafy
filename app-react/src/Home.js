@@ -19,6 +19,7 @@ class Home extends Component {
         </div>
         </header>
         <br/>
+        <div className="container">
         <div className="row text-center">
             <div className="col-sm-8 col-sm-offset-2">
                 {/*<h3>Turn</h3>
@@ -36,6 +37,7 @@ class Home extends Component {
                     <h5>New Leaf – New Life is a 501 c3 nonprofit organization that offers services to folks in the Monroe County Jail during incarceration and after release. Applying the philosophy of therapeutic justice, we encourage personal growth and self-advocacy, supporting incarcerated individuals in their efforts to make a successful transition back into the community.</h5>
             </div>
         </div>
+    </div>
     </div>
     );
   }
