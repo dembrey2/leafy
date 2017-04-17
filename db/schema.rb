@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170415205922) do
+ActiveRecord::Schema.define(version: 20170417133959) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,6 +87,7 @@ ActiveRecord::Schema.define(version: 20170415205922) do
     t.string   "token"
     t.string   "avatar"
     t.boolean  "admin"
+    t.string   "reset_digest"
     t.index ["location_id"], name: "index_users_on_location_id", using: :btree
   end
 
