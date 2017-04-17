@@ -54,12 +54,12 @@ class JobsController < ApplicationController
     @job = Job.find(params[:id])
     @job.employer_profile.user = current_user
 
-    if params.dig(:job, :location)
-      @job.location = Location.find(params[:location])
+    if params.dig(:job, :location_id)
+      @job.location = Location.find(params[:location_id])
     end
 
     if params.dig(:job, :skills)
-      new_skills = params[:job][:skills].map{|skill_id| Skill.find(skill_id)}
+      new_skills = params[:job][:skills].split(",").map{|skill_id| Skill.find(skill_id.to_i)}
       @job.skills.replace(new_skills)
     end
 
