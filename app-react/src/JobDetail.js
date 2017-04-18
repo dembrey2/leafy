@@ -47,7 +47,7 @@ class JobDetail extends Component {
     return (
     <div>
         <div className="row">
-			{window.user.role === 'employer' ? <EmployerSnapshot/> : <UserSnapshot/> }
+			{/*{window.user.role === 'employer' ? <EmployerSnapshot/> : <UserSnapshot/> }*/}
             <div className="col-sm-6 col-sm-offset-3">
             <button type="button" className="btn btn-default btn-transparent-white-background text-center" onClick={() => browserHistory.push('/dashboard')}>Back to Dashboard</button>
             <br/><br/>
@@ -58,6 +58,7 @@ class JobDetail extends Component {
                         <h4>{this.state.description}</h4>
                         <h5>{this.state.contact_name}</h5>
                         <div>{this.state.contact_phone}</div>
+                        <div>{this.state.transportation ? 'Has Transporation' : 'No Transportation'}</div>
                          <div>SKILLS DESIRED:</div>
                          <div>{skills}</div>
                          <br/>

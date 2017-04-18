@@ -14,7 +14,7 @@ class UserProfileEdit extends Component {
 			phone: window.user.seeker_profile.phone || '',
 			skills: window.user.seeker_profile.skills.map(skill => skill.id),
 			preferred_contact: window.user.preferred_contact || 'email',
-			location: window.user.location.name || '',
+			location: window.user.location.id || '',
 			education: window.user.seeker_profile.education || '',
 			work_history: window.user.seeker_profile.work_history || '',
 			interests: window.user.seeker_profile.interests || '',
@@ -106,7 +106,7 @@ class UserProfileEdit extends Component {
         })
         .then(function(response) {
             // console.log(response);
-			// window.user = response.user;
+			window.user = response.user;
 			sessionStorage.setItem('user', JSON.stringify(response));
 			window.scrollTo(0,0)
 			browserHistory.push('/dashboard')
@@ -119,6 +119,11 @@ class UserProfileEdit extends Component {
 				<input type="checkbox" value={skill.id} checked={this.state.skills.includes(skill.id)} onChange={this.addSkill} /> {skill.name}
 			</label>
 		))
+
+		var halfLength = Math.ceil(skills.length / 2)   
+		var leftSide = skills.slice(0,halfLength)
+		var rightSide = skills.slice(halfLength)
+
 		const locations = this.state.lookupLocations.map(location => (
 			<option key={location.id} value={location.id}>{location.name}</option>
 		))
@@ -162,7 +167,14 @@ class UserProfileEdit extends Component {
 									<textarea className="form-control" placeholder="" value={this.state.about} onChange={(e) => this.setState({ about: e.target.value })} />
 								</div>
 						<h3 className="text-uppercase">Skills and Abilities</h3>
-							{skills}
+						<div className="row">
+							<div className="col-sm-6">
+								{leftSide}
+							</div>
+							<div className="col-sm-6">
+								{rightSide}
+							</div>
+						</div>
 						<h3 className="text-uppercase">Work History/Education (Optional)</h3>
 								<div className="form-group">
 									<label htmlFor="education" className="text-uppercase">Education</label>

@@ -4,7 +4,7 @@ import { browserHistory } from 'react-router';
 
 class CandidateSnapshot extends Component {
 	render() {
-		
+		console.log(this.props)
 		const skills = this.props.skills.map(skill => <div key={skill.id}>{skill.name}</div>)
 
 		return (
@@ -18,7 +18,7 @@ class CandidateSnapshot extends Component {
 					<div>{this.props.location}</div>
 					<div className="text-uppercase">skills:</div>
 					<div>{skills}</div><br/>
-						<button type="button" className="btn btn-default btn-transparent-charcoal text-center" onClick={() => browserHistory.push('/candidateprofile/' + this.props.id)}>View Profile</button>
+						<button type="button" className="btn btn-default btn-transparent-charcoal text-center" onClick={() => browserHistory.push('/candidateprofile/' + this.props.user_id)}>View Profile</button>
 					</div>
 				</div>
 			</div>

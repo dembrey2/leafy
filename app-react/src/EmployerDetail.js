@@ -45,7 +45,7 @@ return (
                 <br /><br />
                 <div className="panel panel-default text-center">
                     <div className="panel-body">
-                        <img src="http://unsplash.it/200/?random" className="img-circle" alt="profile" />
+                        <img src={user.avatar ? user.avatar.url : ''} className="img-circle" alt="profile" />
                         <h3 className="text-uppercase">{user.employer_profile.company_name}</h3>
                         <p>{user.about}</p>
                         <hr/>

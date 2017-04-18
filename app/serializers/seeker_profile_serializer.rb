@@ -1,5 +1,5 @@
 class SeekerProfileSerializer < ActiveModel::Serializer
-  attributes :id, :first_name, :last_name, :email, :phone, :skills, :work_history, :education, :interests, :preferred_contact
+  attributes :id, :first_name, :last_name, :email, :phone, :skills, :work_history, :education, :interests, :preferred_contact, :user_id
 
   def skills
     object.skills
