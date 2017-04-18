@@ -21,14 +21,14 @@ class AvatarUploader < CarrierWave::Uploader::Base
   # Provide a default URL as a default if there hasn't been a file uploaded:
   def default_url
   #   # For Rails 3.1+ asset pipeline compatibility:
-      [thumb, "/img/lovelace.jpg"].compact.join('_')
+      [:thumb, "/img/lovelace.jpg"].compact.join('_')
   #   # Rails.root.join('public/img/lovelace.jpg').open
   #
   #   # "/images/fallback/" + [version_name, "default.png"].compact.join('_')
   end
 
   # Process files as they are uploaded:
-  # process resize_to_fit: [300, 300]
+  process resize_to_fit: [800, 800]
   #
   # def scale(width, height)
   #   # do something
@@ -36,7 +36,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
 
   # Create different versions of your uploaded files:
   version :thumb do
-    process resize_to_fit: [300, 300]
+    process resize_to_fill: [300, 300]
   end
 
   # Add a white list of extensions which are allowed to be uploaded.
