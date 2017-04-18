@@ -13,8 +13,8 @@ class Home extends Component {
                 <h4 className="text-uppercase">connecting people with meaningful work</h4>
                 <br/><br/>
                 <h5 className="text-uppercase">Sign up</h5>
-                <button type="button" className="btn btn-transparent" onClick={() => browserHistory.push('/employersignup')}>I'm an employer</button>
-                <button type="button" className="btn btn-transparent" onClick={() => browserHistory.push('/seekersignup')}>I'm looking for a job</button>
+                <button type="button" className="btn btn-transparent-charcoal" onClick={() => browserHistory.push('/employersignup')}>I'm an employer</button>
+                <button type="button" className="btn btn-transparent-charcoal" onClick={() => browserHistory.push('/seekersignup')}>I'm looking for a job</button>
             </div>
         </div>
         </header>

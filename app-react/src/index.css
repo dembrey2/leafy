@@ -9,8 +9,11 @@ body {
   margin: 0;
   padding: 0;
  font-family: 'Lato', sans-serif;
- /*background: linear-gradient(rgba(33, 107, 43, 0.6), rgba(234, 242, 236, 0.6)), url(/img/leaf.jpg);*/
-  background-color: #f1f1f1;
+ background: linear-gradient(rgba(33, 107, 43, 0.6), rgba(234, 242, 236, 0.6)), url(/img/mountainrange.jpg);
+ background-repeat: no-repeat;
+background-attachment: fixed;
+background-size: cover;
+  /*background-color: #f1f1f1;*/
   letter-spacing: 1.1px;
 }
 
@@ -22,14 +25,15 @@ body {
 .nav a {
     padding-right: 20px;
     text-decoration: none;
-    color: black;
+    color: #f2f2f2;
 }
 
 header {
-    background: linear-gradient(rgba(33, 107, 43, 0.6), rgba(33, 107, 43, 0.6)), url(/img/leaf.jpg);
+    /*background: linear-gradient(rgba(33, 107, 43, 0.6), rgba(33, 107, 43, 0.6)), url(/img/leaf.jpg);*/
+    background: rgba(227, 232, 232, 0.4);
     background-size: cover;
-    padding: 80px;
-    color: white;
+    padding: 40px;
+    color: #2f3030;
 }
 
 /*.title {
@@ -37,11 +41,15 @@ header {
     font-weight: 700;
 }*/
 
+label {
+    font-weight: 300;
+}
+
 header button {
     margin: 4px;
     background-color: none;
 }
-.btn-transparent {
+.btn-transparent-white {
     background: transparent;
     color: #F2F2F2;
     -webkit-transition: background .2s ease-in-out, border .2s ease-in-out;
@@ -51,15 +59,54 @@ header button {
     border: 1px solid #f2f2f2;
 }
 
-    .btn-transparent:hover {
-        color: white;
-        background-color: rgba(255,255,255,0.2);
-    }
+.btn-transparent-white:hover {
+    color: white;
+    background-color: rgba(255,255,255,0.2);
+}
 
+.btn-transparent-charcoal {
+    background: transparent;
+    color: #2f3030;
+    -webkit-transition: background .2s ease-in-out, border .2s ease-in-out;
+    -moz-transition: background .2s ease-in-out, border .2s ease-in-out;
+    -o-transition: background .2s ease-in-out, border .2s ease-in-out;
+    transition: background .2s ease-in-out, border .2s ease-in-out;
+    border: 1px solid rgb(166, 168, 168);
+}
+
+.btn-transparent-charcoal:hover {
+    color: #2f3030;
+    background-color: rgba(244, 247, 246, 0.7);
+}
+
+.btn-transparent-white-background {
+    background: rgba(244, 247, 246, 0.7);
+    color: #2f3030;
+    -webkit-transition: background .2s ease-in-out, border .2s ease-in-out;
+    -moz-transition: background .2s ease-in-out, border .2s ease-in-out;
+    -o-transition: background .2s ease-in-out, border .2s ease-in-out;
+    transition: background .2s ease-in-out, border .2s ease-in-out;
+    border: 1px solid rgb(166, 168, 168);
+}
+
+.btn-transparent-white-background:hover {
+    color: #2f3030;
+    background-color: rgba(255,255,255,0.2);
+}
+
+.label {
+    margin: 5px;
+    font-size: 12px;
+    font-weight: 300;
+}
+
+.bold-heading {
+    font-weight: 700;
+}
 
 .panel {
-    padding: 30px;
-    border-radius: 20px;
+    padding: 15px;
+    background: rgba(244, 247, 246, 0.6);
 }
 
 
@@ -71,6 +118,10 @@ header button {
 
 .about-section {
     letter-spacing: 1.1px;
+}
+
+.white {
+    color: #f2f2f2;
 }
 
 footer {

@@ -53,18 +53,18 @@ class Signin extends Component {
     <div className="container">
         <div className="row">
             <div className="col-sm-4 col-sm-offset-4 text-center">
-            <div className="panel panel-default panel-transparent">
+            <div className="panel panel-default">
                 <div className="panel-body">
-                    <h3>Sign in</h3>
+                    <h3 className="text-uppercase">Sign in</h3>
                     <div className="form-group text-left">
-                        <label htmlFor="username">Username</label>
+                        <label htmlFor="username" className="text-uppercase">Username</label>
                         <input type="text" className="form-control" id="username" placeholder="" onChange={(e) => this.setState({username: e.target.value})}/>
                     </div>
                     <div className="form-group text-left">
-                        <label htmlFor="password">Password</label>
+                        <label htmlFor="password" className="text-uppercase">Password</label>
                         <input type="password" className="form-control" id="password" placeholder="" onChange={(e) => this.setState({password: e.target.value})}/>
                     </div>
-                    <button type="submit" className="btn btn-default" onClick={this.signin}>Submit</button>
+                    <button type="submit" className="btn btn-default btn-transparent-charcoal text-uppercase" onClick={this.signin}>Submit</button>
                 </div>
             </div>
                 

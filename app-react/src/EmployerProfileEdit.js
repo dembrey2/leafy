@@ -15,7 +15,8 @@ class EmployerProfileEdit extends Component {
 			preferred_contact: window.user.preferred_contact || 'email',
 			location: window.user.location.id,
 			about: window.user.about || '',
-			lookupLocations:[]
+			lookupLocations:[],
+			avatar: ''
 		}
 	}
 
@@ -44,7 +45,11 @@ class EmployerProfileEdit extends Component {
 		// data.append('user[employer_profile_attributes][preferred_contact]', this.state.preferred_contact)
 		data.append('user[about]', this.state.about)
 		data.append('user[location_id]', this.state.location)
-		data.append('user[avatar]', this.state.avatar)
+
+		if (this.state.avatar !== '') {
+			data.append('user[avatar]', this.state.avatar)
+		}
+	
 
 		fetch(window.apiHost + '/api/users/' + window.user.id , {
         method: 'PUT',
