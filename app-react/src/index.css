@@ -30,9 +30,9 @@ background-size: cover;
 
 header {
     /*background: linear-gradient(rgba(33, 107, 43, 0.6), rgba(33, 107, 43, 0.6)), url(/img/leaf.jpg);*/
-    background: rgba(227, 232, 232, 0.4);
-    background-size: cover;
-    padding: 40px;
+    /*background: rgba(227, 232, 232, 0.4);
+    background-size: cover;*/
+    padding: 80px;
     color: #2f3030;
 }
 

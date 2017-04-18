@@ -14,7 +14,7 @@ class UserProfileEdit extends Component {
 			phone: window.user.seeker_profile.phone || '',
 			skills: window.user.seeker_profile.skills.map(skill => skill.id),
 			preferred_contact: window.user.preferred_contact || 'email',
-			location: window.user.location || '',
+			location: window.user.location.name || '',
 			education: window.user.seeker_profile.education || '',
 			work_history: window.user.seeker_profile.work_history || '',
 			interests: window.user.seeker_profile.interests || '',
@@ -106,7 +106,7 @@ class UserProfileEdit extends Component {
         })
         .then(function(response) {
             // console.log(response);
-			window.user = response.user;
+			// window.user = response.user;
 			sessionStorage.setItem('user', JSON.stringify(response));
 			window.scrollTo(0,0)
 			browserHistory.push('/dashboard')
