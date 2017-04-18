@@ -18,9 +18,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def edit
-  end
-
   def update
     if params.dig(:user, :seeker_profile_attributes, :skills)
       new_skills = params[:user][:seeker_profile_attributes][:skills].split(",").map do |skill_id|
