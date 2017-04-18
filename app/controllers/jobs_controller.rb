@@ -42,7 +42,7 @@ class JobsController < ApplicationController
 
     if @job.save
       find_matched_seekers(@job)
-      notify_via_text
+      # notify_via_text
       render json: @job
     else
       render json: @job.errors.full_messages, status: 400
