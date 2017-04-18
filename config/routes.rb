@@ -10,8 +10,6 @@ Rails.application.routes.draw do
     resources :skills
     resources :locations
 
-    post 'notify' => 'messages#notify'
-
   end
 
   post 'login' => 'sessions#create'

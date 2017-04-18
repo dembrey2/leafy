@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-skills_array = ["Accounting", "Admin & Clerical", "Banking & Finance", "Customer Service", "Engineering", "Health Care", "Hospitality", "Information Technology", "Manufacturing", "Sales & Marketing", "Transportation"]
+skills_array = ["Health", "General Office", "Computer Skills", "Construction & Repair", "Maintenance", "Janitorial & Housekeeping", "Languages", "Food", "Child Care", "Transportaion", "Operating Equipment & Repairing Machinery", "Supervision", "Retail & Sales", "Animal Care", "Music", "Security", "Landscaping", "Other"]
 
 skills_array.each do |skill|
   Skill.create!(name: skill)

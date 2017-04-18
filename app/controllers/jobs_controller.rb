@@ -1,6 +1,6 @@
 class JobsController < ApplicationController
 
-  before_action :require_user, only: [:index, :show]
+  before_action :require_user, only: [:index, :show, :create, :update]
   before_action :require_employer, only: [:create, :update]
 
   def index
@@ -30,7 +30,6 @@ class JobsController < ApplicationController
     @user = current_user
     @job = Job.new(job_params)
     @user.employer_profile.jobs << @job
-    # @job.employer_profile.user = current_user
 
     if params.dig(:job, :location_id)
       @job.location = Location.find(params[:job][:location_id])
@@ -42,8 +41,8 @@ class JobsController < ApplicationController
     end
 
     if @job.save
-      @seekers = @job.matched_seekers
-      @seekers.each{|seeker| JobMailer.job_match_email(seeker).deliver if seeker.email}
+      find_matched_seekers(@job)
+      notify_via_text
       render json: @job
     else
       render json: @job.errors.full_messages, status: 400

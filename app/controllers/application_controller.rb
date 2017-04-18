@@ -21,4 +21,25 @@ class ApplicationController < ActionController::API
       render json: ["You need to be logged in as an employer to do that."]
     end
   end
+
+  def find_matched_seekers(job)
+    job.matched_seekers.each{|seeker| JobMailer.job_match_email(seeker).deliver if seeker.email}
+  end
+
+  # def notify_via_text
+  #   boot_twilio
+  #   sms = @client.messages.create({
+  #     from: ENV['twilio_number'],
+  #     to: ENV['twilio_send_to'],
+  #     body: "A new job matching your skills has posted."
+  #   })
+  # end
+
+  # private
+  #
+  # def boot_twilio
+  #   account_sid = ENV['twilio_sid']
+  #   auth_token = ENV['twilio_token']
+  #   @client = Twilio::REST::Client.new account_sid, auth_token
+  # end
 end
