@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { browserHistory } from 'react-router'
-import EmployerSnapshot from './EmployerSnapshot'
+// import EmployerSnapshot from './EmployerSnapshot'
 
 class EmployerProfileEdit extends Component {
 	constructor(props) {
