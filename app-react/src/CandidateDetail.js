@@ -47,30 +47,37 @@ class CandidateDetail extends Component {
             user = this.state.user;
         }
 
-    const skills = this.state.user.seeker_profile.skills.map(skill => <div className="label label-success" key={skill.id}>{skill.name}</div>)
+    const skills = this.state.user.seeker_profile.skills.map(skill => <div key={skill.id}>{skill.name}</div>)
 
     return (
     <div>
         <div className="row">
-			<div className="col-sm-8 col-sm-offset-2">
-           <button type="button" className="btn btn-default btn-transparent-white-background text-center" onClick={() => browserHistory.push('/dashboard')}>Back to Jobs</button>
+			<div className="col-sm-6 col-sm-offset-3">
+           <button type="button" className="btn btn-default btn-transparent-white-background text-center" onClick={() => browserHistory.push('/dashboard')}>Back to dashboard</button>
 				<h2 className="text-center"></h2>
 				<div className="panel panel-default">
-            		<div className="panel-body">
-                        <img src="/img/bluesquare.png" className="img-cirlce" alt="profile"/>
-						<h3>{user.seeker_profile.first_name} {user.seeker_profile.last_name}</h3>
-                        <h4>Contact Information</h4>
-                        <p>{user.location.name}</p>
-                        <p>{user.seeker_profile.phone}</p>
-                        <p>{user.seeker_profile.email}</p>
-                        <h4>Preferred method of Communication:</h4>
-                        <p>{user.seeker_profile.preferred_contact}</p>
+            		<div className="panel-body text-center">
+                        <img src={user.avatar} className="img-cirlce" alt="profile"/>
+						<h3 className="text-uppercase">{user.seeker_profile.first_name} {user.seeker_profile.last_name}</h3>
                         <p>{user.about}</p>
-                        <h4>Skill Sets</h4>
+                        <hr/>
+                        <h4 className="text-uppercase">Contact Information</h4>
+                        
+                        <p>Phone: {user.seeker_profile.phone}</p>
+                        <p>Email: {user.seeker_profile.email}</p>
+                        <p>Location: {user.location.name}</p>
+                        <p>Preferred Contact: {user.seeker_profile.preferred_contact}</p>
+                        <hr/>
+                        <h4 className="text-uppercase">Skill Sets</h4>
                         <div>{skills}</div>
-                        <h4>Work, Education, Etc</h4>
+                        <hr/>
+                        <h4 className="text-uppercase">Education</h4>
                         <p>{user.seeker_profile.education}</p>
+                        <hr/>
+                        <h4 className="text-uppercase">Work History</h4>
                         <p>{user.seeker_profile.work_history}</p>
+                        <hr/>
+                        <h4 className="text-uppercase">Other Interests</h4>
                         <p>{user.seeker_profile.interests}</p>
                     </div>
                 </div>

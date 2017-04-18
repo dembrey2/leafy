@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { browserHistory } from 'react-router'
+
 
 class Signin extends Component {
     constructor(props) {
@@ -52,7 +54,7 @@ class Signin extends Component {
     <div>
     <div className="container">
         <div className="row">
-            <div className="col-sm-4 col-sm-offset-4 text-center">
+            <div className="col-sm-6 col-sm-offset-3 text-center">
             <div className="panel panel-default">
                 <div className="panel-body">
                     <h3 className="text-uppercase">Sign in</h3>
@@ -65,6 +67,11 @@ class Signin extends Component {
                         <input type="password" className="form-control" id="password" placeholder="" onChange={(e) => this.setState({password: e.target.value})}/>
                     </div>
                     <button type="submit" className="btn btn-default btn-transparent-charcoal text-uppercase" onClick={this.signin}>Submit</button>
+                    <br/><br/>
+
+                    <div>Don't have an account?</div><br/>
+                    <button type="button" className="btn btn-transparent-charcoal" onClick={() => browserHistory.push('/seekersignup')}>Signup as a job seeker</button>&nbsp;
+                    <button type="button" className="btn btn-transparent-charcoal" onClick={() => browserHistory.push('/employersignup')}>Signup as an employer</button>
                 </div>
             </div>
                 

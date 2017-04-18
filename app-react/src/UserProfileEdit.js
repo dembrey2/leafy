@@ -130,8 +130,8 @@ class UserProfileEdit extends Component {
 					<div className="col-sm-8 col-sm-offset-2">
 						<div className="panel panel-default">
 							<div className="panel-body">
+							<div className="col-sm-8 col-sm-offset-2">
 								<div className="form-group">
-								<div className="col-sm-8 col-sm-offset-2">
 								<h3 className="text-uppercase">Edit Profile</h3>
 									<label htmlFor="email" className="text-uppercase"> Email (optional)</label>
 									<input type="text" className="form-control" name="email" value={this.state.email} onChange={(e) => this.setState({ email: e.target.value })} />

@@ -60,10 +60,10 @@ class UserSignup extends Component {
       <div>
         <div className="container">
 			<div className="row">
-				<div className="col-sm-4 col-sm-offset-4 text-center">
+				<div className="col-sm-6 col-sm-offset-3 text-center">
                     <div className="panel panel-default panel-transparent">
                         <div className="panel-body">
-                        <h3>Sign up as a job seeker</h3><br/>
+                        <h3 className="text-uppercase">Sign up as a job seeker</h3><br/>
                             <div className="form-group text-left">
                                 <label>First Name</label>
                                 <input htmlFor="first_name" type="text" className="form-control" id="first_name" name="first_name" placeholder="" onChange={(e) => this.setState({firstName: e.target.value})}/>

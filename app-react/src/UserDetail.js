@@ -42,7 +42,7 @@ class UserDetail extends Component {
     <div>
         <div className="row">
 			<div className="col-sm-6 col-sm-offset-3">
-            {user.role === 'employer' ? <button type="button" className="btn btn-default text-center" onClick={() => browserHistory.push('/jobmatches')}>Back to Jobs</button> : <button type="button" className="btn btn-default text-center" onClick={() => browserHistory.push('/dashboard')}>Back to Dashboard</button>}
+            {user.role === 'employer' ? <button type="button" className="btn btn-default btn-transparent-white-background text-center" onClick={() => browserHistory.push('/jobmatches')}>Back to Jobs</button> : <button type="button" className="btn btn-default btn-transparent-white-background text-center" onClick={() => browserHistory.push('/dashboard')}>Back to Dashboard</button>}
 				<h2 className="text-center"></h2>
 				<div className="panel panel-default">
             		<div className="panel-body text-center">

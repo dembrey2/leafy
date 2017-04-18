@@ -58,10 +58,10 @@ class EmployerSignup extends Component {
         <div>
             <div className="container">
                 <div className="row">
-                    <div className="col-sm-4 col-sm-offset-4 text-center">
+                    <div className="col-sm-6 col-sm-offset-3 text-center">
                         <div className="panel panel-default panel-transparent">
                             <div className="panel-body">
-                                <h3>Sign up as an employer</h3><br/>
+                                <h3 className="text-uppercase">Sign up as an employer</h3><br/>
                                 <div className="form-group text-left">
                                     <label htmlFor="companyName">Company Name</label>
                                     <input type="text" className="form-control" id="company_name" placeholder="" onChange={(e) => this.setState({ companyName: e.target.value })} />

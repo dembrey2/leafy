@@ -20,24 +20,25 @@ class Home extends Component {
         </header>
         <br/>
         <div className="container">
-        <div className="row text-center">
+        <div className="row">
             <div className="col-sm-8 col-sm-offset-2">
                 {/*<h3>Turn</h3>
                 <h4>Turn is an employment platform for connecting workers + employers</h4>*/}
             </div>
         </div>
         <div className="row text-center about-section">
-            <div className="col-sm-4 col-sm-offset-1">
+            <div className="col-sm-8 col-sm-offset-2">
                     <h3>ABOUT US</h3>
-                    <h5>We don't think having a record should mean that you don't have access to financial stability through a job.  Our goal is to connect employers who share our conviction and people who need work.  Our hope is to help restore autonomy to folks getting back on their feet. We're doing this with Turn, an employment platform for connecting workers and employers.</h5>
-                    
-            </div>
-            <div className="col-sm-4 col-sm-offset-1">
-                    <h3>NLNL</h3>
-                    <h5>New Leaf – New Life is a 501 c3 nonprofit organization that offers services to folks in the Monroe County Jail during incarceration and after release. Applying the philosophy of therapeutic justice, we encourage personal growth and self-advocacy, supporting incarcerated individuals in their efforts to make a successful transition back into the community.</h5>
+                    <h4>We don't think having a record should mean that you don't have access to financial stability through a job.  Our goal is to connect employers who share our conviction and people who need work.  Our hope is to help restore autonomy to folks getting back on their feet. We're doing this with Turn, an employment platform for connecting workers and employers.</h4>
             </div>
         </div>
-    </div>
+        <div className="row text-center about-section">
+            <div className="col-sm-8 col-sm-offset-2">
+                    <h3 className="text-uppercase">New Leaf New Life</h3>
+                    <h4>New Leaf – New Life is a 501 c3 nonprofit organization that offers services to folks in the Monroe County Jail during incarceration and after release. Applying the philosophy of therapeutic justice, we encourage personal growth and self-advocacy, supporting incarcerated individuals in their efforts to make a successful transition back into the community.</h4>
+        </div>
+            </div>
+        </div>
     </div>
     );
   }
