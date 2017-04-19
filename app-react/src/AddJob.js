@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { browserHistory } from 'react-router'
-import EmployerSnapshot from './EmployerSnapshot'
 
 class AddJob extends Component {
 	constructor(props) {
@@ -100,7 +99,6 @@ class AddJob extends Component {
         .then(function(response) {
             console.log(response);
 			window.user = response.user;
-			window.scrollTo(0,0)
 			browserHistory.push('/dashboard')
         })
 	}
@@ -114,11 +112,17 @@ class AddJob extends Component {
 		const locations = this.state.lookupLocations.map(location => (
 			<option key={location.id} value={location.id}>{location.name}</option>
 		))
+
+		var halfLength = Math.ceil(skills.length / 2)   
+		var leftSideSkills = skills.slice(0,halfLength)
+		var rightSideSkills = skills.slice(halfLength)
+
     return (
       	<div>
-		  <EmployerSnapshot isEmployer={true}/>
     		<div className="row">
 				<div className="col-sm-6 col-sm-offset-3 ">
+					<div className="panel panel-default">
+						<div className="panel-body">
 					<h3>Add/Edit Job</h3>
 					<form>
 						<div className="form-group">
@@ -145,12 +149,21 @@ class AddJob extends Component {
 							<textarea className="form-control" id="description" value={this.state.description} onChange={(e) => this.setState({description: e.target.value})}/>
 						</div>
                         <h3 htmlFor="skillsRequired">Skills Required</h3>
-							{skills}
+							<div className="row">
+								<div className="col-sm-6">
+									{leftSideSkills}
+								</div>
+								<div className="col-sm-6">
+									{rightSideSkills}
+								</div>
+							</div>
 
 						<div className="form-group text-center">
 						<button type="button" className="btn btn-default" onClick={this.editJob}>Save</button>
 						</div>
 				</form>
+				</div>
+				</div>
 			</div>
 		</div>
     </div>

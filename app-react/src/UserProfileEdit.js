@@ -22,8 +22,8 @@ class UserProfileEdit extends Component {
 			interests: window.user.seeker_profile.interests || '',
 			lookupSkills: [],
 			lookupLocations: [],
-			text_me: window.user.text_me || [],
-			email_me: window.user.email_Me || [],
+			text_me: window.user.seeker_profile.text_me || [],
+			email_me: window.user.seeker_profile.email_me || [],
 			about: window.user.about || '',
 			avatar: ''
 		}
@@ -62,13 +62,13 @@ class UserProfileEdit extends Component {
 		 let textMe = this.state.text_me
 
 		 if (e.target.checked) {
-			textMe.push(Boolean(e.target.value))
+			textMe = Boolean(e.target.value)
 			console.log(textMe)
 		 }
-		//   else {
-		// 	textMe = textMe.filter(text => text !== Boolean(e.target.value))
-		// 	console.log(textMe)
-		//   }
+		  else {
+			textMe = false
+			console.log(textMe)
+		  }
 		 this.setState({text_me:textMe})
 	 }
 
@@ -76,13 +76,14 @@ class UserProfileEdit extends Component {
 		 let emailMe = this.state.email_me
 
 		 if (e.target.checked) {
-			emailMe.push(Boolean(e.target.value))
+			emailMe = Boolean(e.target.value)
 			console.log(emailMe)
 		 }
-		//  else {
-		// 	emailMe = emailMe.filter(email => email !== Boolean(e.target.value))
-		// 	console.log(emailMe)
-		//   }
+		 else {
+			emailMe = false
+			console.log(emailMe)
+		  }
+		
 		 this.setState({email_me:emailMe})
 	 }
 
@@ -142,8 +143,8 @@ class UserProfileEdit extends Component {
 		))
 
 		var halfLength = Math.ceil(skills.length / 2)   
-		var leftSide = skills.slice(0,halfLength)
-		var rightSide = skills.slice(halfLength)
+		var leftSideSkills = skills.slice(0,halfLength)
+		var rightSideSkills = skills.slice(halfLength)
 
 		const locations = this.state.lookupLocations.map(location => (
 			<option key={location.id} value={location.id}>{location.name}</option>
@@ -163,14 +164,14 @@ class UserProfileEdit extends Component {
 										<input type="text" className="form-control" name="email" value={this.state.email} onChange={(e) => this.setState({ email: e.target.value })} />
 									{/*</div>*/}
 									<label className="checkbox">
-											<input type="checkbox" name="send_text" checked={this.state.email_me === true ? "checked" : undefined}  value={this.state.email_me} onChange={this.addEmailNotification} /> Send me an email when new jobs matching my profile are posted
+											<input type="checkbox" name="send_email" checked={this.state.email_me === true ? "checked" : ''} value={this.state.email_me} onChange={this.addEmailNotification} /> Send me a text message when new jobs matching my profile are posted
 									</label>
 										<div className="form-group">
 											<label htmlFor="phone" className="text-uppercase">Phone</label>
 											<input type="text" className="form-control" name="phone" placeholder="" value={this.state.phone} onChange={(e) => this.setState({ phone: e.target.value })} />
 										</div>
-										<label className="checkbox">
-											<input type="checkbox" name="send_text" checked={this.state.text_me === true ? "checked" : undefined} onChange={this.addTextNotification} /> Send me a text message when new jobs matching my profile are posted
+									<label className="checkbox">
+											<input type="checkbox" name="send_text" checked={this.state.text_me === true ? "checked" : ''} value={this.state.text_me} onChange={this.addTextNotification} /> Send me a text message when new jobs matching my profile are posted
 									</label>
 										<div className="form-group">
 											<label htmlFor="phone" className="text-uppercase">Photo Upload:</label>
@@ -196,10 +197,10 @@ class UserProfileEdit extends Component {
 										<h3 className="text-uppercase">Skills and Abilities</h3>
 										<div className="row">
 											<div className="col-sm-6">
-												{leftSide}
+												{leftSideSkills}
 											</div>
 											<div className="col-sm-6">
-												{rightSide}
+												{rightSideSkills}
 											</div>
 										</div>
 										<h3 className="text-uppercase">Work History/Education (Optional)</h3>
