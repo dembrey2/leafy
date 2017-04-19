@@ -17,7 +17,7 @@ class User < ApplicationRecord
   def set_skills_and_location(params)
 
     if params.dig(:user, :seeker_profile_attributes, :skills)
-      new_skills = params[:user][:seeker_profile_attributes][:skills].split(",").flatten.map do |skill_id|
+      new_skills = params[:user][:seeker_profile_attributes][:skills].split(",").map do |skill_id|
         Skill.find(skill_id.to_i)
       end
       seeker_profile.skills.replace(new_skills)
@@ -26,7 +26,7 @@ class User < ApplicationRecord
     if params.dig(:user, :location_id)
       location = Location.find(params[:user][:location_id])
     end
-    
+
   end
 
 end

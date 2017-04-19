@@ -2,6 +2,7 @@ class JobsController < ApplicationController
 
   before_action :require_user, only: [:index, :show, :create, :update]
   before_action :require_employer, only: [:create, :update]
+  before_action :require_self, only: [:update]
 
   def index
     if current_user.employer_profile
@@ -30,14 +31,7 @@ class JobsController < ApplicationController
     @job = Job.new(job_params)
     current_user.employer_profile.jobs << @job
 
-    if params.dig(:job, :location_id)
-      @job.location = Location.find(params[:job][:location_id])
-    end
-
-    if params.dig(:job, :skills)
-      new_skills = params[:job][:skills].split(",").map{|skill_id| Skill.find(skill_id.to_i)}
-      @job.skills.replace(new_skills)
-    end
+    @job.set_skills_and_location(params)
 
     if @job.save
       find_matched_seekers(@job)
@@ -50,16 +44,8 @@ class JobsController < ApplicationController
 
   def update
     @job = Job.find(params[:id])
-    @job.employer_profile.user = current_user
 
-    if params.dig(:job, :location_id)
-      @job.location = Location.find(params[:location_id])
-    end
-
-    if params.dig(:job, :skills)
-      new_skills = params[:job][:skills].split(",").map{|skill_id| Skill.find(skill_id.to_i)}
-      @job.skills.replace(new_skills)
-    end
+    @job.set_skills_and_location(params)
 
     if @job.update(job_params)
       render json: @job
@@ -72,6 +58,15 @@ class JobsController < ApplicationController
 
   def job_params
     params.require(:job).permit(:title, :description, :transportation, :active, :location_id)
-    # location_attributes: [:id, :name]
+  end
+
+  def require_self
+    unless @user == current_user
+      render json: ["You cannot update a job that is not your own."]
+    end
+  end
+
+  def find_matched_seekers(job)
+    job.matched_seekers.each{|seeker| JobMailer.job_match_email(seeker).deliver if seeker.email}
   end
 end
