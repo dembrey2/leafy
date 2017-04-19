@@ -33,7 +33,7 @@ header {
     /*background: rgba(227, 232, 232, 0.4);
     background-size: cover;*/
     padding: 80px;
-    color: #2f3030;
+    color: #f1f1f1;
 }
 
 /*.title {
@@ -102,6 +102,10 @@ header button {
 
 .bold-heading {
     font-weight: 700;
+}
+
+.text-light {
+    font-weight: 300;
 }
 
 .panel {
