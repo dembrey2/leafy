@@ -27,9 +27,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def destroy
-  end
-
   def show
     render json: @user, include: ['employer_profile.jobs', 'seeker_profile.matched_jobs']
   end
