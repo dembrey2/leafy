@@ -65,6 +65,10 @@ class UserProfileEdit extends Component {
 			textMe.push(Boolean(e.target.value))
 			console.log(textMe)
 		 }
+		//   else {
+		// 	textMe = textMe.filter(text => text !== Boolean(e.target.value))
+		// 	console.log(textMe)
+		//   }
 		 this.setState({text_me:textMe})
 	 }
 
@@ -73,8 +77,12 @@ class UserProfileEdit extends Component {
 
 		 if (e.target.checked) {
 			emailMe.push(Boolean(e.target.value))
-			// console.log(emailMe)
+			console.log(emailMe)
 		 }
+		//  else {
+		// 	emailMe = emailMe.filter(email => email !== Boolean(e.target.value))
+		// 	console.log(emailMe)
+		//   }
 		 this.setState({email_me:emailMe})
 	 }
 
@@ -155,7 +163,7 @@ class UserProfileEdit extends Component {
 										<input type="text" className="form-control" name="email" value={this.state.email} onChange={(e) => this.setState({ email: e.target.value })} />
 									{/*</div>*/}
 									<label className="checkbox">
-											<input type="checkbox" name="send_text" checked={this.state.email_me === true ? "checked" : undefined} onChange={this.addEmailNotification} /> Send me an email when new jobs matching my profile are posted
+											<input type="checkbox" name="send_text" checked={this.state.email_me === true ? "checked" : undefined}  value={this.state.email_me} onChange={this.addEmailNotification} /> Send me an email when new jobs matching my profile are posted
 									</label>
 										<div className="form-group">
 											<label htmlFor="phone" className="text-uppercase">Phone</label>
@@ -209,7 +217,7 @@ class UserProfileEdit extends Component {
 										</div>
 										<br />
 										<div className=" form-group text-center">
-											<span><button type="button" className="btn btn-default btn-transparent-charcoal" onClick={this.editProfile}>Save</button></span>
+											<span><button type="button" className="btn btn-default btn-transparent-charcoal" onClick={this.editProfile}>Save</button></span>&nbsp;
 											<span><button type="button" className="btn btn-default btn-transparent-charcoal" onClick={() => browserHistory.push('/dashboard')}>Cancel</button></span>
 										</div>
 									</div>

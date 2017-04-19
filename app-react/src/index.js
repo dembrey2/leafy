@@ -25,15 +25,10 @@ import './index.css';
 window.user = JSON.parse(sessionStorage.getItem('user'))
 if (window.user) { window.user = window.user.user }
 
-// window.apiHost = 'https://glacial-wave-69316.herokuapp.com'
 window.apiHost = ''
 
 const isEmployer = (window.user && window.user.role === 'employer')
 
-// function isEmployer(){
-//     // console.log((window.user && window.user.role === 'employer'))
-//     return (window.user && window.user.role === 'employer')
-// }
 
 ReactDOM.render(
     <Router history={browserHistory} onUpdate={() => window.scrollTo(0,0)}>
