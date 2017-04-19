@@ -1,5 +1,4 @@
 class SessionsController < ApplicationController
-  # services folder to strip out some of this stuff
 
   def create
     if params[:user]

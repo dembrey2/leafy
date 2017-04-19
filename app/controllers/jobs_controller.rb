@@ -71,12 +71,16 @@ class JobsController < ApplicationController
   end
 
   def notify_via_text
-    boot_twilio
-    @client.messages.create({
-      from: ENV['twilio_number'],
-      to: ENV['twilio_send_to'],
-      body: "A new job matching your skills has posted."
-    })
+    job.matched_seekers.each do |seeker|
+      if seeker.text_me?
+        boot_twilio
+        @client.messages.create({
+          from: ENV['twilio_number'],
+          to: ENV['twilio_send_to'],
+          body: "A new job matching your skills has posted."
+        })
+      end
+    end
   end
 
   def boot_twilio
