@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class PasswordResetControllerTest < ActionDispatch::IntegrationTest
+class PasswordResetsControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end
