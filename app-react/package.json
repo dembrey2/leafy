@@ -2,7 +2,7 @@
   "name": "finalproject",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://glacial-wave-69316.herokuapp.com/",
+  "proxy": "http://localhost:3000",
   "dependencies": {
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
