@@ -17,5 +17,5 @@ class EmployerJobViewSerializer < ActiveModel::Serializer
     object.employer_profile.user_id
   end
 
-  has_many :matched_seekers
+  has_many :matched_seekers, serializer: MatchedSeekerProfileSerializer
 end

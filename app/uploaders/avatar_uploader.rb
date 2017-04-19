@@ -22,7 +22,6 @@ class AvatarUploader < CarrierWave::Uploader::Base
   def default_url
   #   # For Rails 3.1+ asset pipeline compatibility:
       "/img/lovelace.jpg"
-  #   # Rails.root.join('public/img/lovelace.jpg').open
   #
   #   # "/images/fallback/" + [version_name, "default.png"].compact.join('_')
   end
