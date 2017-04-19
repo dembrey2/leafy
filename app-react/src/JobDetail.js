@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { browserHistory } from 'react-router'
-import EmployerSnapshot from './EmployerSnapshot'
-import UserSnapshot from './UserSnapshot'
+// import EmployerSnapshot from './EmployerSnapshot'
+// import UserSnapshot from './UserSnapshot'
 import CandidateSnapshot from './CandidateSnapshot'
 
 class JobDetail extends Component {

@@ -135,71 +135,74 @@ class UserProfileEdit extends Component {
 					<div className="col-sm-8 col-sm-offset-2">
 						<div className="panel panel-default">
 							<div className="panel-body">
-							<div className="col-sm-8 col-sm-offset-2">
-								<div className="form-group">
-								<h3 className="text-uppercase">Edit Profile</h3>
-									<label htmlFor="email" className="text-uppercase"> Email (optional)</label>
-									<input type="text" className="form-control" name="email" value={this.state.email} onChange={(e) => this.setState({ email: e.target.value })} />
-								{/*</div>*/}
-								<div className="form-group">
-									<label htmlFor="phone" className="text-uppercase">Phone</label>
-									<input type="text" className="form-control" name="phone" placeholder="" value={this.state.phone} onChange={(e) => this.setState({ phone: e.target.value })} />
-								</div>
-								<div className="form-group">
-									<label htmlFor="phone" className="text-uppercase">Photo Upload:</label>
-									<input type="file" className="form-control" onChange={(e) => this.setState({ avatar: e.target.files[0]})} />
-								</div>
-								<div className="form-group">
-									<label htmlFor="preferred_contact" className="text-uppercase">Preferred method of communication:</label>
-									<select className="form-control" value={this.state.preferred_contact} onChange={(e) => this.setState({ preferred_contact: e.target.value })}>
-										<option value="phone">Phone</option>
-										<option value="email">Email</option>
-									</select>
-								</div>
-								<div className="form-group">
-									<label htmlFor="location" className="text-uppercase">Location:</label>
-									<select className="form-control" value={this.state.location} onChange={(e) => this.setState({ location: e.target.value })}>
-										{locations}
-									</select>
-								</div>
-								<div className="form-group">
-									<label htmlFor="about" className="text-uppercase">About</label>
-									<textarea className="form-control" placeholder="" value={this.state.about} onChange={(e) => this.setState({ about: e.target.value })} />
-								</div>
-						<h3 className="text-uppercase">Skills and Abilities</h3>
-						<div className="row">
-							<div className="col-sm-6">
-								{leftSide}
-							</div>
-							<div className="col-sm-6">
-								{rightSide}
-							</div>
-						</div>
-						<h3 className="text-uppercase">Work History/Education (Optional)</h3>
-								<div className="form-group">
-									<label htmlFor="education" className="text-uppercase">Education</label>
-									<textarea className="form-control" value={this.state.education} onChange={(e) => this.setState({ education: e.target.value })} />
-								</div>
-								<div className="form-group">
-									<label htmlFor="workHistory" className="text-uppercase">Work History</label>
-									<textarea className="form-control" value={this.state.work_history} onChange={(e) => this.setState({ work_history: e.target.value })} />
-								</div>
-								<div className="form-group">
-									<label htmlFor="otherInterests" className="text-uppercase">Other Interests</label>
-									<textarea className="form-control" placeholder="" value={this.state.interests} onChange={(e) => this.setState({ interests: e.target.value })} />
-								</div>
-								<br />
-								<div className=" form-group text-center">
-									<span><button type="button" className="btn btn-default btn-transparent-charcoal" onClick={this.editProfile}>Save</button></span>
-									<span><button type="button" className="btn btn-default btn-transparent-charcoal" onClick={() => browserHistory.push('/dashboard')}>Cancel</button></span>
+								<div className="col-sm-8 col-sm-offset-2">
+									<div className="form-group">
+										<h3 className="text-uppercase">Edit Profile</h3>
+										<label htmlFor="email" className="text-uppercase"> Email (optional)</label>
+										<input type="text" className="form-control" name="email" value={this.state.email} onChange={(e) => this.setState({ email: e.target.value })} />
+									{/*</div>*/}
+									<label className="checkbox">
+										<input type="checkbox" value="text" /> Send me a text message when new jobs matching my profile are posted
+									</label>
+										<div className="form-group">
+											<label htmlFor="phone" className="text-uppercase">Phone</label>
+											<input type="text" className="form-control" name="phone" placeholder="" value={this.state.phone} onChange={(e) => this.setState({ phone: e.target.value })} />
+										</div>
+										<div className="form-group">
+											<label htmlFor="phone" className="text-uppercase">Photo Upload:</label>
+											<input type="file" className="form-control" onChange={(e) => this.setState({ avatar: e.target.files[0] })} />
+										</div>
+										<div className="form-group">
+											<label htmlFor="preferred_contact" className="text-uppercase">Preferred method of communication:</label>
+											<select className="form-control" value={this.state.preferred_contact} onChange={(e) => this.setState({ preferred_contact: e.target.value })}>
+												<option value="phone">Phone</option>
+												<option value="email">Email</option>
+											</select>
+										</div>
+										<div className="form-group">
+											<label htmlFor="location" className="text-uppercase">Location:</label>
+											<select className="form-control" value={this.state.location} onChange={(e) => this.setState({ location: e.target.value })}>
+												{locations}
+											</select>
+										</div>
+										<div className="form-group">
+											<label htmlFor="about" className="text-uppercase">About</label>
+											<textarea className="form-control" placeholder="" value={this.state.about} onChange={(e) => this.setState({ about: e.target.value })} />
+										</div>
+										<h3 className="text-uppercase">Skills and Abilities</h3>
+										<div className="row">
+											<div className="col-sm-6">
+												{leftSide}
+											</div>
+											<div className="col-sm-6">
+												{rightSide}
+											</div>
+										</div>
+										<h3 className="text-uppercase">Work History/Education (Optional)</h3>
+										<div className="form-group">
+											<label htmlFor="education" className="text-uppercase">Education</label>
+											<textarea className="form-control" value={this.state.education} onChange={(e) => this.setState({ education: e.target.value })} />
+										</div>
+										<div className="form-group">
+											<label htmlFor="workHistory" className="text-uppercase">Work History</label>
+											<textarea className="form-control" value={this.state.work_history} onChange={(e) => this.setState({ work_history: e.target.value })} />
+										</div>
+										<div className="form-group">
+											<label htmlFor="otherInterests" className="text-uppercase">Other Interests</label>
+											<textarea className="form-control" placeholder="" value={this.state.interests} onChange={(e) => this.setState({ interests: e.target.value })} />
+										</div>
+										<br />
+										<div className=" form-group text-center">
+											<span><button type="button" className="btn btn-default btn-transparent-charcoal" onClick={this.editProfile}>Save</button></span>
+											<span><button type="button" className="btn btn-default btn-transparent-charcoal" onClick={() => browserHistory.push('/dashboard')}>Cancel</button></span>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-		</div>
 		</div>
 				
 						
