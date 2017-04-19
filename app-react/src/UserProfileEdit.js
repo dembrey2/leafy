@@ -22,8 +22,8 @@ class UserProfileEdit extends Component {
 			interests: window.user.seeker_profile.interests || '',
 			lookupSkills: [],
 			lookupLocations: [],
-			textNotification: window.user.textNotification || [],
-			emailNotification: window.user.emailNotification || [],
+			text_me: window.user.text_me || [],
+			email_me: window.user.email_Me || [],
 			about: window.user.about || '',
 			avatar: ''
 		}
@@ -59,23 +59,23 @@ class UserProfileEdit extends Component {
 	 }
 
 	 addTextNotification(e) {
-		 let textNotification = this.state.textNotification
+		 let textMe = this.state.text_me
 
 		 if (e.target.checked) {
-			textNotification.push(Boolean(e.target.value))
-			console.log(textNotification)
+			textMe.push(Boolean(e.target.value))
+			console.log(textMe)
 		 }
-		 this.setState({textNotification:textNotification})
+		 this.setState({text_me:textMe})
 	 }
 
 	 addEmailNotification(e) {
-		 let emailNotification = this.state.emailNotification
+		 let emailMe = this.state.email_me
 
 		 if (e.target.checked) {
-			emailNotification.push(Boolean(e.target.value))
-			console.log(emailNotification)
+			emailMe.push(Boolean(e.target.value))
+			// console.log(emailMe)
 		 }
-		 this.setState({emailNotification:emailNotification})
+		 this.setState({email_me:emailMe})
 	 }
 
 	 lookupSkills() {
@@ -101,8 +101,8 @@ class UserProfileEdit extends Component {
 		data.append('user[seeker_profile_attributes][interests]', this.state.interests)
 		data.append('user[about]', this.state.about)
 		data.append('user[location_id]', this.state.location)
-		data.append('user[seeker_profile][text_me]', this.state.textNotification)
-		data.append('user[seeker_profile][email_me]', this.state.emailNotification)
+		data.append('user[seeker_profile_attributes][text_me]', this.state.text_me)
+		data.append('user[seeker_profile_attributes][email_me]', this.state.email_me)
 
 		if (this.state.avatar !== '') {
 			data.append('user[avatar]', this.state.avatar)
@@ -155,14 +155,14 @@ class UserProfileEdit extends Component {
 										<input type="text" className="form-control" name="email" value={this.state.email} onChange={(e) => this.setState({ email: e.target.value })} />
 									{/*</div>*/}
 									<label className="checkbox">
-											<input type="checkbox" name="send_text" checked={true === false ? "checked" : undefined} onChange={this.addEmailNotification} /> Send me an email when new jobs matching my profile are posted
+											<input type="checkbox" name="send_text" checked={this.state.email_me === true ? "checked" : undefined} onChange={this.addEmailNotification} /> Send me an email when new jobs matching my profile are posted
 									</label>
 										<div className="form-group">
 											<label htmlFor="phone" className="text-uppercase">Phone</label>
 											<input type="text" className="form-control" name="phone" placeholder="" value={this.state.phone} onChange={(e) => this.setState({ phone: e.target.value })} />
 										</div>
 										<label className="checkbox">
-											<input type="checkbox" name="send_text" checked={true === false ? "checked" : undefined} onChange={this.addTextNotification} /> Send me a text message when new jobs matching my profile are posted
+											<input type="checkbox" name="send_text" checked={this.state.text_me === true ? "checked" : undefined} onChange={this.addTextNotification} /> Send me a text message when new jobs matching my profile are posted
 									</label>
 										<div className="form-group">
 											<label htmlFor="phone" className="text-uppercase">Photo Upload:</label>
