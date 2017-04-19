@@ -35,7 +35,7 @@ class JobsController < ApplicationController
 
     if @job.save
       find_matched_seekers(@job) if
-      # notify_via_text
+      notify_via_text
       render json: @job
     else
       render json: @job.errors.full_messages, status: 400
@@ -72,7 +72,7 @@ class JobsController < ApplicationController
 
   def notify_via_text
     job.matched_seekers.each do |seeker|
-      if seeker.text_me?
+      if seeker.phone && seeker.text_me?
         boot_twilio
         @client.messages.create({
           from: ENV['twilio_number'],
