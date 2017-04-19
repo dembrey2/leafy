@@ -11,7 +11,7 @@ class CandidateSnapshot extends Component {
 			<div>
 				<div className="panel panel-default">
 				<div className="panel-body">
-					<img src={this.props.avatar} className="img-rounded" alt="profile" />
+					<img src={this.props.avatar.url} className="img-circle" alt="profile" />
 					<h3 className="text-uppercase">{this.props.first_name} {this.props.last_name}</h3>
 					<p className="text-uppercase">About</p>
 					<div>{this.props.about}</div>

@@ -8,6 +8,8 @@ class UserProfileEdit extends Component {
 		this.editProfile = this.editProfile.bind(this)
 		this.lookupSkills = this.lookupSkills.bind(this)
 		this.lookupLocations = this.lookupLocations.bind(this)
+		this.addTextNotification = this.addTextNotification.bind(this)
+		this.addEmailNotification = this.addEmailNotification.bind(this)
 
 		this.state = {
 			email: window.user.seeker_profile.email || '',
@@ -20,6 +22,8 @@ class UserProfileEdit extends Component {
 			interests: window.user.seeker_profile.interests || '',
 			lookupSkills: [],
 			lookupLocations: [],
+			textNotification: window.user.textNotification || [],
+			emailNotification: window.user.emailNotification || [],
 			about: window.user.about || '',
 			avatar: ''
 		}
@@ -28,19 +32,6 @@ class UserProfileEdit extends Component {
 	 componentWillMount(){
 		 this.lookupSkills()
 		 this.lookupLocations()
-
-		//  fetch(window.apiHost + '/api/users/' + window.user.id)
-		// .then(response => response.json())
-		// .then(response => this.setState({
-		// 	skills: response.user.skills.map(skill => skill.id),
-		// 	email: response.user.email,
-		// 	phone: response.user.phone,
-		// 	communication: response.user.communication,
-		// 	about: response.user.about,
-		// 	education: response.user.education,
-		// 	work_history: response.user.workHistory,
-		// 	interests: response.user.interests
-		// }))
 	 }
 
 	lookupLocations() {
@@ -67,6 +58,26 @@ class UserProfileEdit extends Component {
 		 this.setState({skills:skills})
 	 }
 
+	 addTextNotification(e) {
+		 let textNotification = this.state.textNotification
+
+		 if (e.target.checked) {
+			textNotification.push(Boolean(e.target.value))
+			console.log(textNotification)
+		 }
+		 this.setState({textNotification:textNotification})
+	 }
+
+	 addEmailNotification(e) {
+		 let emailNotification = this.state.emailNotification
+
+		 if (e.target.checked) {
+			emailNotification.push(Boolean(e.target.value))
+			console.log(emailNotification)
+		 }
+		 this.setState({emailNotification:emailNotification})
+	 }
+
 	 lookupSkills() {
 		fetch(window.apiHost + '/api/skills')
 		.then(function(response) {
@@ -90,6 +101,8 @@ class UserProfileEdit extends Component {
 		data.append('user[seeker_profile_attributes][interests]', this.state.interests)
 		data.append('user[about]', this.state.about)
 		data.append('user[location_id]', this.state.location)
+		data.append('user[seeker_profile][text_me]', this.state.textNotification)
+		data.append('user[seeker_profile][email_me]', this.state.emailNotification)
 
 		if (this.state.avatar !== '') {
 			data.append('user[avatar]', this.state.avatar)
@@ -142,12 +155,15 @@ class UserProfileEdit extends Component {
 										<input type="text" className="form-control" name="email" value={this.state.email} onChange={(e) => this.setState({ email: e.target.value })} />
 									{/*</div>*/}
 									<label className="checkbox">
-										<input type="checkbox" value="text" /> Send me a text message when new jobs matching my profile are posted
+											<input type="checkbox" name="send_text" checked={true === false ? "checked" : undefined} onChange={this.addEmailNotification} /> Send me an email when new jobs matching my profile are posted
 									</label>
 										<div className="form-group">
 											<label htmlFor="phone" className="text-uppercase">Phone</label>
 											<input type="text" className="form-control" name="phone" placeholder="" value={this.state.phone} onChange={(e) => this.setState({ phone: e.target.value })} />
 										</div>
+										<label className="checkbox">
+											<input type="checkbox" name="send_text" checked={true === false ? "checked" : undefined} onChange={this.addTextNotification} /> Send me a text message when new jobs matching my profile are posted
+									</label>
 										<div className="form-group">
 											<label htmlFor="phone" className="text-uppercase">Photo Upload:</label>
 											<input type="file" className="form-control" onChange={(e) => this.setState({ avatar: e.target.files[0] })} />
