@@ -82,8 +82,7 @@ class EmployerProfileEdit extends Component {
         })
         .then(function(response) {
             window.user = response.user;
-			sessionStorage.setItem('user', JSON.stringify(response));
-			window.scrollTo(0,0)
+			sessionStorage.setItem('user', JSON.stringify(response))	
 			browserHistory.push('/dashboard')
         })
 	}
