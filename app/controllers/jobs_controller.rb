@@ -34,8 +34,8 @@ class JobsController < ApplicationController
     @job.set_skills_and_location(params)
 
     if @job.save
-      find_matched_seekers(@job) if
-      notify_via_text
+      find_matched_seekers(@job)
+      notify_via_text(@job)
       render json: @job
     else
       render json: @job.errors.full_messages, status: 400
@@ -70,7 +70,7 @@ class JobsController < ApplicationController
     job.matched_seekers.each{|seeker| JobMailer.job_match_email(seeker).deliver if seeker.email && seeker.email_me?}
   end
 
-  def notify_via_text
+  def notify_via_text(job)
     job.matched_seekers.each do |seeker|
       if seeker.phone && seeker.text_me?
         boot_twilio
