@@ -27,9 +27,8 @@ class JobsController < ApplicationController
   end
 
   def create
-    @user = current_user
     @job = Job.new(job_params)
-    @user.employer_profile.jobs << @job
+    current_user.employer_profile.jobs << @job
 
     if params.dig(:job, :location_id)
       @job.location = Location.find(params[:job][:location_id])

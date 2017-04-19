@@ -8,6 +8,6 @@ class SeekerProfile < ApplicationRecord
 
   def matched_jobs
     skills.map{ |skill| skill.jobs }.flatten.uniq
-    # skills.include jobs
+    # skills.includes jobs
   end
 end
