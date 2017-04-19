@@ -19,9 +19,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    
-    @user.set_skills_and_location(params, @user)
-
+    @user.set_skills_and_location(params)
     if @user.update(user_params)
       render json: @user, include: ['employer_profile.jobs', 'seeker_profile.matched_jobs']
     else
