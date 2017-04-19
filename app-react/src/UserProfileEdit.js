@@ -7,36 +7,42 @@ class UserProfileEdit extends Component {
 		this.addSkill = this.addSkill.bind(this)
 		this.editProfile = this.editProfile.bind(this)
 		this.lookupSkills = this.lookupSkills.bind(this)
+		this.lookupLocations = this.lookupLocations.bind(this)
+		this.addTextNotification = this.addTextNotification.bind(this)
+		this.addEmailNotification = this.addEmailNotification.bind(this)
 
 		this.state = {
-			email: window.user.seeker_profile.email,
-			phone: window.user.seeker_profile.phone,
+			email: window.user.seeker_profile.email || '',
+			phone: window.user.seeker_profile.phone || '',
 			skills: window.user.seeker_profile.skills.map(skill => skill.id),
-			communication: window.user.communication,
-			education: '',
-			work_history: '',
-			interests: '',
+			preferred_contact: window.user.preferred_contact || 'email',
+			location: window.user.location.id || '',
+			education: window.user.seeker_profile.education || '',
+			work_history: window.user.seeker_profile.work_history || '',
+			interests: window.user.seeker_profile.interests || '',
 			lookupSkills: [],
-			about: window.user.about
+			lookupLocations: [],
+			text_me: window.user.seeker_profile.text_me || [],
+			email_me: window.user.seeker_profile.email_me || [],
+			about: window.user.about || '',
+			avatar: ''
 		}
 	 }
 
 	 componentWillMount(){
 		 this.lookupSkills()
-
-		//  fetch(window.apiHost + '/api/users/' + window.user.id)
-		// .then(response => response.json())
-		// .then(response => this.setState({
-		// 	skills: response.user.skills.map(skill => skill.id),
-		// 	email: response.user.email,
-		// 	phone: response.user.phone,
-		// 	communication: response.user.communication,
-		// 	about: response.user.about,
-		// 	education: response.user.education,
-		// 	work_history: response.user.workHistory,
-		// 	interests: response.user.interests
-		// }))
+		 this.lookupLocations()
 	 }
+
+	lookupLocations() {
+		fetch(window.apiHost + '/api/locations')
+		.then(function(response) {
+				return response.json();
+			})
+		.then((response) => {
+				this.setState({lookupLocations:response.locations})
+			})
+		}
 
 	 addSkill(e) {
 		 let skills = this.state.skills
@@ -50,7 +56,35 @@ class UserProfileEdit extends Component {
 		 }
 
 		 this.setState({skills:skills})
-		 
+	 }
+
+	 addTextNotification(e) {
+		 let textMe = this.state.text_me
+
+		 if (e.target.checked) {
+			textMe = Boolean(e.target.value)
+			console.log(textMe)
+		 }
+		  else {
+			textMe = false
+			console.log(textMe)
+		  }
+		 this.setState({text_me:textMe})
+	 }
+
+	 addEmailNotification(e) {
+		 let emailMe = this.state.email_me
+
+		 if (e.target.checked) {
+			emailMe = Boolean(e.target.value)
+			console.log(emailMe)
+		 }
+		 else {
+			emailMe = false
+			console.log(emailMe)
+		  }
+		
+		 this.setState({email_me:emailMe})
 	 }
 
 	 lookupSkills() {
@@ -64,36 +98,39 @@ class UserProfileEdit extends Component {
 	 }
 
 	 editProfile() {
-		fetch(window.apiHost + '/api/users/' + window.user.id , {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json'
-        },
+		let data = new FormData()
+		data.append('token', window.user.token)
+		data.append('user[seeker_profile_attributes][id]', window.user.seeker_profile.id)
+		data.append('user[seeker_profile_attributes][email]', this.state.email)
+		data.append('user[seeker_profile_attributes][phone]', this.state.phone)
+		data.append('user[seeker_profile_attributes][preferred_contact]', this.state.preferred_contact)
+		data.append('user[seeker_profile_attributes][skills]', this.state.skills.join(','))
+		data.append('user[seeker_profile_attributes][education]', this.state.education)
+		data.append('user[seeker_profile_attributes][work_history]', this.state.work_history)
+		data.append('user[seeker_profile_attributes][interests]', this.state.interests)
+		data.append('user[about]', this.state.about)
+		data.append('user[location_id]', this.state.location)
+		data.append('user[seeker_profile_attributes][text_me]', this.state.text_me)
+		data.append('user[seeker_profile_attributes][email_me]', this.state.email_me)
 
-        // Back-end controls the left side, properties, of this object
-        // Front-end controls the variables names and values on the right side
-        body: JSON.stringify({
-			token: window.user.token,
-            user: {
-				seeker_profile_attributes: {
-					id: window.user.seeker_profile.id,
-					email: this.state.email,
-					phone: this.state.phone,
-					communication: this.state.communication,
-					skills: this.state.skills,
-					education: this.state.education,
-					work_history: this.state.workHistory,
-					interests: this.state.interests
-				},
-				about: this.state.about,
-            }
-        })
-    })
+		if (this.state.avatar !== '') {
+			data.append('user[avatar]', this.state.avatar)
+		}
+
+		fetch(window.apiHost + '/api/users/' + window.user.id , {
+			method: 'PUT',
+			// Back-end controls the left side, properties, of this object
+			// Front-end controls the variables names and values on the right side
+			body: data
+		})
         .then(function(response) {
             return response.json();
         })
         .then(function(response) {
-            console.log(response);
+            // console.log(response);
+			window.user = response.user;
+			sessionStorage.setItem('user', JSON.stringify(response));
+			window.scrollTo(0,0)
 			browserHistory.push('/dashboard')
         })
 	}
@@ -105,68 +142,93 @@ class UserProfileEdit extends Component {
 			</label>
 		))
 
-    return (
-    <div>
-        <h3>Edit Profile</h3>
-				<div className="row">
-					<div className="col-sm-6 col-sm-offset-3">
-						<div className="form-group">
-							<label htmlFor="email"> Email (optional)</label>
-							<input type="text" className="form-control" name="email" value={this.state.email} onChange={(e) => this.setState({email: e.target.value})}/>
-						</div>
-						<div className="form-group">
-							<label htmlFor="phone">Phone</label>
-							<input type="text" className="form-control"  name="phone" placeholder="" value={this.state.phone} onChange={(e) => this.setState({phone: e.target.value})}/>
-						</div>
-						<div className="form-group">
-							<label htmlFor="communication">Preferred method of communication:</label>
-							<select className="form-control" value={this.state.communication} onChange={(e) => this.setState({communication: e.target.value})}>
-								<option>Phone</option>
-								<option>Email</option>
-							</select>
-						</div>
-						<div className="form-group">
-							<label htmlFor="about">About</label>
-							<textarea className="form-control"  placeholder="" value={this.state.about} onChange={(e) => this.setState({about: e.target.value})}/>
-						</div>
-						</div>
-						</div>
-					
+		var halfLength = Math.ceil(skills.length / 2)   
+		var leftSideSkills = skills.slice(0,halfLength)
+		var rightSideSkills = skills.slice(halfLength)
 
-						<h3>Skills and Abilities</h3>
-						<div className="row">
-					<div className="col-sm-6 col-sm-offset-3">
-							<div className="row">
-								{skills}
+		const locations = this.state.lookupLocations.map(location => (
+			<option key={location.id} value={location.id}>{location.name}</option>
+		))
+
+    return (
+		<div>
+			<div className="container">
+				<div className="row">
+					<div className="col-sm-8 col-sm-offset-2">
+						<div className="panel panel-default">
+							<div className="panel-body">
+								<div className="col-sm-8 col-sm-offset-2">
+									<div className="form-group">
+										<h3 className="text-uppercase">Edit Profile</h3>
+										<label htmlFor="email" className="text-uppercase"> Email (optional)</label>
+										<input type="text" className="form-control" name="email" value={this.state.email} onChange={(e) => this.setState({ email: e.target.value })} />
+									{/*</div>*/}
+									<label className="checkbox">
+											<input type="checkbox" name="send_email" checked={this.state.email_me === true ? "checked" : ''} value={this.state.email_me} onChange={this.addEmailNotification} /> Send me a text message when new jobs matching my profile are posted
+									</label>
+										<div className="form-group">
+											<label htmlFor="phone" className="text-uppercase">Phone</label>
+											<input type="text" className="form-control" name="phone" placeholder="" value={this.state.phone} onChange={(e) => this.setState({ phone: e.target.value })} />
+										</div>
+									<label className="checkbox">
+											<input type="checkbox" name="send_text" checked={this.state.text_me === true ? "checked" : ''} value={this.state.text_me} onChange={this.addTextNotification} /> Send me a text message when new jobs matching my profile are posted
+									</label>
+										<div className="form-group">
+											<label htmlFor="phone" className="text-uppercase">Photo Upload:</label>
+											<input type="file" className="form-control" onChange={(e) => this.setState({ avatar: e.target.files[0] })} />
+										</div>
+										<div className="form-group">
+											<label htmlFor="preferred_contact" className="text-uppercase">Preferred method of communication:</label>
+											<select className="form-control" value={this.state.preferred_contact} onChange={(e) => this.setState({ preferred_contact: e.target.value })}>
+												<option value="phone">Phone</option>
+												<option value="email">Email</option>
+											</select>
+										</div>
+										<div className="form-group">
+											<label htmlFor="location" className="text-uppercase">Location:</label>
+											<select className="form-control" value={this.state.location} onChange={(e) => this.setState({ location: e.target.value })}>
+												{locations}
+											</select>
+										</div>
+										<div className="form-group">
+											<label htmlFor="about" className="text-uppercase">About</label>
+											<textarea className="form-control" placeholder="" value={this.state.about} onChange={(e) => this.setState({ about: e.target.value })} />
+										</div>
+										<h3 className="text-uppercase">Skills and Abilities</h3>
+										<div className="row">
+											<div className="col-sm-6">
+												{leftSideSkills}
+											</div>
+											<div className="col-sm-6">
+												{rightSideSkills}
+											</div>
+										</div>
+										<h3 className="text-uppercase">Work History/Education (Optional)</h3>
+										<div className="form-group">
+											<label htmlFor="education" className="text-uppercase">Education</label>
+											<textarea className="form-control" value={this.state.education} onChange={(e) => this.setState({ education: e.target.value })} />
+										</div>
+										<div className="form-group">
+											<label htmlFor="workHistory" className="text-uppercase">Work History</label>
+											<textarea className="form-control" value={this.state.work_history} onChange={(e) => this.setState({ work_history: e.target.value })} />
+										</div>
+										<div className="form-group">
+											<label htmlFor="otherInterests" className="text-uppercase">Other Interests</label>
+											<textarea className="form-control" placeholder="" value={this.state.interests} onChange={(e) => this.setState({ interests: e.target.value })} />
+										</div>
+										<br />
+										<div className=" form-group text-center">
+											<span><button type="button" className="btn btn-default btn-transparent-charcoal" onClick={this.editProfile}>Save</button></span>&nbsp;
+											<span><button type="button" className="btn btn-default btn-transparent-charcoal" onClick={() => browserHistory.push('/dashboard')}>Cancel</button></span>
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
-				</div>
-
-					<h3>Work History/Education <br/>(Optional)</h3>
-					
-					<div className="row">
-					<div className="col-sm-6 col-sm-offset-3">
-						<div className="form-group">
-							<label htmlFor="education">Education</label>
-							<textarea className="form-control"  placeholder="" value={this.state.education} onChange={(e) => this.setState({education: e.target.value})}/>
-						</div>
-						<div className="form-group">
-							<label htmlFor="workHistory">Work History</label>
-							<textarea className="form-control"  placeholder="" value={this.state.work_history} onChange={(e) => this.setState({workHistory: e.target.value})}/>
-						</div>
-						<div className="form-group">
-							<label htmlFor="otherInterests">Other Interests</label>
-							<textarea className="form-control"  placeholder="" value={this.state.interests} onChange={(e) => this.setState({interests: e.target.value})}/>
-						</div>
-						<br/>
-						<div className="form-group text-center"><button type="button" className="btn btn-default" onClick={this.editProfile}>Save</button></div>
-					
-		
-	
-	</div>
-					
 					</div>
 				</div>
+			</div>
+		</div>
 				
 						
     );

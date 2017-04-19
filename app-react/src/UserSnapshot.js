@@ -9,13 +9,13 @@ class UserSnapshot extends Component {
 		return (
 			<div>
 				<div className="row">
-					<div className="col-sm-8 col-sm-offset-2">
+					<div className="col-sm-6 col-sm-offset-3">
 						<div className="panel panel-default">
 							<div className="panel-body text-center">
-								<img src="img/bluesquare.png" className="img-rounded" alt="profile" />
-								<h3>{user.seeker_profile.first_name} {user.seeker_profile.last_name}</h3>
+								<img src={user.avatar.url} className="img-circle" alt="profile" />
+								<h3 className="text-uppercase">{user.seeker_profile.first_name} {user.seeker_profile.last_name}</h3>
 								<p>{user.about}</p>
-								<span><button type="button" className="btn btn-default text-center" onClick={() => browserHistory.push('/profile-edit')}>Edit</button> <button type="button" className="btn btn-default text-center" onClick={() => browserHistory.push('/profile/' + this.props.id)}>View Profile</button></span>
+								<span><button type="button" className="btn btn-default btn-transparent-charcoal text-center" onClick={() => browserHistory.push('/profile-edit')}>Edit</button> <button type="button" className="btn btn-default btn-transparent-charcoal text-center" onClick={() => browserHistory.push('/profile')}>View Profile</button></span>
 							</div>
 						</div>
 					</div>

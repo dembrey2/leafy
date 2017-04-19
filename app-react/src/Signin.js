@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { browserHistory } from 'react-router'
+
 
 class Signin extends Component {
     constructor(props) {
@@ -35,6 +37,8 @@ class Signin extends Component {
             if (response.user.token) {
                 // Saves any string into a named spot within your browser for the current domain.
                 sessionStorage.setItem('user', JSON.stringify(response));
+                window.user = JSON.parse(sessionStorage.getItem('user'))
+                if (window.user) { window.user = window.user.user }
                 // browserHistory.push(response.user.role === 'user' ? '/userdashboard' : '/employerdashboard');
                 location.href = '/dashboard';
             }
@@ -48,21 +52,34 @@ class Signin extends Component {
   render() {
     return (
     <div>
+    <div className="container">
         <div className="row">
-            <div className="col-sm-6 col-sm-offset-3">
-                    <div className="form-group">
-                        <label htmlFor="username">Username</label>
+            <div className="col-sm-6 col-sm-offset-3 text-center">
+            <div className="panel panel-default">
+                <div className="panel-body">
+                    <h3 className="text-uppercase">Sign in</h3>
+                    <div className="form-group text-left">
+                        <label htmlFor="username" className="text-uppercase">Username</label>
                         <input type="text" className="form-control" id="username" placeholder="" onChange={(e) => this.setState({username: e.target.value})}/>
                     </div>
-                    <div className="form-group">
-                        <label htmlFor="password">Password</label>
+                    <div className="form-group text-left">
+                        <label htmlFor="password" className="text-uppercase">Password</label>
                         <input type="password" className="form-control" id="password" placeholder="" onChange={(e) => this.setState({password: e.target.value})}/>
                     </div>
-                    <button type="submit" className="btn btn-default" onClick={this.signin}>Submit</button>
+                    <button type="submit" className="btn btn-default btn-transparent-charcoal text-uppercase" onClick={this.signin}>Submit</button>
+                    <br/><br/>
+
+                    <div>Don't have an account?</div><br/>
+                    <button type="button" className="btn btn-transparent-charcoal" onClick={() => browserHistory.push('/seekersignup')}>Signup as a job seeker</button>&nbsp;
+                    <button type="button" className="btn btn-transparent-charcoal" onClick={() => browserHistory.push('/employersignup')}>Signup as an employer</button>
+                </div>
+            </div>
+                
+                    <br/><br/>
                 </div>
             </div>
         </div>
-        
+    </div>
         
     );
   }

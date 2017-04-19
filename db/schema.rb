@@ -94,7 +94,6 @@ ActiveRecord::Schema.define(version: 20170419181606) do
     t.string   "token"
     t.string   "avatar"
     t.boolean  "admin",           default: false
-    t.datetime "reset_sent_at"
     t.index ["location_id"], name: "index_users_on_location_id", using: :btree
   end
 
