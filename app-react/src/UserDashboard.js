@@ -26,7 +26,7 @@ class UserDashboard extends Component {
                 </div>
               </div>
             
-            : {matchedJobs}}
+            : [matchedJobs]}
           </div>
         </div>
       </div>

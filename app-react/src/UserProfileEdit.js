@@ -16,7 +16,7 @@ class UserProfileEdit extends Component {
 			phone: window.user.seeker_profile.phone || '',
 			skills: window.user.seeker_profile.skills.map(skill => skill.id),
 			preferred_contact: window.user.preferred_contact || 'email',
-			location: window.user.location.id || '',
+			location: window.user.location || '',
 			education: window.user.seeker_profile.education || '',
 			work_history: window.user.seeker_profile.work_history || '',
 			interests: window.user.seeker_profile.interests || '',

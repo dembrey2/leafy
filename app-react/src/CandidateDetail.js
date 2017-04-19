@@ -18,7 +18,8 @@ class CandidateDetail extends Component {
                     skills: []
                 },
                 about: '',
-                location: ''
+                location: '',
+                avatar: ''
             }
 		}
 	}
@@ -57,7 +58,7 @@ class CandidateDetail extends Component {
 				<h2 className="text-center"></h2>
 				<div className="panel panel-default">
             		<div className="panel-body text-center">
-                        <img src={user.avatar} className="img-cirlce" alt="profile"/>
+                        <img src={user.avatar.url} className="img-circle" alt="profile"/>
 						<h3 className="text-uppercase">{user.seeker_profile.first_name} {user.seeker_profile.last_name}</h3>
                         <p>{user.about}</p>
                         <hr/>
