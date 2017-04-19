@@ -28,6 +28,7 @@ end
     education: Faker::ChuckNorris.fact,
     work_history: Faker::HarryPotter.quote,
     interests: Faker::TwinPeaks.quote,
+    preferred_contact: "email",
     user: User.create!(
       username: Faker::Cat.unique.name,
       password: "cupcakes",
@@ -44,6 +45,7 @@ end
     company_name: Faker::LordOfTheRings.unique.location,
     contact_name: Faker::LordOfTheRings.character,
     contact_phone: Faker::PhoneNumber.phone_number,
+    website: Faker::Internet.url,
     user: User.create!(
       username: Faker::Ancient.unique.god,
       password: "cupcakes",
