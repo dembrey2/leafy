@@ -19,3 +19,5 @@ class UserSpecificSerializer < ActiveModel::Serializer
     end
   end
 end
+
+# I think you can delete this serializer

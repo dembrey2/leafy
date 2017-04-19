@@ -1,5 +1,5 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :username, :about, :location, :role, :avatar
+  attributes :id, :username, :about, :location, :token, :role, :avatar
 
   has_one :seeker_profile
   has_one :employer_profile
@@ -9,7 +9,13 @@ class UserSerializer < ActiveModel::Serializer
   end
 
   def role
-    object.seeker_profile ? "seeker" : "employer"
+    if object.seeker_profile
+      "seeker"
+    elsif object.employer_profile
+      "employer"
+    else
+      "no role"
+    end
   end
 
 end

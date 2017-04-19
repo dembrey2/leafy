@@ -22,10 +22,6 @@ class ApplicationController < ActionController::API
     end
   end
 
-  def find_matched_seekers(job)
-    job.matched_seekers.each{|seeker| JobMailer.job_match_email(seeker).deliver if seeker.email}
-  end
-
   # def notify_via_text
   #   boot_twilio
   #   sms = @client.messages.create({

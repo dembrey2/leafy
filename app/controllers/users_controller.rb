@@ -12,36 +12,23 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save!
-      render json: @user, serializer: UserSpecificSerializer, include: ['employer_profile.jobs', 'seeker_profile.matched_jobs']
+      render json: @user, include: ['employer_profile.jobs', 'seeker_profile.matched_jobs']
     else
       render json: @user.errors.full_messages, status: 400
     end
   end
 
   def update
-    if params.dig(:user, :seeker_profile_attributes, :skills)
-      new_skills = params[:user][:seeker_profile_attributes][:skills].split(",").map do |skill_id|
-        Skill.find(skill_id.to_i)
-      end
-      @user.seeker_profile.skills.replace(new_skills)
-    end
-
-    if params.dig(:user, :location_id)
-      @user.location = Location.find(params[:user][:location_id])
-    end
-
+    @user.set_skills_and_location(params)
     if @user.update(user_params)
-      render json: @user, serializer: UserSpecificSerializer, include: ['employer_profile.jobs', 'seeker_profile.matched_jobs']
+      render json: @user, include: ['employer_profile.jobs', 'seeker_profile.matched_jobs']
     else
       render json: @user.errors.full_messages, status: 400
     end
   end
 
-  def destroy
-  end
-
   def show
-    render json: @user, serializer: UserSpecificSerializer, include: ['employer_profile.jobs', 'seeker_profile.matched_jobs']
+    render json: @user, include: ['employer_profile.jobs', 'seeker_profile.matched_jobs']
   end
 
   private
