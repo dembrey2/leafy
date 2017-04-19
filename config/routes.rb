@@ -10,6 +10,8 @@ Rails.application.routes.draw do
     resources :skills
     resources :locations
 
+    resources :password_resets, only: [:create, :update]
+
   end
 
   post 'login' => 'sessions#create'
