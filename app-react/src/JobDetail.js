@@ -58,7 +58,7 @@ class JobDetail extends Component {
                         <h4>{this.state.description}</h4>
                         <h5>{this.state.contact_name}</h5>
                         <div>{this.state.contact_phone}</div>
-                        <div>{this.state.transportation ? 'Has Transporation' : 'No Transportation'}</div>
+                        <div>Transportation: {this.props.transportation ? 'Provided' : 'Not Provided'}</div><br/>
                          <div>SKILLS DESIRED:</div>
                          <div>{skills}</div>
                          <br/>
