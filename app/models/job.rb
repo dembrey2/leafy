@@ -21,7 +21,6 @@ class Job < ApplicationRecord
       new_skills = params[:job][:skills].split(",").map{|skill_id| Skill.find(skill_id.to_i)}
       skills.replace(new_skills)
     end
-    # do i need to pay attention to duplicate skills...
   end
 
 end

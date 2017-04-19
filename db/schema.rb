@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170417183121) do
+ActiveRecord::Schema.define(version: 20170419140240) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,6 +63,8 @@ ActiveRecord::Schema.define(version: 20170417183121) do
     t.text     "work_history"
     t.text     "interests"
     t.string   "preferred_contact"
+    t.boolean  "text_me"
+    t.boolean  "email_me"
     t.index ["user_id"], name: "index_seeker_profiles_on_user_id", using: :btree
   end
 

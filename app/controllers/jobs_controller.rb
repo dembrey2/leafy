@@ -34,7 +34,7 @@ class JobsController < ApplicationController
     @job.set_skills_and_location(params)
 
     if @job.save
-      find_matched_seekers(@job)
+      find_matched_seekers(@job) if
       # notify_via_text
       render json: @job
     else
@@ -67,6 +67,21 @@ class JobsController < ApplicationController
   end
 
   def find_matched_seekers(job)
-    job.matched_seekers.each{|seeker| JobMailer.job_match_email(seeker).deliver if seeker.email}
+    job.matched_seekers.each{|seeker| JobMailer.job_match_email(seeker).deliver if seeker.email && seeker.email_me?}
+  end
+
+  def notify_via_text
+    boot_twilio
+    @client.messages.create({
+      from: ENV['twilio_number'],
+      to: ENV['twilio_send_to'],
+      body: "A new job matching your skills has posted."
+    })
+  end
+
+  def boot_twilio
+    account_sid = ENV['twilio_sid']
+    auth_token = ENV['twilio_token']
+    @client = Twilio::REST::Client.new account_sid, auth_token
   end
 end
