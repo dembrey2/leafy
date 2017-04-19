@@ -10,7 +10,4 @@ class SkillsController < ApplicationController
     render json: @skill
   end
 
-  def edit
-    @skill = Skill.find(params[:id])
-  end
 end
