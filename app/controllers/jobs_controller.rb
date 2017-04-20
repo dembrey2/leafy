@@ -55,7 +55,7 @@ class JobsController < ApplicationController
   private
 
   def job_params
-    params.require(:job).permit(:title, :description, :transportation, :active, :location_id)
+    params.require(:job).permit(:title, :description, :transportation, :active, location_attributes: [:id, :name])
   end
 
   def require_self
