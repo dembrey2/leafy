@@ -1,5 +1,6 @@
 class JobsController < ApplicationController
 
+  before_action :find_user, only: [:update]
   before_action :require_user, only: [:index, :show, :create, :update]
   before_action :require_employer, only: [:create, :update]
   before_action :require_self, only: [:update]
@@ -43,7 +44,7 @@ class JobsController < ApplicationController
   end
 
   def update
-    @job = Job.find(params[:id])
+    # @job = Job.find(params[:id])
 
     @job.set_skills_and_location(params)
 
@@ -56,13 +57,18 @@ class JobsController < ApplicationController
 
   private
 
+  def find_user
+    @user = User.find(params[:id])
+  end
+
   def job_params
     params.require(:job).permit(:title, :description, :transportation, :active, :location_id)
   end
 
   def require_self
-    unless @user == current_user
-      render json: ["You cannot update a job that is not your own."]
+    @job = Job.find(params[:id])
+    unless @job.owner == current_user
+      render json: ["You cannot update a job that is not your own."], status: 401
     end
   end
 

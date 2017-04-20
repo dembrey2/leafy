@@ -1,7 +1,6 @@
 FactoryGirl.define do
   factory :user do
-    username "MyString"
-    password_digest "MyString"
-    about "MyText"
+    username {Faker::Cat.unique.name}
+    password "cupcakes"
   end
 end

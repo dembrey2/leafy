@@ -23,4 +23,8 @@ class Job < ApplicationRecord
     end
   end
 
+  def owner
+    job.employer_profile.user
+  end
+
 end
