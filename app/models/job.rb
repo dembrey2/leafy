@@ -24,7 +24,7 @@ class Job < ApplicationRecord
   end
 
   def owner
-    job.employer_profile.user
+    employer_profile.user
   end
 
 end
