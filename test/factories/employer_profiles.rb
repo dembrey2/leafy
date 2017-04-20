@@ -8,10 +8,10 @@ FactoryGirl.define do
     user
   end
 
-  transient do
-    job_count 5
-  end
-  # 
+  # transient do
+  #   job_count 5
+  # end
+  #
   # factory :employer_profile_with_jobs do
   #   after(:create) do |job, evaluator|
   #     evaluator.job_count.times do
