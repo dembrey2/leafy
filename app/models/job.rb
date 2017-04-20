@@ -16,7 +16,7 @@ class Job < ApplicationRecord
   def set_skills_and_location(params)
 
     if params.dig(:job, :location)
-      location = Location.find(params[:job][:location].id)
+      location = Location.find(params[:job][:location])
     end
 
     if params.dig(:job, :skills)
