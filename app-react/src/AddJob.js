@@ -70,9 +70,10 @@ class AddJob extends Component {
 		})
 		.then((response) => {
 			this.setState({
-				location: response.job.location,
+				location: response.job.location.id,
 				description: response.job.description,
 				title: response.job.title,
+				transportation: response.job.transportation,
 				skills: response.job.skills.map(skill => skill.id)
 			})
 		})
@@ -81,8 +82,8 @@ class AddJob extends Component {
 	 editJob() {
 		let data = new FormData()
 		data.append('token', window.user.token)
-		// data.append('job[location_id]', this.props.params.jobId ? this.state.location.id : this.state.location)	
-		data.append('job[location_id]', this.state.location.id)	
+		data.append('job[location_id]', this.state.location)	
+		// data.append('job[location_id]', this.state.location.id)	
 		data.append('job[description]', this.state.description)
 		data.append('job[title]', this.state.title)
 		data.append('job[transportation]', this.state.transportation)
@@ -103,6 +104,7 @@ class AddJob extends Component {
 	}
 
   render() {
+	  console.log(this.state.transportation)
 	  const skills = this.state.lookupSkills.map(skill => (
 		  	<label className="checkbox" key={skill.id}>
 				<input type="checkbox" value={skill.id} checked={this.state.skills.includes(skill.id)} onChange={this.addSkill} /> {skill.name}
@@ -132,13 +134,15 @@ class AddJob extends Component {
 						<div className="form-group">
 							<label htmlFor="transportation">Transportation:</label>
 							<select className="form-control" value={this.state.transportation} onChange={(e) => this.setState({transportation: e.target.value})}>
-								<option value="provided">Provided</option>
-								<option value="not provided">Not Provided</option>
+								<option selected disabled>Select an Option</option>
+								<option value="true">Provided</option>
+								<option value="false">Not Provided</option>
 							</select>
 						</div>
 						<div className="form-group">
 							<label htmlFor="location">Location:</label>
-							<select className="form-control" value={this.state.location.name} onChange={(e) => this.setState({location: e.target.value})}>
+							<select className="form-control" value={this.state.location} onChange={(e) => this.setState({location: e.target.value})}>
+							<option selected disabled>Select a Location</option>
 								{locations}
 							</select>
 						</div>
