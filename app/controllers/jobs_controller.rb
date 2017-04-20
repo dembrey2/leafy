@@ -36,9 +36,9 @@ class JobsController < ApplicationController
     if @job.save
       find_matched_seekers(@job)
       notify_via_text(@job)
-      render json: @job
+      render json: @user, include: ['employer_profile.jobs']
     else
-      render json: @job.errors.full_messages, status: 400
+      render json: @user.errors.full_messages, status: 400
     end
   end
 
@@ -46,9 +46,9 @@ class JobsController < ApplicationController
     @job.set_skills_and_location(params)
 
     if @job.update(job_params)
-      render json: @job
+      render json: @user, include: ['employer_profile.jobs']
     else
-      render json: @job.errors.full_messages, status: 400
+      render json: @user.errors.full_messages, status: 400
     end
   end
 
