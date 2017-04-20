@@ -41,7 +41,7 @@ return (
     <div>
         <div className="row">
             <div className="col-sm-6 col-sm-offset-3">
-                <button type="button" className="btn btn-default btn-transparent-white-background text-center" onClick={() => browserHistory.push('/dashboard')}>Back to Dashboard</button>
+               <button type="button" className="btn btn-default btn-transparent-white-background text-center" onClick={() => browserHistory.push('/dashboard')}>Back to Dashboard</button> 
                 <br /><br />
                 <div className="panel panel-default text-center">
                     <div className="panel-body">

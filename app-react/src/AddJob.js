@@ -10,10 +10,7 @@ class AddJob extends Component {
 		this.lookupLocations = this.lookupLocations.bind(this)
 
 		this.state = {
-			location: {
-				name: '',
-				id: ''
-			},
+			location: {},
 			description: '',
 			transportation: '',
 			title: '',
@@ -84,6 +81,7 @@ class AddJob extends Component {
 	 editJob() {
 		let data = new FormData()
 		data.append('token', window.user.token)
+		// data.append('job[location_id]', this.props.params.jobId ? this.state.location.id : this.state.location)	
 		data.append('job[location_id]', this.state.location.id)	
 		data.append('job[description]', this.state.description)
 		data.append('job[title]', this.state.title)
@@ -92,8 +90,6 @@ class AddJob extends Component {
 
 		fetch(window.apiHost + (this.props.params.jobId ? '/api/users/' + window.user.id + '/jobs/' + this.props.params.jobId : '/api/users/' + window.user.id + '/jobs/'), {
         method: this.props.params.jobId ? 'PUT' : 'POST',
-        // Back-end controls the left side, properties, of this object
-        // Front-end controls the variables names and values on the right side
         body: data
     })
         .then(function(response) {
