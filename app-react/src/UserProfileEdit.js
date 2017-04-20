@@ -164,7 +164,7 @@ class UserProfileEdit extends Component {
 										<input type="text" className="form-control" name="email" value={this.state.email} onChange={(e) => this.setState({ email: e.target.value })} />
 									{/*</div>*/}
 									<label className="checkbox">
-											<input type="checkbox" name="send_email" checked={this.state.email_me === true ? "checked" : ''} value={this.state.email_me} onChange={this.addEmailNotification} /> Send me a text message when new jobs matching my profile are posted
+											<input type="checkbox" name="send_email" checked={this.state.email_me === true ? "checked" : ''} value={this.state.email_me} onChange={this.addEmailNotification} /> Send me an email when new jobs matching my profile are posted
 									</label>
 										<div className="form-group">
 											<label htmlFor="phone" className="text-uppercase">Phone</label>
