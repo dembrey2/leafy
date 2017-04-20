@@ -36,7 +36,7 @@ class JobsController < ApplicationController
     if @job.save
       find_matched_seekers(@job)
       notify_via_text(@job)
-      render json: @user, include: ['employer_profile.jobs']
+      render json: @user, serializer: UserSerializer, include: ['employer_profile.jobs']
     else
       render json: @user.errors.full_messages, status: 400
     end
