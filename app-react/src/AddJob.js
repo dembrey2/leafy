@@ -98,7 +98,7 @@ class AddJob extends Component {
         })
         .then(function(response) {
             console.log(response);
-			// window.user = response.user;
+			window.user = response.user;
 			browserHistory.push('/dashboard')
         })
 	}
