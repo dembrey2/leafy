@@ -44,7 +44,7 @@ class JobsController < ApplicationController
 
   def update
     @job.set_skills_and_location(params)
-
+    @user = current_user
     if @job.update(job_params)
       render json: @user, include: ['employer_profile.jobs']
     else
