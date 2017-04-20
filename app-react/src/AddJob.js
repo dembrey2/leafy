@@ -84,7 +84,7 @@ class AddJob extends Component {
 	 editJob() {
 		let data = new FormData()
 		data.append('token', window.user.token)
-		data.append('job[location_id]', this.state.location.id)
+		data.append('job[location_id]', this.state.location.id)	
 		data.append('job[description]', this.state.description)
 		data.append('job[title]', this.state.title)
 		data.append('job[transportation]', this.state.transportation)
@@ -101,7 +101,7 @@ class AddJob extends Component {
         })
         .then(function(response) {
             console.log(response);
-			window.user = response.user;
+			// window.user = response.user
 			browserHistory.push('/dashboard')
         })
 	}
