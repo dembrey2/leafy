@@ -10,7 +10,10 @@ class AddJob extends Component {
 		this.lookupLocations = this.lookupLocations.bind(this)
 
 		this.state = {
-			location: '',
+			location: {
+				name: '',
+				id: ''
+			},
 			description: '',
 			transportation: '',
 			title: '',
@@ -81,7 +84,7 @@ class AddJob extends Component {
 	 editJob() {
 		let data = new FormData()
 		data.append('token', window.user.token)
-		data.append('job[location_id]', this.state.location)
+		data.append('job[location_id]', this.state.location.id)
 		data.append('job[description]', this.state.description)
 		data.append('job[title]', this.state.title)
 		data.append('job[transportation]', this.state.transportation)
@@ -139,7 +142,7 @@ class AddJob extends Component {
 						</div>
 						<div className="form-group">
 							<label htmlFor="location">Location:</label>
-							<select className="form-control" value={this.state.location} onChange={(e) => this.setState({location: e.target.value})}>
+							<select className="form-control" value={this.state.location.name} onChange={(e) => this.setState({location: e.target.value})}>
 								{locations}
 							</select>
 						</div>
