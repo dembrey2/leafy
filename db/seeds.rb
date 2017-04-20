@@ -45,6 +45,7 @@ end
     company_name: Faker::LordOfTheRings.unique.location,
     contact_name: Faker::LordOfTheRings.character,
     contact_phone: Faker::PhoneNumber.phone_number,
+    contact_email: Faker::Internet.safe_email,
     website: Faker::Internet.url,
     user: User.create!(
       username: Faker::Ancient.unique.god,
