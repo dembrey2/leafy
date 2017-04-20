@@ -21,7 +21,7 @@ class UserDashboard extends Component {
             <h3 className="text-center text-uppercase">Jobs</h3>
             {matchedJobs.length === 0 ? 
               <div className="panel panel-default">
-                <div className="panel-body">
+                <div className="panel-body text-center">
                   <button type="button" className="btn btn-default btn-transparent-charcoal text-center btn-lg" onClick={() => browserHistory.push('/profile-edit')}>Click to edit your profile to view your job matches</button> 
                 </div>
               </div>

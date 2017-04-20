@@ -13,7 +13,7 @@ class EmployerProfileEdit extends Component {
 			contact_email: window.user.employer_profile.contact_email || '',
 			contact_phone: window.user.employer_profile.contact_phone || '',
 			preferred_contact: window.user.preferred_contact || 'email',
-			location: window.user.location || '',
+			location: window.user.location.name || '',
 			about: window.user.about || '',
 			lookupLocations:[],
 			avatar: ''
@@ -128,7 +128,7 @@ class EmployerProfileEdit extends Component {
 								</div>
 								<div className="form-group">
 									<label htmlFor="location">Location</label>
-									<select className="form-control" defaultValue={this.state.location} onChange={(e) => this.setState({ location: e.target.value })}>
+									<select className="form-control" defaultValue={this.state.location.name} onChange={(e) => this.setState({ location: e.target.value })}>
 										{locations}
 									</select>
 								</div>
