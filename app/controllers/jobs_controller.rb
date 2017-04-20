@@ -1,6 +1,5 @@
 class JobsController < ApplicationController
 
-  before_action :find_user, only: [:update]
   before_action :require_user, only: [:index, :show, :create, :update]
   before_action :require_employer, only: [:create, :update]
   before_action :require_self, only: [:update]
@@ -44,8 +43,6 @@ class JobsController < ApplicationController
   end
 
   def update
-    # @job = Job.find(params[:id])
-
     @job.set_skills_and_location(params)
 
     if @job.update(job_params)
@@ -56,10 +53,6 @@ class JobsController < ApplicationController
   end
 
   private
-
-  def find_user
-    @user = User.find(params[:id])
-  end
 
   def job_params
     params.require(:job).permit(:title, :description, :transportation, :active, :location_id)
