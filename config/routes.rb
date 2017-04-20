@@ -15,4 +15,6 @@ Rails.application.routes.draw do
   end
 
   post 'login' => 'sessions#create'
+
+  get '*path' => 'application#static'
 end
