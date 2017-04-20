@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :skill do
-    name "MyString"
+    name { Skill.sample }
   end
 end

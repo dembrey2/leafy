@@ -30,8 +30,8 @@ class JobsController < ApplicationController
   def create
     @job = Job.new(job_params)
     current_user.employer_profile.jobs << @job
-
     @job.set_skills_and_location(params)
+
     @user = current_user
     if @job.save
       find_matched_seekers(@job)
