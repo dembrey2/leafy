@@ -67,7 +67,7 @@ class JobsController < ApplicationController
 
   def require_self
     @job = Job.find(params[:id])
-    unless job.owner == current_user
+    unless @job.owner == current_user
       render json: ["You cannot update a job that is not your own."], status: 401
     end
   end
