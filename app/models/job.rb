@@ -7,14 +7,16 @@ class Job < ApplicationRecord
 
   validates :title, :description, :active, presence: true
 
+  accepts_nested_attributes_for :location
+
   def matched_seekers
     skills.flat_map{|skill| skill.seeker_profiles}.uniq
   end
 
   def set_skills_and_location(params)
 
-    if params.dig(:job, :location_id)
-      location = Location.find(params[:job][:location_id])
+    if params.dig(:job, :location)
+      location = Location.find(params[:job][:location].id)
     end
 
     if params.dig(:job, :skills)
