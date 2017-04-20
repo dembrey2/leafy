@@ -30,6 +30,7 @@ class JobsController < ApplicationController
   def create
     @job = Job.new(job_params)
     current_user.employer_profile.jobs << @job
+
     @user = current_user
     if @job.save
       @job.set_skills_and_location(params)
@@ -54,7 +55,7 @@ class JobsController < ApplicationController
   private
 
   def job_params
-    params.require(:job).permit(:title, :description, :transportation, :active, location_attributes: [:id, :name])
+    params.require(:job).permit(:title, :description, :transportation, :active)
   end
 
   def require_self
