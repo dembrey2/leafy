@@ -32,11 +32,11 @@ class JobsController < ApplicationController
     current_user.employer_profile.jobs << @job
 
     @job.set_skills_and_location(params)
-
+    @user = current_user
     if @job.save
       find_matched_seekers(@job)
       notify_via_text(@job)
-      render json: @job
+      render json: @user, include: ['employer_profile.jobs']
     else
       render json: @job.errors.full_messages, status: 400
     end
@@ -44,9 +44,9 @@ class JobsController < ApplicationController
 
   def update
     @job.set_skills_and_location(params)
-
+    @user = current_user
     if @job.update(job_params)
-      render json: @job
+      render json: @user, include: ['employer_profile.jobs']
     else
       render json: @job.errors.full_messages, status: 400
     end

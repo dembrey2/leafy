@@ -1,5 +1,5 @@
 class EmployerJobViewSerializer < ActiveModel::Serializer
-  attributes :id, :title, :description, :transportation, :active, :user_id, :company_name, :skills
+  attributes :id, :title, :description, :transportation, :active, :user, :company_name, :skills
 
   def company_name
     object.employer_profile.company_name
@@ -13,8 +13,8 @@ class EmployerJobViewSerializer < ActiveModel::Serializer
     object.skills if object.skills
   end
 
-  def user_id
-    object.employer_profile.user_id
+  def user
+    object.employer_profile.user
   end
 
   has_many :matched_seekers, serializer: MatchedSeekerProfileSerializer
