@@ -30,10 +30,9 @@ class JobsController < ApplicationController
   def create
     @job = Job.new(job_params)
     current_user.employer_profile.jobs << @job
-
-    @job.set_skills_and_location(params)
     @user = current_user
     if @job.save
+      @job.set_skills_and_location(params)
       find_matched_seekers(@job)
       notify_via_text(@job)
       render json: @user, include: ['employer_profile.jobs']
