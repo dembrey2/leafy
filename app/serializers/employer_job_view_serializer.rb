@@ -13,7 +13,7 @@ class EmployerJobViewSerializer < ActiveModel::Serializer
     object.skills if object.skills
   end
 
-  def user_id
+  def user
     object.employer_profile.user
   end
 
