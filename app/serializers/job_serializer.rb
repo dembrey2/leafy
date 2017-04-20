@@ -1,13 +1,13 @@
 class JobSerializer < ActiveModel::Serializer
-  attributes :id, :title, :description, :transportation, :active, :user_id, :company_name, :location, :skills, :avatar, :contact_name, :contact_email, :contact_phone
+  attributes :id, :title, :description, :transportation, :active, :user_id, :company_name, :skills, :avatar, :contact_name, :contact_email, :contact_phone
 
   def company_name
     object.employer_profile.company_name
   end
 
-  def location
-    object.location.name if object.location
-  end
+  # def location
+  #   object.location.name if object.location
+  # end
 
   def skills
     object.skills if object.skills
@@ -32,4 +32,6 @@ class JobSerializer < ActiveModel::Serializer
   def contact_phone
     object.employer_profile.contact_phone
   end
+
+  belongs_to :location
 end
