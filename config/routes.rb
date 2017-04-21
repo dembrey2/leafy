@@ -16,5 +16,5 @@ Rails.application.routes.draw do
 
   post 'login' => 'sessions#create'
 
-  get '*path' => 'application#static'
+  get '/:s1(/:s2)(/:s3)' => 'application#static'
 end
