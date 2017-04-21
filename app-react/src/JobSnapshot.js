@@ -12,7 +12,7 @@ class JobSnapshot extends Component {
 		<div className="panel panel-default">
 			<div className="panel-body">
 				<div className="col-sm-6">
-				<div> {window.user.role === 'employer' ? '' : <img src={this.props.avatar.url} className="img-circle"/>}</div>
+				<div> {window.user.role === 'employer' ? '' : <img src={this.props.avatar.url} alt="profile" className="img-circle"/>}</div>
 					<h3 className="text-uppercase bold-heading">{this.props.title}</h3>
 					<h4>{this.props.company_name}</h4>
 				</div>

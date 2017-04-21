@@ -166,7 +166,7 @@ class UserProfileEdit extends Component {
 										</div>
 										<div className="form-group">
 											<label htmlFor="location" className="text-uppercase">Location:</label>
-											<select className="form-control" value={this.state.location} onChange={(e) => this.setState({ location: e.target.value })}>
+											<select className="form-control" value={this.state.location.id} onChange={(e) => this.setState({ location: e.target.value })}>
 											<option disabled>Select a Location</option>
 												{locations}
 											</select>

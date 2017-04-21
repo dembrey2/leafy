@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { browserHistory } from 'react-router'
-// import EmployerSnapshot from './EmployerSnapshot'
 
 class EmployerProfileEdit extends Component {
 	constructor(props) {
@@ -12,7 +11,7 @@ class EmployerProfileEdit extends Component {
 			contact_name: window.user.employer_profile.contact_name || '',
 			contact_email: window.user.employer_profile.contact_email || '',
 			contact_phone: window.user.employer_profile.contact_phone || '',
-			preferred_contact: window.user.preferred_contact || 'email',
+			preferred_contact: window.user.preferred_contact || '',
 			location: window.user.location || {},
 			about: window.user.about || '',
 			lookupLocations:[],
@@ -44,7 +43,7 @@ class EmployerProfileEdit extends Component {
 		data.append('user[employer_profile_attributes][contact_phone]', this.state.contact_phone)
 		// data.append('user[employer_profile_attributes][preferred_contact]', this.state.preferred_contact)
 		data.append('user[about]', this.state.about)
-		data.append('user[location_id]', this.state.location)
+		data.append('user[location_id]', this.state.location.id)
 
 		if (this.state.avatar !== '') {
 			data.append('user[avatar]', this.state.avatar)
