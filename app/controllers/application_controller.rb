@@ -1,4 +1,4 @@
-class ApplicationController < ActionController
+class ApplicationController < ActionController::API
 
   def static
     render file: 'public/index.html'
