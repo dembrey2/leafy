@@ -9,12 +9,13 @@ body {
   margin: 0;
   padding: 0;
  font-family: 'Lato', sans-serif;
- background: linear-gradient(rgba(33, 107, 43, 0.6), rgba(234, 242, 236, 0.6)), url(/img/fallforest.jpg);
+ background: linear-gradient(rgba(50, 119, 63, 0.6), rgba(200, 220, 210, 0.6)), url(/img/fallforest-color.jpg);
+ /*background: linear-gradient(rgba(64, 65, 66, 0.6), rgba(64, 65, 66, 0.6)), url(/img/fallforest-color.jpg);*/
  background-repeat: no-repeat;
 background-attachment: fixed;
 background-size: cover;
-  /*background-color: #f1f1f1;*/
   letter-spacing: 1.1px;
+  font-weight: 300;
 }
 
 .nav {
@@ -34,7 +35,7 @@ header {
     background-size: cover;*/
     padding: 80px;
     color: #f1f1f1;
-    font-family: 'Roboto', sans-serif;
+    /*font-family: 'Roboto', sans-serif;*/
 }
 
 /*.title {
@@ -102,7 +103,7 @@ header button {
 }
 
 .bold-heading {
-    font-weight: 700;
+    font-weight: 400;
 }
 
 .text-light {
@@ -127,6 +128,9 @@ header button {
 
 .white {
     color: #f2f2f2;
+}
+.gray {
+    color: #2f3030;
 }
 
 footer {

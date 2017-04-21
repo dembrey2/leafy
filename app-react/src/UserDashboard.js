@@ -18,7 +18,7 @@ class UserDashboard extends Component {
         <UserSnapshot />
         <div className="row">
           <div className="col-sm-6 col-sm-offset-3">
-            <h3 className="text-center text-uppercase">Jobs</h3>
+            <h3 className="text-center text-uppercase bold-heading">Jobs</h3>
             {matchedJobs.length === 0 ? 
               <div className="panel panel-default">
                 <div className="panel-body text-center">
