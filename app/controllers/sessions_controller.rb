@@ -1,5 +1,9 @@
 class SessionsController < ApplicationController
 
+  def static
+    render file: 'public/index.html'
+  end
+
   def create
     if params[:user]
       @user = User.find_by(username: params[:user][:username])&.authenticate(params[:user][:password])
