@@ -25,7 +25,7 @@ import './index.css';
 window.user = JSON.parse(sessionStorage.getItem('user'))
 if (window.user) { window.user = window.user.user }
 
-window.apiHost = 'https://glacial-wave-69316.herokuapp.com'
+window.apiHost = 'https://turn-newleaf.herokuapp.com'
 // window.apiHost = ''
 
 const isEmployer = (window.user && window.user.role === 'employer')
