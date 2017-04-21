@@ -83,7 +83,6 @@ class AddJob extends Component {
 		let data = new FormData()
 		data.append('token', window.user.token)
 		data.append('job[location_id]', this.state.location)	
-		// data.append('job[location_id]', this.state.location.id)	
 		data.append('job[description]', this.state.description)
 		data.append('job[title]', this.state.title)
 		data.append('job[transportation]', this.state.transportation)
@@ -134,7 +133,7 @@ class AddJob extends Component {
 						<div className="form-group">
 							<label htmlFor="transportation">Transportation:</label>
 							<select className="form-control" value={this.state.transportation} onChange={(e) => this.setState({transportation: e.target.value})}>
-								<option selected disabled>Select an Option</option>
+								<option disabled>Select an Option</option>
 								<option value="true">Provided</option>
 								<option value="false">Not Provided</option>
 							</select>
@@ -142,7 +141,7 @@ class AddJob extends Component {
 						<div className="form-group">
 							<label htmlFor="location">Location:</label>
 							<select className="form-control" value={this.state.location} onChange={(e) => this.setState({location: e.target.value})}>
-							<option selected disabled>Select a Location</option>
+							<option disabled>Select a Location</option>
 								{locations}
 							</select>
 						</div>
@@ -175,4 +174,5 @@ class AddJob extends Component {
 }
 
 export default AddJob;
+
 

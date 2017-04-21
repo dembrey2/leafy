@@ -26,6 +26,7 @@ window.user = JSON.parse(sessionStorage.getItem('user'))
 if (window.user) { window.user = window.user.user }
 
 window.apiHost = 'https://glacial-wave-69316.herokuapp.com'
+// window.apiHost = ''
 
 const isEmployer = (window.user && window.user.role === 'employer')
 
@@ -34,21 +35,21 @@ ReactDOM.render(
     <Router history={browserHistory} onUpdate={() => window.scrollTo(0,0)}>
         <Route path="/" component={App}>
             <IndexRoute component={Home} />
-            <Route path="/signin" component={Signin} />
-            <Route path="/employersignup" component={EmployerSignup} />
-            <Route path="/seekersignup" component={UserSignup} />
-            <Route path="/dashboard" component={isEmployer? EmployerDashboard : UserDashboard} />
-            <Route path="/profile-edit" component={isEmployer ? EmployerProfileEdit : UserProfileEdit} />
-            <Route path="/profile" component={isEmployer ? EmployerDetail : UserDetail} />
-            <Route path="/profile/:userId" component={isEmployer ? UserDetail : EmployerDetail} />
-            <Route path="/jobdetail/:jobId" component={JobDetail} />
-            <Route path="/usersnapshot" component={UserSnapshot} />
-            <Route path="/employersnapshot" component={EmployerSnapshot} />
-            <Route path="/jobsnapshot" component={JobSnapshot} />
-            <Route path="/addjob" component={AddJob} />
-            <Route path="/editjob/:jobId" component={AddJob} />
-            <Route path="/candidatesnapshot" component={CandidateSnapshot} />
-            <Route path="/candidateprofile/:userId" component={CandidateDetail} />
+            <Route path="signin" component={Signin} />
+            <Route path="employersignup" component={EmployerSignup} />
+            <Route path="seekersignup" component={UserSignup} />
+            <Route path="dashboard" component={isEmployer? EmployerDashboard : UserDashboard} />
+            <Route path="profile-edit" component={isEmployer ? EmployerProfileEdit : UserProfileEdit} />
+            <Route path="profile" component={isEmployer ? EmployerDetail : UserDetail} />
+            <Route path="profile/:userId" component={isEmployer ? UserDetail : EmployerDetail} />
+            <Route path="jobdetail/:jobId" component={JobDetail} />
+            <Route path="usersnapshot" component={UserSnapshot} />
+            <Route path="employersnapshot" component={EmployerSnapshot} />
+            <Route path="jobsnapshot" component={JobSnapshot} />
+            <Route path="addjob" component={AddJob} />
+            <Route path="editjob/:jobId" component={AddJob} />
+            <Route path="candidatesnapshot" component={CandidateSnapshot} />
+            <Route path="candidateprofile/:userId" component={CandidateDetail} />
         </Route>
     </Router>,
     document.getElementById('root')

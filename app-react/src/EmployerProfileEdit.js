@@ -44,7 +44,7 @@ class EmployerProfileEdit extends Component {
 		data.append('user[employer_profile_attributes][contact_phone]', this.state.contact_phone)
 		// data.append('user[employer_profile_attributes][preferred_contact]', this.state.preferred_contact)
 		data.append('user[about]', this.state.about)
-		data.append('user[location_id]', this.state.location.id)
+		data.append('user[location_id]', this.state.location)
 
 		if (this.state.avatar !== '') {
 			data.append('user[avatar]', this.state.avatar)
@@ -54,28 +54,6 @@ class EmployerProfileEdit extends Component {
 		fetch(window.apiHost + '/api/users/' + window.user.id , {
         method: 'PUT',
 		body: data
-        // headers: {
-        //     'Content-Type': 'application/json'
-        // },
-
-        // Back-end controls the left side, properties, of this object
-        // Front-end controls the variables names and values on the right side
-		//added nested json
-        // body: JSON.stringify({
-        //    token: window.user.token,
-        //     user: {
-		// 		employer_profile_attributes: {
-		// 			id: window.user.employer_profile.id,
-		// 			company_name: this.state.company_name,
-		// 			contact_name: this.state.contact_name,
-		// 			contact_email: this.state.contact_email,
-		// 			contact_phone: this.state.contact_phone,
-		// 			communication: this.state.communication
-		// 		},
-		// 		about: this.state.about,
-		// 		location: this.state.location.id
-        //     }
-        // })
     })
         .then(function(response) {
             return response.json();
@@ -88,8 +66,6 @@ class EmployerProfileEdit extends Component {
 	}
 
   render() {
-	//   const locations = this.state.lookupLocations.map(location => (
-	// 		<option key={location.id} value={location.id}>{location.name}</option>
 			 const locations = this.state.lookupLocations.map(location => (
 			<option key={location.id} value={location.id}>{location.name}</option>
 		))
@@ -120,6 +96,7 @@ class EmployerProfileEdit extends Component {
 								<div className="form-group">
 									<label htmlFor="preferred_contact">Preferred method of communication:</label>
 									<select className="form-control" value={this.state.preferred_contact} onChange={(e) => this.setState({ preferred_contact: e.target.value })}>
+									<option disabled>Select an Option</option>
 										<option value="phone">Phone</option>
 										<option value="email">Email</option>
 									</select>
@@ -130,7 +107,8 @@ class EmployerProfileEdit extends Component {
 								</div>
 								<div className="form-group">
 									<label htmlFor="location">Location</label>
-									<select className="form-control" defaultValue={this.state.location} onChange={(e) => this.setState({ location: e.target.value })}>
+									<select className="form-control" value={this.state.location.id} onChange={(e) => this.setState({ location: e.target.value })}>
+									<option disabled>Select a Location</option>
 										{locations}
 									</select>
 								</div>
@@ -153,3 +131,4 @@ class EmployerProfileEdit extends Component {
 }
 
 export default EmployerProfileEdit;
+

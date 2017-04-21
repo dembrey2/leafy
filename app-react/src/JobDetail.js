@@ -53,16 +53,24 @@ class JobDetail extends Component {
             <br/><br/>
 				<div className="panel panel-default">
             		<div className="panel-body">
-						<h3 className="text-uppercase">{this.state.title}</h3>
-						<h4>{this.state.company_name}</h4>
-                        <h4>{this.state.description}</h4>
-                        <h5>{this.state.contact_name}</h5>
-                        <div>{this.state.contact_phone}</div>
-                        <div>Transportation: {this.props.transportation ? 'Provided' : 'Not Provided'}</div><br/>
-                         <div>SKILLS DESIRED:</div>
-                         <div>{skills}</div>
-                         <br/>
-                         {window.user.role === 'employer' ? '' : <button type="button" className="btn btn-default btn-transparent-charcoal text-center" onClick={() => browserHistory.push('/profile/' + this.state.user_id)}>View employer profile</button> }
+                        <div className="col-sm-6">
+                            <h4 className="text-uppercase bold-heading">{this.state.title}</h4>
+						    <h4>{this.state.company_name} {window.user.role === 'employer' ? '' : <button type="button" className="btn btn-default btn-sm btn-transparent-charcoal text-center" onClick={() => browserHistory.push('/profile/' + this.state.user_id)}>View profile</button> }</h4><br/>
+                            <h5>CONTACT</h5>
+                            <h5>{this.state.contact_name}</h5>
+                            <div>{this.state.contact_phone}</div>
+                            <div>{this.state.contact_email}</div>
+                        </div>
+                        <div className="col-sm-6">
+                            <h4>ABOUT </h4>
+                            <div>{this.state.description}</div><br/>
+                            <div>TRANSPORTATION <br/>{this.props.transportation ? 'Provided' : 'Not provided'}</div><br/>
+                            <div>SKILLS DESIRED</div>
+                            <div>{skills}</div>
+                            <br/>
+                        </div>
+						
+                        
                     </div>
                 </div>
             </div>
