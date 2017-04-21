@@ -55,17 +55,18 @@ class JobDetail extends Component {
             		<div className="panel-body">
                         <div className="col-sm-6">
                             <h4 className="text-uppercase bold-heading">{this.state.title}</h4>
-						    <h4>{this.state.company_name} {window.user.role === 'employer' ? '' : <button type="button" className="btn btn-default btn-sm btn-transparent-charcoal text-center" onClick={() => browserHistory.push('/profile/' + this.state.user_id)}>View profile</button> }</h4><br/>
-                            <h5>CONTACT</h5>
+						    <h4>{this.state.company_name}</h4>
+                            {window.user.role === 'employer' ? '' : <button type="button" className="btn btn-default btn-sm btn-transparent-white-background text-center" onClick={() => browserHistory.push('/profile/' + this.state.user_id)}>View profile</button> }
+                            
                             <h5>{this.state.contact_name}</h5>
                             <div>{this.state.contact_phone}</div>
                             <div>{this.state.contact_email}</div>
                         </div>
                         <div className="col-sm-6">
-                            <h4>ABOUT </h4>
+                            <div className="bold-heading text-uppercase">About </div>
                             <div>{this.state.description}</div><br/>
-                            <div>TRANSPORTATION <br/>{this.props.transportation ? 'Provided' : 'Not provided'}</div><br/>
-                            <div>SKILLS DESIRED</div>
+                            <div className="bold-heading text-uppercase">Transportation</div>{this.props.transportation ? 'Provided' : 'Not provided'}<br/><br/>
+                            <div className="bold-heading text-uppercase">Skills Desired</div>
                             <div>{skills}</div>
                             <br/>
                         </div>
