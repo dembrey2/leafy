@@ -16,7 +16,7 @@ class UserProfileEdit extends Component {
 			phone: window.user.seeker_profile.phone || '',
 			skills: window.user.seeker_profile.skills.map(skill => skill.id),
 			preferred_contact: window.user.preferred_contact || 'email',
-			location: window.user.location || {},
+			location: window.user.location.id || {},
 			education: window.user.seeker_profile.education || '',
 			work_history: window.user.seeker_profile.work_history || '',
 			interests: window.user.seeker_profile.interests || '',
@@ -59,32 +59,11 @@ class UserProfileEdit extends Component {
 	 }
 
 	 addTextNotification(e) {
-		 let textMe = this.state.text_me
-
-		 if (e.target.checked) {
-			textMe = Boolean(e.target.value)
-			console.log(textMe)
-		 }
-		  else {
-			textMe = false
-			console.log(textMe)
-		  }
-		 this.setState({text_me:textMe})
+		 this.setState({text_me: e.target.checked})
 	 }
 
 	 addEmailNotification(e) {
-		 let emailMe = this.state.email_me
-
-		 if (e.target.checked) {
-			emailMe = Boolean(e.target.value)
-			console.log(emailMe)
-		 }
-		 else {
-			emailMe = false
-			console.log(emailMe)
-		  }
-		
-		 this.setState({email_me:emailMe})
+		 this.setState({email_me: e.target.checked})
 	 }
 
 	 lookupSkills() {
@@ -164,14 +143,14 @@ class UserProfileEdit extends Component {
 										<input type="text" className="form-control" name="email" value={this.state.email} onChange={(e) => this.setState({ email: e.target.value })} />
 									{/*</div>*/}
 									<label className="checkbox">
-											<input type="checkbox" name="send_email" checked={this.state.email_me === true ? "checked" : ''} value={this.state.email_me} onChange={this.addEmailNotification} /> Send me an email when new jobs matching my profile are posted
+											<input type="checkbox" name="send_email" checked={this.state.email_me} value={this.state.email_me} onChange={this.addEmailNotification} /> Send me an email when new jobs matching my profile are posted
 									</label>
 										<div className="form-group">
 											<label htmlFor="phone" className="text-uppercase">Phone</label>
 											<input type="text" className="form-control" name="phone" placeholder="" value={this.state.phone} onChange={(e) => this.setState({ phone: e.target.value })} />
 										</div>
 									<label className="checkbox">
-											<input type="checkbox" name="send_text" checked={this.state.text_me === true ? "checked" : ''} value={this.state.text_me} onChange={this.addTextNotification} /> Send me a text message when new jobs matching my profile are posted
+											<input type="checkbox" name="send_text" checked={this.state.text_me} value={this.state.text_me} onChange={this.addTextNotification} /> Send me a text message when new jobs matching my profile are posted
 									</label>
 										<div className="form-group">
 											<label htmlFor="phone" className="text-uppercase">Photo Upload:</label>
@@ -180,6 +159,7 @@ class UserProfileEdit extends Component {
 										<div className="form-group">
 											<label htmlFor="preferred_contact" className="text-uppercase">Preferred method of communication:</label>
 											<select className="form-control" value={this.state.preferred_contact} onChange={(e) => this.setState({ preferred_contact: e.target.value })}>
+												<option disabled>Select an Option</option>
 												<option value="phone">Phone</option>
 												<option value="email">Email</option>
 											</select>
@@ -187,6 +167,7 @@ class UserProfileEdit extends Component {
 										<div className="form-group">
 											<label htmlFor="location" className="text-uppercase">Location:</label>
 											<select className="form-control" value={this.state.location} onChange={(e) => this.setState({ location: e.target.value })}>
+											<option disabled>Select a Location</option>
 												{locations}
 											</select>
 										</div>

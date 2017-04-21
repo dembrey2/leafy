@@ -41,6 +41,7 @@ class Signin extends Component {
                 if (window.user) { window.user = window.user.user }
                 // browserHistory.push(response.user.role === 'user' ? '/userdashboard' : '/employerdashboard');
                 location.href = '/dashboard';
+                // browserHistory.push('/dashboard')
             }
             else {
                 alert('There was an error. Check out your console.');
