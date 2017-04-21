@@ -7,11 +7,10 @@ FactoryGirl.define do
     user
   end
 
-  transient do
-    skill_count 3
-  end
-
   factory :seeker_profile_with_skills do
+    transient do
+      skill_count 3
+    end
     after(:create) do |job, evaluator|
       evaluator.skill_count.times do
         seeker_profile.skills << Skill.sample(3)

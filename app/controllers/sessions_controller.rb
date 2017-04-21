@@ -1,7 +1,13 @@
 class SessionsController < ApplicationController
+  include ActionController::MimeResponds
+
 
   def static
-    render file: 'public/index.html'
+    respond_to do |format|
+      format.html {
+        render html: File.open("#{Rails.root}/public/index.html").read.html_safe
+      }
+    end
   end
 
   def create
