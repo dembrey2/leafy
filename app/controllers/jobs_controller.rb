@@ -6,7 +6,7 @@ class JobsController < ApplicationController
 
   def index
     if current_user.employer_profile
-      @jobs = current_user.employer_profile.jobs.order_by(created_at: :desc)
+      @jobs = current_user.employer_profile.jobs
     else
       @jobs = current_user.seeker_profile.matched_jobs
     end
