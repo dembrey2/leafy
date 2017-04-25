@@ -7,6 +7,8 @@ class Job < ApplicationRecord
 
   validates :title, :description, :active, presence: true
 
+  default_scope { order(created_at: :desc) }
+
   def matched_seekers
     skills.flat_map{|skill| skill.seeker_profiles}.uniq
   end
