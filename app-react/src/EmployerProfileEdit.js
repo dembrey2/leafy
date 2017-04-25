@@ -43,7 +43,7 @@ class EmployerProfileEdit extends Component {
 		data.append('user[employer_profile_attributes][contact_phone]', this.state.contact_phone)
 		// data.append('user[employer_profile_attributes][preferred_contact]', this.state.preferred_contact)
 		data.append('user[about]', this.state.about)
-		data.append('user[location_id]', this.state.location.id)
+		data.append('user[location_id]', this.state.location)
 
 		if (this.state.avatar !== '') {
 			data.append('user[avatar]', this.state.avatar)

@@ -13,7 +13,7 @@ class Home extends Component {
                         <div className="row">
                             <div className="col-sm-8 col-sm-offset-2">
                                 <h2 className="text-uppercase">connecting people with meaningful work</h2>
-                                <h3 className="text-center">We don't think having a record should mean that you don't have access to financial stability through a job.  Our goal is to connect employers who share our conviction and people who need work.  Our hope is to help restore autonomy to folks getting back on their feet. We're doing this with Turn, an employment platform for connecting workers and employers.</h3>
+                                <h3 className="text-center">We don't think having a record should mean that you don't have access to financial stability through a job.  Our goal is to connect employers with people who need work.  Our hope is to help restore autonomy to folks getting back on their feet. We're doing this with Turn, an employment platform for connecting workers and employers.</h3>
                                 <br /><br />
                                         <h3 className="text-uppercase">Sign up</h3>
                                          <button type="button" className="btn btn-transparent-white-background" onClick={() => browserHistory.push('/employersignup')}>I'm an employer</button>
