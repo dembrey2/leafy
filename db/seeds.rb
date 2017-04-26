@@ -62,7 +62,8 @@ end
       transportation: false,
       active: true,
       location: Location.all.sample,
-      employer_profile: employer_profile
+      employer_profile: employer_profile,
+      created_at: rand(1..700).days.ago
     )
     job.skills << Skill.all.sample(3)
   end
