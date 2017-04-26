@@ -1,24 +1,23 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Turn is an employment platform helping to connect formerly incarcerated people with employers.
 
-Things you may want to cover:
+Rails API and React, hosted on Heroku
 
-* Ruby version
+Rails version: 5.0.2
 
-* System dependencies
+Ruby version: 2.3.3
 
-* Configuration
+URL: https://turn-newleaf.herokuapp.com/
 
-* Database creation
+Sign up as a job seeker and select applicable skills to see a list of jobs that match those skills.
 
-* Database initialization
+Sign up as an employer to post jobs and view a list of candidates with matching skills.
 
-* How to run the test suite
+SETUP:
 
-* Services (job queues, cache servers, search engines, etc.)
++run bundle
++run rails db:migrate
++run rails db:seed (fully seeded database)
 
-* Deployment instructions
-
-* ...
+append /admin to URL for rails_admin login
