@@ -76,7 +76,7 @@ class JobsController < ApplicationController
         @client.messages.create({
           from: ENV['twilio_number'],
           to: ENV['twilio_send_to'],
-          body: "A new job matching your skills has posted."
+          body: "A new job matching your skills has posted. Click here to sign in: https://turn-newleaf.herokuapp.com/jobdetail/#{job.id}"
         })
       end
     end
