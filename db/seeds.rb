@@ -25,15 +25,15 @@ end
     last_name: Faker::Name.last_name,
     email: Faker::Internet.safe_email,
     phone: Faker::PhoneNumber.phone_number,
-    education: Faker::ChuckNorris.fact,
-    work_history: Faker::HarryPotter.quote,
-    interests: Faker::TwinPeaks.quote,
+    education: Faker::Educator.university,
+    work_history: Faker::Educator.course,
+    interests: Faker::Lorem.sentence,
     preferred_contact: "email",
     user: User.create!(
-      username: Faker::Cat.unique.name,
+      username: Faker::Internet.unique.user_name,
       password: "cupcakes",
       location: Location.all.sample,
-      about: Faker::StarWars.quote,
+      about: Faker::Lorem.sentence,
       avatar: Rails.root.join("public/img/lovelace.jpg").open
       )
   )
@@ -42,16 +42,16 @@ end
 
 5.times do
   employer_profile = EmployerProfile.create!(
-    company_name: Faker::LordOfTheRings.unique.location,
-    contact_name: Faker::LordOfTheRings.character,
+    company_name: Faker::Company.name,
+    contact_name: Faker::Name.name,
     contact_phone: Faker::PhoneNumber.phone_number,
     contact_email: Faker::Internet.safe_email,
     website: Faker::Internet.url,
     user: User.create!(
-      username: Faker::Ancient.unique.god,
+      username: Faker::Internet.unique.user_name,
       password: "cupcakes",
       location: Location.all.sample,
-      about: Faker::Company.bs,
+      about: Faker::Company.catch_phrase,
       avatar: Rails.root.join("public/img/lovelace.jpg").open
       )
   )
