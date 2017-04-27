@@ -53,7 +53,7 @@ class UserDetail extends Component {
                         <h4 className="text-uppercase">Contact Information</h4>
                         <p>Phone: {user.seeker_profile.phone}</p>
                         <p>Email: {user.seeker_profile.email}</p>
-                        <p>Location: {user.location.name}</p>
+                        <p>Location: {user.location && user.location.name}</p>
                         <p>Preferred Contact: {user.seeker_profile.preferred_contact}</p>
                         <hr/>
                         <h4 className="text-uppercase">Skill Sets</h4>

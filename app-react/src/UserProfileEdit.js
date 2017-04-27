@@ -16,14 +16,14 @@ class UserProfileEdit extends Component {
 			phone: window.user.seeker_profile.phone || '',
 			skills: window.user.seeker_profile.skills.map(skill => skill.id),
 			preferred_contact: window.user.preferred_contact || 'email',
-			location: window.user.location || {},
+			location: window.user.location && window.user.location.id || '',
 			education: window.user.seeker_profile.education || '',
 			work_history: window.user.seeker_profile.work_history || '',
 			interests: window.user.seeker_profile.interests || '',
 			lookupSkills: [],
 			lookupLocations: [],
-			text_me: window.user.seeker_profile.text_me || [],
-			email_me: window.user.seeker_profile.email_me || [],
+			text_me: window.user.seeker_profile.text_me,
+			email_me: window.user.seeker_profile.email_me,
 			about: window.user.about || '',
 			avatar: ''
 		}
@@ -166,7 +166,7 @@ class UserProfileEdit extends Component {
 										</div>
 										<div className="form-group">
 											<label htmlFor="location" className="text-uppercase">Location:</label>
-											<select className="form-control" value={this.state.location.id} onChange={(e) => this.setState({ location: e.target.value })}>
+											<select className="form-control" value={this.state.location} onChange={(e) => this.setState({ location: e.target.value })}>
 											<option disabled>Select a Location</option>
 												{locations}
 											</select>
